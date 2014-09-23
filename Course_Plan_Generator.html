@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Bootstrap 101 Template</title>
+                    
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+                            
+        <!-- Modified styles for custom header color, courtesy of http://twbscolor.smarchal.com/ -->
+        <link rel="stylesheet" href="Red_Bootstrap_Header.css">
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Bootstrap Header -->
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand">Santa Clara University Department of Engineering</a>
+            </div>
+        </nav>
+        
+        <div class="page-header">
+            <h3 class="text-center">First Year Course Plan Generator</h3>
+        </div>
+        
+        <p class="basic-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the Department of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
+        </p>
+        
+        <!-- AP Scores Entry Form -->
+        <div class="page-header">
+            <p class="basic-text"><b>AP Tests</b></p>
+        </div>
+        <form id="AP_Form">
+            <!-- span used to make it easy to add and remove duplicate elements, used by Remove_AP_Score() -->
+            <span>
+                <div class="col-xs-2">
+                    <select class="form-control" id="AP_Test_1">
+                        <option value="" selected>Test</option>
+                        <option value="CalcAB">Calculus AB</option>
+                        <option value="CalcBC">Calculus BC</option>
+                        <option value="Chem">Chemistry</option>
+                        <option value="CompSciA">Computer Science A</option>
+                        <option value="PhysicsM">Physics C: Mechanics</option>
+                        <option value="PhysicsEaM">Physics C: Electricity &amp; Magnetism</option>
+                    </select>
+                </div>
+                <div class="col-xs-2">
+                    <select class="form-control" id="AP_Score_1">
+                        <option value="" selected>Score</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <br/><br/>
+            </span>
+        </form>
+        <button type="button" class="btn btn-default" onclick="Add_AP_Score();">Add Another Score</button> <button type="button" class="btn btn-danger" onclick="Remove_AP_Score();">Remove Last Score</button>
+        
+        <!-- IB Scores Entry Form -->
+        <div class="page-header">
+            <p class="basic-text"><b>IB Tests</b></p>
+        </div>
+        
+        
+        <!-- CRE Scores Entry Form -->
+        <div class="page-header">
+            <p class="basic-text"><b>Calculus Readiness Exam</b></p>
+        </div>
+        
+        
+        <!-- College Courses Entry Form -->
+        <div class="page-header">
+            <p class="basic-text"><b>College Courses</b></p>
+        </div>
+        
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+        <script>
+            var AP_Count=1;
+            function Add_AP_Score(){
+                AP_Count = AP_Count + 1;
+                $("#AP_Form").append('<span> <div class="col-xs-2"> <select class="form-control" id="AP_Test_' + AP_Count + '"> <option value="" selected>Test</option> <option value="CalcAB">Calculus AB</option> <option value="CalcBC">Calculus BC</option> <option value="Chem">Chemistry</option> <option value="CompSciA">Computer Science A</option> <option value="PhysicsM">Physics C: Mechanics</option> <option value="PhysicsEaM">Physics C: Electricity &amp; Magnetism</option> </select></div> <div class="col-xs-2"> <select class="form-control" id="AP_Score_' + AP_Count + '"> <option value="" selected>Score</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> </select> </div> <br/><br/> </span>');
+            };
+        
+            function Remove_AP_Score(){
+                if (AP_Count > 0) {AP_Count = AP_Count - 1;}
+                $("#AP_Form span:last-child").remove();
+            };
+        </script>
+
+    </body>
+</html>
