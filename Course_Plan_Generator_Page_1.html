@@ -1,10 +1,17 @@
 <!DOCTYPE html>
+
+<!-- Abbreviations/variables used in this program:  AP for AP
+                                                    IB for IB
+                                                    CRE for Calculus Readiness Exam
+                                                    CC for College Courses -->
+
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap 101 Template</title>
+        <title>SCU Course Planner</title>
                     
         <!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
@@ -39,72 +46,217 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the Department of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
         </p>
         
-        <!-- AP Scores Entry Form -->
-        <div class="page-header">
-            <p class="basic-text"><b>AP Tests</b></p>
-        </div>
-        <form id="AP_Form">
-            <!-- span used to make it easy to add and remove duplicate elements, used by Remove_AP_Score() -->
-            <span>
-                <div class="col-xs-2">
-                    <select class="form-control" id="AP_Test_1">
-                        <option value="" selected>Test</option>
-                        <option value="CalcAB">Calculus AB</option>
-                        <option value="CalcBC">Calculus BC</option>
-                        <option value="Chem">Chemistry</option>
-                        <option value="CompSciA">Computer Science A</option>
-                        <option value="PhysicsM">Physics C: Mechanics</option>
-                        <option value="PhysicsEaM">Physics C: Electricity &amp; Magnetism</option>
-                    </select>
+        
+        
+        <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Waive Classes</h3>
                 </div>
-                <div class="col-xs-2">
-                    <select class="form-control" id="AP_Score_1">
-                        <option value="" selected>Score</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                <div class="panel-body">
+                    <!-- AP Section Header -->
+                    <div class="AP_header page-header">
+                        <span class="basic-text"><b>AP Tests</b></span>
+                        <!-- Toggles displaying the entry form. Also toggles the appearance of the toggle button -->
+                        <button type="button" class="btn btn-default btn-sm" onclick="$('.AP_Entries').toggle(); $('.AP_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- AP Entry Form -->
+                    <div class="AP_Entries" style="display: none;">
+                        <form id="AP_Form">
+                            <!-- span used to make it easy to add and remove duplicate elements, used by Remove_Score() -->
+                            <span>
+                                <div class="col-xs-4">
+                                    <select class="form-control" id="AP_Test_1">
+                                        <option value="" selected>Test</option>
+                                        <option value="CalcAB">Calculus AB</option>
+                                        <option value="CalcBC">Calculus BC</option>
+                                        <option value="Chem">Chemistry</option>
+                                        <option value="CompSciA">Computer Science A</option>
+                                        <option value="PhysicsM">Physics C: Mechanics</option>
+                                        <option value="PhysicsEaM">Physics C: Electricity &amp; Magnetism</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <select class="form-control" id="AP_Score_1">
+                                        <option value="" selected>Score</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <br/><br/>
+                            </span>
+                        </form>
+                        <button type="button" class="btn btn-default" onclick="Add_AP_Score();">Add Another Score</button>
+                        <button type="button" class="btn btn-danger" onclick="Remove_Score('AP');">Remove Last Score</button>
+                        <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
+                    </div>
+                    
+                    <!-- IB Section Header -->
+                    <div class="IB_header page-header">
+                        <span class="basic-text"><b>IB Tests</b></span>
+                        <button type="button" class="btn btn-default btn-sm" onclick="$('.IB_Entries').toggle(); $('.IB_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- IB Scores Entry Form -->
+                    <div class="IB_Entries" style="display: none;">
+                        <form id="IB_Form">
+                            <!-- span used to make it easy to add and remove duplicate elements, used by Remove_Score() -->
+                            <span>
+                                <div class="col-xs-4">
+                                    <select class="form-control" id="IB_Test_1">
+                                        <option value="" selected>Test</option>
+                                        <option value="Chem">Chemistry</option>
+                                        <option value="CompSci">Computer Science</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-4">
+                                    <select class="form-control" id="IB_Score_1">
+                                        <option value="" selected>Score</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
+                                </div>
+                                <br/><br/>
+                            </span>
+                        </form>
+                        <button type="button" class="btn btn-default" onclick="Add_IB_Score();">Add Another Score</button>
+                        <button type="button" class="btn btn-danger" onclick="Remove_Score('IB');">Remove Last Score</button>
+                        <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
+                    </div>
+                    
+                    
+                    <!-- CRE Section Header -->
+                    <div class="CRE_header page-header">
+                        <span class="basic-text"><b>Calculus Readiness Exam</b></span>
+                        <button type="button" class="btn btn-default btn-sm" onclick="$('.CRE_Entries').toggle(); $('.CRE_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- CRE Scores Entry Form -->
+                    <div class="CRE_Entries" style="display: none;">
+                        <form id="CRE_Form">
+                            <div class="col-xs-4">
+                                <select class="form-control" id="CRE_Score">
+                                    <option value="" selected>Score</option>
+                                    <option value="Pass"> More than 15 </option>
+                                    <option value="Fail"> 15 or less </option>
+                                </select>
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
+                    </div>
+                    
+                    
+                    <!-- College Courses Entry Form -->
+                    <div class="CC_header page-header">
+                        <span class="basic-text"><b>College Courses</b></span>
+                        <button type="button" class="btn btn-default btn-sm" onclick="$('.CC_Entries').toggle(); $('.CC_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
                 </div>
-                <br/><br/>
-            </span>
-        </form>
-        <button type="button" class="btn btn-default" onclick="Add_AP_Score();">Add Another Score</button> <button type="button" class="btn btn-danger" onclick="Remove_AP_Score();">Remove Last Score</button>
-        
-        <!-- IB Scores Entry Form -->
-        <div class="page-header">
-            <p class="basic-text"><b>IB Tests</b></p>
+            </div>
         </div>
         
         
-        <!-- CRE Scores Entry Form -->
-        <div class="page-header">
-            <p class="basic-text"><b>Calculus Readiness Exam</b></p>
+        
+        <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Default Schedule</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Fall</th>
+                                <th>Winter</th>
+                                <th>Spring</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MATH 11 - Calculus 1</td>
+                                <td>MATH 12 - Calculus 2</td>
+                                <td>MATH 13 - Calculus 3</td>
+                            </tr>
+                            <tr>
+                                <td>COEN 10 - Intro to Programming</td>
+                                <td>COEN 11 - Advanced Programming</td>
+                                <td>COEN 12 - Data Structures</td>
+                            </tr>
+                            <tr>
+                                <td>CHEM 11 - Chemistry 1</td>
+                                <td>PHYS 31 - Physics 1</td>
+                                <td>PHYS 32 - Physics 2</td>
+                            </tr>
+                            <tr>
+                                <td>CTW 1 - Critical Thinking &amp; Writing 1</td>
+                                <td>CTW 2 - Critical Thinking &amp; Writing 2</td>
+                                <td>COEN 19 - Discrete Mathematics</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">ENGR 1 - Intro. to Engineering &nbsp;&nbsp;&nbsp; <i>OR</i> &nbsp;&nbsp;&nbsp; ENGR 1 - Intro. to Engineering </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         
         
-        <!-- College Courses Entry Form -->
-        <div class="page-header">
-            <p class="basic-text"><b>College Courses</b></p>
-        </div>
         
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="CheckScores.js"></script>
         
         <script>
-            var AP_Count=1;
+            // Associatiave array that counts the # of tests on page
+            var Counts = new Array();
+            
+            // Initialize counts for each test
+            Counts["AP"] = 1;
+            Counts["IB"] = 1;
+            Counts["CC"] = 1;
+        
+            // Add another entry to the AP section
             function Add_AP_Score(){
-                AP_Count = AP_Count + 1;
-                $("#AP_Form").append('<span> <div class="col-xs-2"> <select class="form-control" id="AP_Test_' + AP_Count + '"> <option value="" selected>Test</option> <option value="CalcAB">Calculus AB</option> <option value="CalcBC">Calculus BC</option> <option value="Chem">Chemistry</option> <option value="CompSciA">Computer Science A</option> <option value="PhysicsM">Physics C: Mechanics</option> <option value="PhysicsEaM">Physics C: Electricity &amp; Magnetism</option> </select></div> <div class="col-xs-2"> <select class="form-control" id="AP_Score_' + AP_Count + '"> <option value="" selected>Score</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> </select> </div> <br/><br/> </span>');
+                Counts["AP"] = Counts["AP"] + 1;
+                
+                $("#AP_Form").append('<span> <div class="col-xs-4"> <select class="form-control" id="AP_Test_' + Counts["AP"] + '"> <option value="" selected>Test</option> <option value="CalcAB">Calculus AB</option> <option value="CalcBC">Calculus BC</option> <option value="Chem">Chemistry</option> <option value="CompSciA">Computer Science A</option> <option value="PhysicsM">Physics C: Mechanics</option> <option value="PhysicsEaM">Physics C: Electricity &amp; Magnetism</option> </select></div> <div class="col-xs-4"> <select class="form-control" id="AP_Score_' + Counts["AP"] + '"> <option value="" selected>Score</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> </select> </div> <br/><br/> </span>');
             };
         
-            function Remove_AP_Score(){
-                if (AP_Count > 0) {AP_Count = AP_Count - 1;}
-                $("#AP_Form span:last-child").remove();
+            // Add another entry to the IB section
+            function Add_IB_Score(){
+                Counts["IB"] = Counts["IB"] + 1;
+                
+                $("#IB_Form").append('<span> <div class="col-xs-4"> <select class="form-control" id="IB_Test_' + Counts["IB"] + '"> <option value="" selected>Test</option> <option value="Chem">Chemistry</option> <option value="CompSci">Computer Science</option> </select></div> <div class="col-xs-4"> <select class="form-control" id="IB_Score_' + Counts["IB"] + '"> <option value="" selected>Score</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> </select> </div> <br/><br/> </span>');
+            };
+        
+            function Remove_Score(test_type){
+                if (Counts[test_type] > 0) {
+                    Counts[test_type] = Counts[test_type] - 1;
+                    $("#"+test_type+"_Form span:last-child").remove();
+                }
             };
         </script>
 

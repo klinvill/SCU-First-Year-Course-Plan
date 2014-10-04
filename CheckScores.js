@@ -28,7 +28,7 @@ function CheckWaived() {
     var scoresTaken = [];
 
     //obtain the tests taken and their respective scores and store in variables
-    for (var j = 1; j < (AP_Count+1); j++) {
+    for (var j = 1; j < (Counts["AP"]+1); j++) {
         var testIndex = document.getElementById("AP_Test_" + j).selectedIndex - 1; //-1 to account for option "Test"
         var score = document.getElementById("AP_Score_" + j).selectedIndex;
         testsTaken[testsTaken.length] = APtests[testIndex];
