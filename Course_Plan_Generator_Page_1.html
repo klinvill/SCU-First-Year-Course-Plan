@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!-- JQuery UI styles -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
                             
         <!-- Custom styles, includes styles for custom header color, courtesy of http://twbscolor.smarchal.com/ -->
         <link rel="stylesheet" href="Styles_for_Course_Plan_Generator.css">
@@ -52,15 +54,20 @@
         <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Waive Classes</h3>
+                    <h3 class="panel-title">Waive Classes
+                        <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.waive_classes_wrapper').toggle(); $(this).find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                        </button>
+                    </h3>
+                    
                 </div>
-                <div class="panel-body">
+                <div class="panel-body waive_classes_wrapper">
                     <!-- AP Section Header -->
                     <div class="AP_header page-header">
                         <span class="basic-text"><b>AP Tests</b></span>
                         <!-- Toggles displaying the entry form. Also toggles the appearance of the toggle button -->
-                        <button type="button" class="btn btn-default btn-sm" onclick="$('.AP_Entries').toggle(); $('.AP_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
-                            <span class="glyphicon glyphicon-plus"></span>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.AP_Entries').toggle(); $('.AP_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                     </div>
                     
@@ -101,8 +108,8 @@
                     <!-- IB Section Header -->
                     <div class="IB_header page-header">
                         <span class="basic-text"><b>IB Tests</b></span>
-                        <button type="button" class="btn btn-default btn-sm" onclick="$('.IB_Entries').toggle(); $('.IB_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
-                            <span class="glyphicon glyphicon-plus"></span>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.IB_Entries').toggle(); $('.IB_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                     </div>
                     
@@ -142,8 +149,8 @@
                     <!-- CRE Section Header -->
                     <div class="CRE_header page-header">
                         <span class="basic-text"><b>Calculus Readiness Exam</b></span>
-                        <button type="button" class="btn btn-default btn-sm" onclick="$('.CRE_Entries').toggle(); $('.CRE_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
-                            <span class="glyphicon glyphicon-plus"></span>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.CRE_Entries').toggle(); $('.CRE_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                     </div>
                     
@@ -165,8 +172,8 @@
                     <!-- College Courses Entry Form -->
                     <div class="CC_header page-header">
                         <span class="basic-text"><b>College Courses</b></span>
-                        <button type="button" class="btn btn-default btn-sm" onclick="$('.CC_Entries').toggle(); $('.CC_header').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus')">
-                            <span class="glyphicon glyphicon-plus"></span>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.CC_Entries').toggle(); $('.CC_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
                     </div>
                 </div>
@@ -176,7 +183,51 @@
         
         
         <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
-        <div class="col-md-7">
+        <div class="col-md-6 drag_section pull-right">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Default Schedule</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Fall</th>
+                                <th>Winter</th>
+                                <th>Spring</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MATH 11 - Calculus 1</td>
+                                <td>MATH 12 - Calculus 2</td>
+                                <td>MATH 13 - Calculus 3</td>
+                            </tr>
+                            <tr>
+                                <td>COEN 10 - Intro to Programming</td>
+                                <td>COEN 11 - Advanced Programming</td>
+                                <td>COEN 12 - Data Structures</td>
+                            </tr>
+                            <tr>
+                                <td>CHEM 11 - Chemistry 1</td>
+                                <td>PHYS 31 - Physics 1</td>
+                                <td>PHYS 32 - Physics 2</td>
+                            </tr>
+                            <tr>
+                                <td>CTW 1 - Critical Thinking &amp; Writing 1</td>
+                                <td>CTW 2 - Critical Thinking &amp; Writing 2</td>
+                                <td>COEN 19 - Discrete Mathematics</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">ENGR 1 - Intro. to Engineering &nbsp;&nbsp;&nbsp; <i>OR</i> &nbsp;&nbsp;&nbsp; ENGR 1 - Intro. to Engineering </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 drag_section pull-right">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Default Schedule</h3>
@@ -228,8 +279,13 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="CheckScores.js"></script>
+        <!-- JQuery UI, used for drag and drop -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
         
         <script>
+            $(document).ready($(".drag_section").draggable());
+            
+            
             // Associatiave array that counts the # of tests on page
             var Counts = new Array();
             
