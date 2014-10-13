@@ -35,15 +35,15 @@
             <h3 class="text-center">First Year Course Plan Generator</h3>
         </div>
         
-        <p class="basic-text">
+        <p class="basic-text" id="welcome-summary">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the Department of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
         </p>
         
         
         
         <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
-        <div class="col-md-4">
-            <div id="accordion" class="panel-group">
+        <div id="accordion" class="col-md-4">
+            <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -52,7 +52,7 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <select class="form-control" id="Major">
+                            <select class="form-control" id="Major" onchange="updateMajor()">
                                 <option value="" selected disabled>Major</option>
                                 <option value="COEN"> COEN </option>
                                 <option value="OTHER"> OTHER </option>
@@ -312,7 +312,7 @@
         
         <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
         <div class="col-md-8 pull-right">
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="schedule">
                 <div class="panel-heading">
                     <h3 class="panel-title">Schedule</h3>
                 </div>
@@ -374,5 +374,13 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="CheckScores.js"></script>
+        
+        <script>
+            function updateMajor() {
+                $('#schedule .panel-heading .panel-title').text($('#Major').val() + " Schedule");
+            }
+        </script>
+        
+        
     </body>
 </html>

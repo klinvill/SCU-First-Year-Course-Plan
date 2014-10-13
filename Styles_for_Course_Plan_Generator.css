@@ -17,3 +17,9 @@ body {
 .form-control {
     min-width: 100px;
 }
+
+@media print {
+    #accordion, #welcome-summary {
+        display: none;
+    }
+}
