@@ -42,12 +42,12 @@
         
         
         <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
-        <div id="accordion" class="col-md-4">
-            <div class="panel-group">
+        <div class="col-md-4">
+            <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Step 1: Select Major</a>
+                            <a>Step 1: Select Major</a>
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
@@ -61,9 +61,9 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Step 2: Waive Classes</a>
+                            <a>Step 2: Waive Classes</a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
@@ -173,55 +173,6 @@
                                 <br/><br/><br/>
                             </div>
                             
-                            <!-- IB Section Header -->
-                            <div class="IB_header page-header">
-                                <span class="basic-text"><b>IB Tests</b></span>
-                                <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.IB_Entries').toggle(); $('.IB_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                </button>
-                            </div>
-                            
-                            <!-- IB Scores Entry Form -->
-                            <div class="IB_Entries" style="display: none;">
-                                <form id="IB_Form">
-                                    <div class="col-xs-6">
-                                        <p> <b>Chemistry:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="IB_Chem_Score">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Computer Science:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="IB_CompSci_Score">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
-                                <br/><br/><br/>
-                            </div>
-                            
                             
                             <!-- CRE Section Header -->
                             <div class="CRE_header page-header">
@@ -289,9 +240,9 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Step 3: Select Quarter to Take ENGR 1</a>
+                            <a>Step 3: Select Quarter to Take ENGR 1</a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">

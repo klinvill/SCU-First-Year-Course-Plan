@@ -18,8 +18,13 @@ body {
     min-width: 100px;
 }
 
+/* Used to define what the print view looks like */
 @media print {
     #accordion, #welcome-summary {
         display: none;
     }
+}
+
+#accordion .panel-heading {
+    cursor: pointer;
 }
