@@ -16,10 +16,10 @@ function generateSchedule()
     var courseArray = COEN_course_array;
     console.warn("Need to choose course array");
     
-    for (course in courseArray)
+    for (tempCourse in courseArray)
     {
         // Check if the course has been waived.
-        if (course.waived) continue;
+        if (tempCourse.waived) continue;
         
         // Attempt to place the course in the schedule, starting with Fall.
         for (var quarter in courseSchedule)
@@ -32,7 +32,7 @@ function generateSchedule()
             
             for (var courseInSchedule in courseSchedule)
             {
-                if (courseInSchedule.id === course.pre_req)
+                if (courseInSchedule.id === tempCourse.pre_req)
                 {
                     preReqPresent = true;
                     break;
@@ -42,7 +42,7 @@ function generateSchedule()
             if (preReqPresent == true) continue;
             
             // Add course to schedule.
-            quarter.push(course);
+            quarter.push(tempCourse);
         }
     }
 }

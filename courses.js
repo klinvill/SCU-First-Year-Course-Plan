@@ -1,10 +1,8 @@
 // Course Data File
 
-// Note: need to implement a get_default() function which returns the default replacement ID
-function get_default()
-{
-    return "CORE";
-}
+// Waringings for reminding us what we need to do.
+console.warn("Need to add AMATH 108");
+
 
 // An object prototype function for courses.
 function course(name, id, offered, waived, pre_req, replace_with)
@@ -17,16 +15,26 @@ function course(name, id, offered, waived, pre_req, replace_with)
     this.replace_with = replace_with;
 }
 
+// The default course to replace all others. Currently, University Core.
+finalCourseOption =
+    new course("University Core",
+               "CORE",
+               ["F", "W", "S"],
+               false,
+               "",
+               "");
+                    
+
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
     for (courseArray in courseArrays)
     {
-        for (var course in courseArray)
+        for (var tempCourse in courseArray)
         {
-            if (course.id === courseID)
+            if (tempCourse.id === courseID)
             {
-                course.waived = true;
+                tempCourse.waived = true;
                 break;
             }
         }
@@ -35,11 +43,11 @@ function waiveCourse(courseID)
 
 function unwaiveCourse(courseID)
 {
-    for (var course in COEN_course_array)
+    for (var tempCourse in COEN_course_array)
     {
-        if (course.id === courseID)
+        if (tempCourse.id === courseID)
         {
-            course.waived = false;
+            tempCourse.waived = false;
             break;
         }
     }
@@ -105,7 +113,6 @@ var COEN_course_array =
  },
  
  //Need to add AMATH 108.
- console.warn("Need to add AMATH 108");
  
  // Use replace_with instead of pre_req for ordering
  {
@@ -114,7 +121,7 @@ var COEN_course_array =
  offered: ["W", "S"],
  waived: false,
  pre_req: "MATH 13",
- replace_with: get_default()
+ replace_with: finalCourseOption.id
  }
  
  
@@ -162,7 +169,7 @@ var COEN_course_array =
  offered: ["F", "S"],
  waived: false,
  pre_req: "COEN 11",
- replace_with: get_default()
+ replace_with: finalCourseOption.id
  },
  
  
@@ -183,7 +190,7 @@ var COEN_course_array =
  offered: ["F", "W", "S"],
  waived: false,
  pre_req: "CTW 1",
- replace_with: get_default()
+ replace_with: finalCourseOption.id
  },
  
  
@@ -194,7 +201,7 @@ var COEN_course_array =
  offered: ["F"],
  waived: false,
  pre_req:"",
- replace_with: get_default()
+ replace_with: finalCourseOption.id
  },
  
  {
@@ -203,7 +210,7 @@ var COEN_course_array =
  offered: ["W"],
  waived: false,
  pre_req: "",
- replace_with: get_default(),
+ replace_with: finalCourseOption.id,
  },
  
  {
@@ -212,7 +219,7 @@ var COEN_course_array =
  offered: ["S"],
  waived: false,
  pre_req: "PHYS 31",
- replace_with: get_default()
+ replace_with: finalCourseOption.id
  },
  
  {
@@ -221,7 +228,7 @@ var COEN_course_array =
  offered: ["F", "S"],
  waived: false,
  pre_req: "",
- replace_with: get_default()
+ replace_with: finalCourseOption.id
  }
  ];
 
