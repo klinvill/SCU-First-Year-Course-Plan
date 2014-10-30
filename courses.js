@@ -69,12 +69,15 @@ var COEN_course_array =
  
  {
  name: "Differential Equations",
- id: "MATH 106",
+ id: "AMATH 106",
  offered: ["F", "W", "S"],
  waived: false,
  pre_req: "MATH 14",
  replace_with: "MATH 53"
  },
+ 
+ //Need to add AMATH 108.
+ console.warn("Need to add AMATH 108");
  
  // Use replace_with instead of pre_req for ordering
  {
