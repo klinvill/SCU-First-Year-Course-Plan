@@ -17,6 +17,34 @@ function course(name, id, offered, waived, pre_req, replace_with)
     this.replace_with = replace_with;
 }
 
+// Functions which look through the course array and waive or unwaive courses.
+function waiveCourse(courseID)
+{
+    for (courseArray in courseArrays)
+    {
+        for (var course in courseArray)
+        {
+            if (course.id === courseID)
+            {
+                course.waived = true;
+                break;
+            }
+        }
+    }
+}
+
+function unwaiveCourse(courseID)
+{
+    for (var course in COEN_course_array)
+    {
+        if (course.id === courseID)
+        {
+            course.waived = false;
+            break;
+        }
+    }
+}
+
 // Array of courses, ordered in terms of priority placement with the highest priority being at the front
 // Each course is structured as: course = {name:”Calculus 3”, id:”MATH 13”, offered:[”F”, “W”, “S”], waived:false, pre_req:”MATH 12”, replace_with: "MATH 14"}
 var COEN_course_array =
@@ -169,7 +197,6 @@ var COEN_course_array =
  replace_with: get_default()
  },
  
- 
  {
  name: "Physics I",
  id: "PHYS 31",
@@ -197,7 +224,8 @@ var COEN_course_array =
  replace_with: get_default()
  }
  ];
- 
- 
+
+// An array containing each of the following course arrays.
+var courseArrays = [COEN_course_array];
  
                          
