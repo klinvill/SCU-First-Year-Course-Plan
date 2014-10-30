@@ -22,10 +22,22 @@ function generateSchedule()
         if (tempCourse.waived) continue;
         
         // Attempt to place the course in the schedule, starting with Fall.
-        for (var quarter in courseSchedule)
+        for (var j = 0; j < courseSchedule.length; j++)
         {
+            var quarter = courseSchedule[j]; // Array of courses for quarter.
+            
             // Check if the quarter already has 4 courses.
             if (quarter.length >= classesPerQuarter) continue;
+            
+            // Check if course is available in the quarter.
+            var quarterID; //String F, W, or S to identify quarter.
+            
+                // Getting quarterID.
+            if (j == 0) quarterID = "F";
+            else if (j == 1) quarterID = "S";
+            else if (j == 2) quarterID = "W";
+            
+            if (course.offered.search(quarterID) == -1) continue;
             
             // Check if pre-requisite is already in the quarter.
             var preReqPresent = false;
