@@ -19,7 +19,7 @@ function course(name, id, offered, waived, pre_req, replace_with)
 finalCourseOption =
     new course("University Core",
                "CORE",
-               ["F", "W", "S"],
+               "FWS",
                false,
                "",
                "");
@@ -61,7 +61,7 @@ var COEN_course_array =
  {
  name: "Precalculus",
  id: "MATH 9",
- offered: ["F"],
+ offered: "F",
  waived: true,
  pre_req: "",
  replace_with: "MATH 11"
@@ -70,7 +70,7 @@ var COEN_course_array =
  {
  name: "Calculus I",
  id: "MATH 11",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "MATH 9",
  replace_with: "MATH 12"
@@ -79,7 +79,7 @@ var COEN_course_array =
  {
  name: "Calculus II",
  id: "MATH 12",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "MATH 11",
  replace_with: "MATH 13"
@@ -88,7 +88,7 @@ var COEN_course_array =
  {
  name: "Calculus III",
  id: "MATH 13",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "MATH 12",
  replace_with: "MATH 14"
@@ -97,7 +97,7 @@ var COEN_course_array =
  {
  name: "Calculus IV",
  id: "MATH 14",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "MATH 13",
  replace_with: "MATH 106"
@@ -106,7 +106,7 @@ var COEN_course_array =
  {
  name: "Differential Equations",
  id: "AMATH 106",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "MATH 14",
  replace_with: "MATH 53"
@@ -118,7 +118,7 @@ var COEN_course_array =
  {
  name: "Linear Algebra",
  id: "MATH 53",
- offered: ["W", "S"],
+ offered: "WS",
  waived: false,
  pre_req: "MATH 13",
  replace_with: finalCourseOption.id
@@ -130,7 +130,7 @@ var COEN_course_array =
  {
  name: "Intro. to Programming",
  id: "COEN 10",
- offered:["F", "W"],
+ offered:"FW",
  waived: false,
  pre_req: "",
  replace_with: "COEN 11"
@@ -139,7 +139,7 @@ var COEN_course_array =
  {
  name: "Advanced Programming",
  id: "COEN 11",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "COEN 10",
  replace_with: "COEN 12"
@@ -148,7 +148,7 @@ var COEN_course_array =
  {
  name: "Data Structures",
  id: "COEN 12",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "COEN 11",
  replace_with: "COEN 21"
@@ -157,7 +157,7 @@ var COEN_course_array =
  {
  name: "Logic Design",
  id: "COEN 21",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "",
  replace_with: "COEN 20"
@@ -166,7 +166,7 @@ var COEN_course_array =
  {
  name: "Embedded Systems",
  id: "COEN 20",
- offered: ["F", "S"],
+ offered: "FS",
  waived: false,
  pre_req: "COEN 11",
  replace_with: finalCourseOption.id
@@ -178,7 +178,7 @@ var COEN_course_array =
  {
  name:"Critical Thinking & Writing 1",
  id: "CTW 1",
- offered:["F", "W", "S"],
+ offered:"FWS",
  waived:false,
  pre_req:"",
  replace_with: "CTW 2"
@@ -187,7 +187,7 @@ var COEN_course_array =
  {
  name: "Critical Thinking & Writing 2",
  id: "CTW 2",
- offered: ["F", "W", "S"],
+ offered: "FWS",
  waived: false,
  pre_req: "CTW 1",
  replace_with: finalCourseOption.id
@@ -198,7 +198,7 @@ var COEN_course_array =
  {
  name:"Chemistry I",
  id: "CHEM 11",
- offered: ["F"],
+ offered: "F",
  waived: false,
  pre_req:"",
  replace_with: finalCourseOption.id
@@ -207,7 +207,7 @@ var COEN_course_array =
  {
  name: "Physics I",
  id: "PHYS 31",
- offered: ["W"],
+ offered: "W",
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id,
@@ -216,7 +216,7 @@ var COEN_course_array =
  {
  name: "Physics II",
  id: "PHYS 32",
- offered: ["S"],
+ offered: "S",
  waived: false,
  pre_req: "PHYS 31",
  replace_with: finalCourseOption.id
@@ -225,7 +225,7 @@ var COEN_course_array =
  {
  name: "Discrete Mathematics",
  id: "COEN 19",
- offered: ["F", "S"],
+ offered: "FS",
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id
