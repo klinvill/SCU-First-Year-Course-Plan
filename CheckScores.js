@@ -1,117 +1,115 @@
 /*  Function:       CheckWaived()
-    Description:    Checks each test and sees if each test can get a class waived.
-                    Afterwards, it displays the waived classes on the textbox.
-                    ...There must be a more efficient way of doing this.
-*/
+ Description:    Checks each course to see if it has been waived and updates the information in the course list.
+ */
+
+console.warn("Need custom course waiving logic in course waiving function.");
+console.warn("Need to check AMATH 106 waiving logic.");
+console.warn("Need to add AP Physics B Test.");
 
 function CheckWaived() {
     
-    /*  Variables for each class that can be waived. 
-    *  0 = NOT waived
-    *  1 = waived
-    */
-    var math11 = 0;
-    var math12 = 0;
-    var math13 = 0;
-    var chem11 = 0;
-    var chem12 = 0;
-    var chem13 = 0;
-    var coen10 = 0;
-    var coen11 = 0;
-    var phys31 = 0;
-    var phys33 = 0;
-    var biol22 = 0;
-    var math9 = 1;
+    // None of the following logic includes the section where they can
+    // just choose to waive any course that they want.
     
-    //check each AP score box and waive appropriate classes
-    var score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
-    if(score > 3) {
-        math11 = 1;//waive math 11
-    }
-    score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
-    if(score == 3)
-        math11 = 1;//waive math 11
-    else if (score > 3) {
-        math11 = 1;
-        math12 = 1;//waive math 11 and math 12
-    }
-    score = document.getElementById("AP_Chem_Score").selectedIndex;
-    if(score == 3)
-        chem11 = 1;//waive chem11
-    else if(score == 4) {
-        chem11 = 1;
-        chem12 = 1;//waive chem11 and chem12
-    }
-    else if(score == 5) {
-        chem11 = 1;
-        chem12 = 1;
-        chem13 = 1;//waive chem11, chem12, chem13
-    }
-    score = document.getElementById("AP_Comp_Sci_Score").selectedIndex;
-    if(score == 3)
-        coen10 = 1;//waive coen10
-    else if(score > 3) {
-        coen10 = 1;
-        coen11 = 1;//waive coen 10 and coen 11
-    }
-    score = document.getElementById("AP_Mech_Score").selectedIndex;
-    if(score > 3)
-        phys31 = 1;//waive phys31
-    score = document.getElementById("AP_EnM_Score").selectedIndex;
-    if(score > 3)
-        phys33 = 1;//waive phys33
+    var score;
     
-
-    //check CRE
-    var CREScore = document.getElementById("CRE_Score").selectedIndex;
-    if(CREScore == 2)
-        math9 = 0;//unwaive math 9
-  
-
+    // Getting Scores
+    var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
+    var AP_Calc_BC_Score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
+    var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
+    var AP_Chem_Score = getElementById("AP_Chem_Score").selectedIndex;
+    var AP_Comp_Sci_Score = document.getElementById("AP_Comp_Sci_Score").selectedIndex;
+    var AP_PHYS_Mech_Score = document.getElementById("AP_Mech_Score").selectedIndex;
+    var AP_PHYS_EnM_Score = document.getElementById("AP_EnM_Score").selectedIndex;
     
-    //check all checkboxes
-    if(document.getElementById("OC_MATH11").checked == true)
-        math11 = 1;//waive math 11
-    if(document.getElementById("OC_MATH12").checked == true)
-        math12 = 1;//waive math 12
-    if(document.getElementById("OC_MATH13").checked == true)
-        math13 = 1;//waive math 13
-    if(document.getElementById("OC_COEN10").checked == true)
-        coen10 = 1;//waive COEN10
-    if(document.getElementById("OC_COEN11").checked == true)
-        coen11 = 1;//waive COEN11
-    if(document.getElementById("OC_PHYS31").checked == true)
-        phys31 = 1;//waive PHYS31
-        
-        
-        
-        
-        
-        
+    // --- Math Courses ---
     
-    //alert waived classes
-    if(math9 == 1)
-        alert("Math 9 is waived.");
-    if(math11 == 1)
-        alert("Math 11 is waived.");
-    if(math12 == 1)
-        alert("Math 12 is waived.");
-    if(math13 == 1)
-        alert("Math13 is waived.");
-    if(chem11 == 1)
-        alert("Chem 11 is waived.");
-    if(chem12 == 1)
-        alert("Chem 12 is waived.");
-    if(chem13 == 1)
-        alert("Chem13 is waived.");
-    if(coen10 == 1)
-        alert("COEN 10 is waived.");
-    if(coen11 == 1)
-        alert("COEN 11 is waived.");
-    if(phys31 == 1)
-        alert("Phys 31 is waived.");
-    if(phys33 == 1)
-        alert("Phys 33 is waived.");
-    if(biol22 == 1)
-        alert("Bio 22 is waived.");
-	}
+    // MATH 9
+    if (CRE_Score == 2) // Score of 15 or less
+    {
+        waiveCourse("MATH 9");
+    } else {
+        unwaiveCourse("MATH 9");
+    }
+    
+    // MATH 11
+    if (CRE_Score != 2 && (AP_Calc_AB_Score >= 3 || AP_Calc_BC_Score >= 3))
+    {
+        waiveCourse("MATH 11");
+    } else {
+        unwaiveCourse("MATH 11");
+    }
+    
+    //MATH 12
+    if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
+    {
+        waiveCourse("MATH 12");
+    } else {
+        unwaiveCourse("MATH 12");
+    }
+    
+    // --- Chem Courses ---
+    
+    // Chem 11
+    if (AP_Chem_Score >= 3)
+    {
+        waiveCourse("CHEM 11");
+        
+    } else {
+        unwaiveCourse("CHEM 11");
+    }
+    
+    // Chem 12
+    if (AP_Chem_Score >= 4)
+    {
+        waiveCourse("CHEM 12");
+        
+    } else {
+        unwaiveCourse("CHEM 12");
+    }
+    
+    // Chem 13
+    if (AP_Chem_Score >= 5)
+    {
+        waiveCourse("CHEM 13");
+        
+    } else {
+        unwaiveCourse("CHEM 13");
+    }
+    
+    // --- Coen Courses ----
+    
+    // COEN 10
+    if (AP_Comp_Sci_Score >= 3)
+    {
+        waiveCourse("COEN 10");
+    } else {
+        unwaiveCourse("COEN 10");
+    }
+    
+    // COEN 11
+    if (AP_Comp_Sci_Score >= 4)
+    {
+        waiveCourse("COEN 11");
+    } else {
+        unwaiveCourse("COEN 11");
+    }
+    
+    // --- Physics Courses ----
+    
+    //Need to add AP Phisics B Test.
+    // PHYS 31
+    if (AP_PHYS_Mech_Score > 3)
+    {
+        waiveCourse("PHYS 31");
+    } else {
+        unwaiveCourse("PHYS 31");
+    }
+    
+    // PHYS 33
+    if (AP_PHYS_EnM_Score > 3)
+    {
+        waiveCourse("PHYS 33");
+    } else {
+        unwaiveCourse("PHYS 33");
+    }
