@@ -84,7 +84,7 @@
                                         <p> <b>Calculus AB:</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Calc_AB_Score">
+                                        <select class="form-control" id="AP_Calc_AB_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -99,7 +99,7 @@
                                         <p> <b>Calculus BC:</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Calc_BC_Score">
+                                        <select class="form-control" id="AP_Calc_BC_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -114,7 +114,7 @@
                                         <p> <b>Chemistry:</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Chem_Score">
+                                        <select class="form-control" id="AP_Chem_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -129,7 +129,7 @@
                                         <p> <b>Computer Science A:</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Comp_Sci_Score">
+                                        <select class="form-control" id="AP_Comp_Sci_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -144,7 +144,7 @@
                                         <p> <b>Physics B:</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Phys_B_Score">
+                                        <select class="form-control" id="AP_Phys_B_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -159,7 +159,7 @@
                                         <p> <b>Physics C (Mechanics):</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Mech_Score">
+                                        <select class="form-control" id="AP_Mech_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -174,7 +174,7 @@
                                         <p> <b>Physics C (Electricity &amp; Magnetism):</b> </p>
                                     </div>
                                     <div class="col-xs-6">
-                                        <select class="form-control" id="AP_EnM_Score">
+                                        <select class="form-control" id="AP_EnM_Score" onchange="updateSchedule();">
                                             <option value="" selected>Score</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -184,7 +184,7 @@
                                         </select>
                                     </div>
                                 </form>
-                                <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
+                                <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
                                 <br/><br/><br/>
                             </div>
                             
@@ -208,7 +208,7 @@
                                         </select>
                                     </div>
                                 </form>
-                                <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
+                                <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
                             </div>
                             
                             
@@ -273,7 +273,7 @@
                                         </label>
                                     </div>
                                 </form>
-                                <button type="button" class="btn btn-default" onclick="CheckWaived();">Check Waived</button>
+                                <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
                             </div>
                         </div>
                     </div>
@@ -365,10 +365,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="CheckScores.js"></script>
         <script src="GenerateSchedule.js"></script>
+        <script src="UpdateSchedule.js"></script>
         
         <script>
             function updateMajor() {
                 $('#schedule .panel-heading .panel-title').text($('#Major').val() + " Schedule");
+                //Updating the schedule after changing the major.
+                updateSchedule();
             }
         </script>
         

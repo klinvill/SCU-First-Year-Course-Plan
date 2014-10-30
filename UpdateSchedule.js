@@ -7,4 +7,6 @@ function updateSchedule()
     
     // Generating a schedule.
     generateSchedule();
+    
+    // Update schedule display.
 }
