@@ -6,6 +6,17 @@ function get_default()
     return "CORE";
 }
 
+// An object prototype function for courses.
+function course(name, id, offered, waived, pre_req, replace_with)
+{
+    this.name = name;
+    this.id = id;
+    this.offered = offered;
+    this.waived = waived;
+    this.pre_req = pre_req;
+    this.replace_with = replace_with;
+}
+
 // Array of courses, ordered in terms of priority placement with the highest priority being at the front
 // Each course is structured as: course = {name:”Calculus 3”, id:”MATH 13”, offered:[”F”, “W”, “S”], waived:false, pre_req:”MATH 12”, replace_with: "MATH 14"}
 var COEN_course_array =
