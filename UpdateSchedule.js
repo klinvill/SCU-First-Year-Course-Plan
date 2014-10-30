@@ -2,6 +2,7 @@
 
 function updateSchedule()
 {
+    console.log("Updating Schedule.");
     // Updated waived status of courses.
     CheckWaived();
     

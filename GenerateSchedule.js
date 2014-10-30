@@ -14,7 +14,7 @@ function generateSchedule()
 {
     // Need to add logic here for choosing which course array to use.
     var courseArray = COEN_course_array;
-    console.warn("Need to choose course array");
+    console.warn("Need to choose course array.");
     
     for (tempCourse in courseArray)
     {
