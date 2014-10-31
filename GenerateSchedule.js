@@ -5,7 +5,7 @@
 //First array [1] corresponds to Winter.
 //First array [2] corresponds to Spring.
 
-var courseSchedule [[],[],[]];
+var courseSchedule = [ [], [], [] ];
 var classesPerQuarter = 4;
 
 // Function called to fill the courseSchedule with courses.
@@ -36,6 +36,7 @@ function generateSchedule()
             if (j == 0) quarterID = "F";
             else if (j == 1) quarterID = "S";
             else if (j == 2) quarterID = "W";
+            else throw "j is not a valid quarter, thrown from GenerateSchedule.js";
             
             if (course.offered.search(quarterID) == -1) continue;
             
@@ -57,4 +58,6 @@ function generateSchedule()
             quarter.push(tempCourse);
         }
     }
+    
+    return courseArray;
 }

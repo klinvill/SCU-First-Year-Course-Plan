@@ -1,6 +1,6 @@
 // Course Data File
 
-// Waringings for reminding us what we need to do.
+// Warnings for reminding us what we need to do.
 console.warn("Need to add AMATH 108");
 
 
@@ -16,7 +16,7 @@ function course(name, id, offered, waived, pre_req, replace_with)
 }
 
 // The default course to replace all others. Currently, University Core.
-finalCourseOption =
+var finalCourseOption =
     new course("University Core",
                "CORE",
                "FWS",
@@ -105,14 +105,21 @@ var COEN_course_array =
  
  {
  name: "Differential Equations",
- id: "AMATH 106",
+ id: "AMTH 106",
+ offered: "FWS",
+ waived: false,
+ pre_req: "MATH 14",
+ replace_with: "AMATH 108"
+ },
+ 
+ {
+ name: "Probability and Statistics",
+ id: "AMTH 108",
  offered: "FWS",
  waived: false,
  pre_req: "MATH 14",
  replace_with: "MATH 53"
  },
- 
- //Need to add AMATH 108.
  
  // Use replace_with instead of pre_req for ordering
  {
@@ -122,7 +129,7 @@ var COEN_course_array =
  waived: false,
  pre_req: "MATH 13",
  replace_with: finalCourseOption.id
- }
+ },
  
  
  
@@ -185,12 +192,12 @@ var COEN_course_array =
  },
  
  {
- name: "Critical Thinking & Writing 2",
- id: "CTW 2",
+ name: "Advanced Programming",
+ id: "COEN 11",
  offered: "FWS",
  waived: false,
- pre_req: "CTW 1",
- replace_with: finalCourseOption.id
+ pre_req: "COEN 10",
+ replace_with: "COEN 12"
  },
  
  

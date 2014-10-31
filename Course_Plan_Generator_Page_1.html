@@ -224,53 +224,6 @@
                             <div class="OC_Entries" style="display: none;">
                                 <form id="OC_Form">
                                     <div class="col-xs-6 checkbox">
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_MATH11" value="MATH 11">MATH 11
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_MATH12" value="MATH 12">MATH 12
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_MATH13" value="MATH 13">MATH 13
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_COEN10" value="COEN 10">COEN 10
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_COEN11" value="COEN 11">COEN 11
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_COEN12" value="COEN 12">COEN 12
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_COEN19" value="COEN 19">COEN 19
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_CHEM11" value="CHEM 11">CHEM 11
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_PHYS31" value="PHYS 31">PHYS 31
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_PHYS32" value="PHYS 32">PHYS 32
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_CTW1" value="CTW 1">CTW 1
-                                        </label>
-                                        <br/>
-                                        <label>
-                                            <input type="checkbox" name="Other_Waived" id="OC_CTW2" value="CTW 2">CTW 2
-                                        </label>
                                     </div>
                                 </form>
                                 <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
@@ -317,24 +270,24 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>MATH 11 - Calculus 1</td>
-                                <td>MATH 12 - Calculus 2</td>
-                                <td>MATH 13 - Calculus 3</td>
+                                <td class="fall-quarter">MATH 11 - Calculus 1</td>
+                                <td class="winter-quarter">MATH 12 - Calculus 2</td>
+                                <td class="spring-quarter">MATH 13 - Calculus 3</td>
                             </tr>
                             <tr>
-                                <td>COEN 10 - Intro to Programming</td>
-                                <td>COEN 11 - Advanced Programming</td>
-                                <td>COEN 12 - Data Structures</td>
+                                <td class="fall-quarter">COEN 10 - Intro to Programming</td>
+                                <td class="winter-quarter">COEN 11 - Advanced Programming</td>
+                                <td class="spring-quarter">COEN 12 - Data Structures</td>
                             </tr>
                             <tr>
-                                <td>CHEM 11 - Chemistry 1</td>
-                                <td>PHYS 31 - Physics 1</td>
-                                <td>PHYS 32 - Physics 2</td>
+                                <td class="fall-quarter">CHEM 11 - Chemistry 1</td>
+                                <td class="winter-quarter">PHYS 31 - Physics 1</td>
+                                <td class="spring-quarter">PHYS 32 - Physics 2</td>
                             </tr>
                             <tr>
-                                <td>CTW 1 - Critical Thinking &amp; Writing 1</td>
-                                <td>CTW 2 - Critical Thinking &amp; Writing 2</td>
-                                <td>COEN 19 - Discrete Mathematics</td>
+                                <td class="fall-quarter">CTW 1 - Critical Thinking &amp; Writing 1</td>
+                                <td class="winter-quarter">CTW 2 - Critical Thinking &amp; Writing 2</td>
+                                <td class="spring-quarter">COEN 19 - Discrete Mathematics</td>
                             </tr>
                             <tr>
                                 <td colspan="2">ENGR 1 - Intro. to Engineering &nbsp;&nbsp;&nbsp; <i>OR</i> &nbsp;&nbsp;&nbsp; ENGR 1 - Intro. to Engineering </td>
@@ -348,6 +301,7 @@
                         Based on the information you have entered so far you have waived the following classes:
                         </p>
                     </div>
+                    <button onclick="updateSchedule()">Test Button: Click to update schedule</button>
                 </div>
             </div>
         </div>
@@ -363,11 +317,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="courses.js"></script>
         <script src="CheckScores.js"></script>
         <script src="GenerateSchedule.js"></script>
         <script src="UpdateSchedule.js"></script>
         
+        
         <script>
+            // Generate options in other coursework section
+            $.each(COEN_course_array, function(index, value){
+                console.log(value.id);
+                $('#OC_Form>div').append('<label><input type="checkbox" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
+            });
+            
             function updateMajor() {
                 $('#schedule .panel-heading .panel-title').text($('#Major').val() + " Schedule");
                 //Updating the schedule after changing the major.

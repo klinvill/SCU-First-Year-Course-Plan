@@ -17,7 +17,7 @@ function CheckWaived() {
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
     var AP_Calc_BC_Score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
     var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
-    var AP_Chem_Score = getElementById("AP_Chem_Score").selectedIndex;
+    var AP_Chem_Score = document.getElementById("AP_Chem_Score").selectedIndex;
     var AP_Comp_Sci_Score = document.getElementById("AP_Comp_Sci_Score").selectedIndex;
     var AP_PHYS_Mech_Score = document.getElementById("AP_Mech_Score").selectedIndex;
     var AP_PHYS_EnM_Score = document.getElementById("AP_EnM_Score").selectedIndex;
@@ -113,3 +113,4 @@ function CheckWaived() {
     } else {
         unwaiveCourse("PHYS 33");
     }
+}
