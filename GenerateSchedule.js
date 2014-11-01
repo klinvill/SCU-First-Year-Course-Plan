@@ -38,8 +38,6 @@ function generateSchedule()
             else if (j == 2) quarterID = "W";
             else throw "j is not a valid quarter, thrown from GenerateSchedule.js";
             
-            debugger;
-            
             if (tempCourse.offered.search(quarterID) == -1) continue;
             
             // Check if pre-requisite is already in the quarter.
