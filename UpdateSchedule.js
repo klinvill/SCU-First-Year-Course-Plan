@@ -164,4 +164,13 @@ function updateSchedule()
         }
     }
     
+    // Update the courses waived section
+    $('.waived-courses').empty();
+    for (var i = 0; i < COEN_course_array.length; i++)
+    {
+        //console.log(COEN_course_array[i]);
+        if(COEN_course_array[i].waived)
+            $('.waived-courses').append('<li>'+COEN_course_array[i].id+'</li>');
+    }
+    
 }

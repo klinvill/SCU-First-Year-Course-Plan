@@ -300,6 +300,9 @@
                         <p class="basic-text">
                         Based on the information you have entered so far you have waived the following classes:
                         </p>
+                        <ul class = "basic-text waived-courses">
+                        </ul>
+                            
                     </div>
                     <button onclick="updateSchedule()">Test Button: Click to update schedule</button>
                 </div>
@@ -326,7 +329,6 @@
         <script>
             // Generate options in other coursework section
             $.each(COEN_course_array, function(index, value){
-                console.log(value.id);
                 $('#OC_Form>div').append('<label><input type="checkbox" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
             });
             
