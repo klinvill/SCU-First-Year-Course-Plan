@@ -59,5 +59,5 @@ function generateSchedule()
         }
     }
     
-    return courseArray;
+    return courseSchedule;
 }
