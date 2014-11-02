@@ -11,6 +11,8 @@ function updateSchedule()
     
     // Generating a schedule.
     var courseSchedule = generateSchedule();
+    console.log("Generated course schedule: ");
+    console.log(courseSchedule);
     
     // Dummy Course Array for testing
     /*

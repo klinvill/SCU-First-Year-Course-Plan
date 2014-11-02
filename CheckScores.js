@@ -28,7 +28,7 @@ function CheckWaived() {
     if (CRE_Score == 2) // Score of 15 or less
     {
         waiveCourse("MATH 9");
-    } else {
+    } else if (CRE_Score == 1) {
         unwaiveCourse("MATH 9");
     }
     
@@ -43,8 +43,10 @@ function CheckWaived() {
     //MATH 12
     if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
     {
+        waiveCourse("MATH 11");
         waiveCourse("MATH 12");
     } else {
+        unwaiveCourse("MATH 11");
         unwaiveCourse("MATH 12");
     }
     
@@ -62,9 +64,11 @@ function CheckWaived() {
     // Chem 12
     if (AP_Chem_Score >= 4)
     {
+        waiveCourse("CHEM 11");
         waiveCourse("CHEM 12");
         
     } else {
+        unwaiveCourse("CHEM 11");
         unwaiveCourse("CHEM 12");
     }
     
@@ -90,8 +94,10 @@ function CheckWaived() {
     // COEN 11
     if (AP_Comp_Sci_Score >= 4)
     {
+        waiveCourse("COEN 10");
         waiveCourse("COEN 11");
     } else {
+        unwaiveCourse("COEN 10");
         unwaiveCourse("COEN 11");
     }
     

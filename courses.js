@@ -28,10 +28,12 @@ var finalCourseOption =
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
-    for (courseArray in courseArrays)
+    for (var i = 0; i < courseArrays.length; i++)
     {
-        for (var tempCourse in courseArray)
+        var courseArray = courseArrays[i];
+        for (var j = 0; j < courseArray.length; j++)
         {
+            var tempCourse = courseArray[j];
             if (tempCourse.id === courseID)
             {
                 tempCourse.waived = true;
@@ -43,12 +45,17 @@ function waiveCourse(courseID)
 
 function unwaiveCourse(courseID)
 {
-    for (var tempCourse in COEN_course_array)
+    for (var i = 0; i < courseArrays.length; i++)
     {
-        if (tempCourse.id === courseID)
+        var courseArray = courseArrays[i];
+        for (var j = 0; j < courseArray.length; j++)
         {
-            tempCourse.waived = false;
-            break;
+            var tempCourse = courseArray[j];
+            if (tempCourse.id === courseID)
+            {
+                tempCourse.waived = false;
+                break;
+            }
         }
     }
 }
@@ -64,7 +71,8 @@ var COEN_course_array =
  offered: "F",
  waived: true,
  pre_req: "",
- replace_with: "MATH 11"
+ replace_with: "MATH 11",
+ previous: ""
  },
  
  {
@@ -73,7 +81,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "MATH 9",
- replace_with: "MATH 12"
+ replace_with: "MATH 12",
+ previous: "MATH 9"
  },
  
  {
@@ -82,7 +91,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "MATH 11",
- replace_with: "MATH 13"
+ replace_with: "MATH 13",
+ previous: "MATH 11"
  },
  
  {
@@ -91,7 +101,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "MATH 12",
- replace_with: "MATH 14"
+ replace_with: "MATH 14",
+ previous: "MATH 12"
  },
  
  {
@@ -100,7 +111,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "MATH 13",
- replace_with: "MATH 106"
+ replace_with: "AMTH 106",
+ previous: "MATH 13"
  },
  
  {
@@ -109,7 +121,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "MATH 14",
- replace_with: "AMATH 108"
+ replace_with: "AMTH 108",
+ previous: "MATH 14"
  },
  
  {
@@ -118,7 +131,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "MATH 14",
- replace_with: "MATH 53"
+ replace_with: "MATH 53",
+ previous: "AMTH 106"
  },
  
  // Use replace_with instead of pre_req for ordering
@@ -128,7 +142,8 @@ var COEN_course_array =
  offered: "WS",
  waived: false,
  pre_req: "MATH 13",
- replace_with: finalCourseOption.id
+ replace_with: finalCourseOption.id,
+ previous: "AMTH 108"
  },
  
  
@@ -140,7 +155,8 @@ var COEN_course_array =
  offered:"FW",
  waived: false,
  pre_req: "",
- replace_with: "COEN 11"
+ replace_with: "COEN 11",
+ previous: ""
  },
  
  {
@@ -149,7 +165,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "COEN 10",
- replace_with: "COEN 12"
+ replace_with: "COEN 12",
+ previous: "COEN 10"
  },
  
  {
@@ -158,7 +175,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "COEN 11",
- replace_with: "COEN 21"
+ replace_with: "COEN 21",
+ previous: "COEN 11"
  },
  
  {
@@ -167,7 +185,8 @@ var COEN_course_array =
  offered: "FWS",
  waived: false,
  pre_req: "",
- replace_with: "COEN 20"
+ replace_with: "COEN 20",
+ previous: "COEN 12"
  },
  
  {
@@ -176,7 +195,8 @@ var COEN_course_array =
  offered: "FS",
  waived: false,
  pre_req: "COEN 11",
- replace_with: finalCourseOption.id
+ replace_with: finalCourseOption.id,
+ previous: "COEN 21"
  },
  
  
@@ -188,16 +208,18 @@ var COEN_course_array =
  offered:"FWS",
  waived:false,
  pre_req:"",
- replace_with: "CTW 2"
+ replace_with: "CTW 2",
+ previous: ""
  },
  
  {
- name: "Advanced Programming",
- id: "COEN 11",
- offered: "FWS",
- waived: false,
- pre_req: "COEN 10",
- replace_with: "COEN 12"
+ name:"Critical Thinking & Writing 2",
+ id: "CTW 2",
+ offered:"FWS",
+ waived:false,
+ pre_req:"CTW 1",
+ replace_with: finalCourseOption.id,
+ previous: "CTW 1"
  },
  
  
@@ -208,7 +230,8 @@ var COEN_course_array =
  offered: "F",
  waived: false,
  pre_req:"",
- replace_with: finalCourseOption.id
+ replace_with: finalCourseOption.id,
+ previous: ""
  },
  
  {
@@ -218,6 +241,7 @@ var COEN_course_array =
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id,
+ previous: ""
  },
  
  {
@@ -226,7 +250,8 @@ var COEN_course_array =
  offered: "S",
  waived: false,
  pre_req: "PHYS 31",
- replace_with: finalCourseOption.id
+ replace_with: finalCourseOption.id,
+ previous: "PHYS 31"
  },
  
  {
@@ -235,7 +260,8 @@ var COEN_course_array =
  offered: "FS",
  waived: false,
  pre_req: "",
- replace_with: finalCourseOption.id
+ replace_with: finalCourseOption.id,
+ previous: ""
  }
  ];
 
