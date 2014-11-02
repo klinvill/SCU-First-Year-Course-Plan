@@ -207,7 +207,7 @@ var allCourses =
  offered: "W",
  waived: false,
  pre_req: "",
- replace_with: finalCourseOption.id,
+ replace_with: "PHYS 32",
  previous: ""
  },
  
@@ -217,8 +217,18 @@ var allCourses =
  offered: "S",
  waived: false,
  pre_req: "PHYS 31",
- replace_with: finalCourseOption.id,
+ replace_with: "PHYS 33",
  previous: "PHYS 31"
+ },
+ 
+ {
+ name: "Physics III",
+ id: "PHYS 33",
+ offered: "F",
+ waived: false,
+ pre_req: "PHYS 32",
+ replace_with: finalCourseOption.id,
+ previous: "PHYS 32"
  },
  
  {
@@ -296,6 +306,7 @@ var COEN_course_array =
  courseForID("CHEM 11"),
  courseForID("PHYS 31"),
  courseForID("PHYS 32"),
+ courseForID("PHYS 33"),
  courseForID("COEN 19")
 ];
 

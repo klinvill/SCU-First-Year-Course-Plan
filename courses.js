@@ -212,7 +212,7 @@ var COEN_course_array =
  offered: "W",
  waived: false,
  pre_req: "",
- replace_with: finalCourseOption.id,
+ replace_with: "PHYS 32",
  previous: ""
  },
  {
@@ -221,8 +221,17 @@ var COEN_course_array =
  offered: "S",
  waived: false,
  pre_req: "PHYS 31",
- replace_with: finalCourseOption.id,
+ replace_with: "PHYS 33",
  previous: "PHYS 31"
+ },
+ {
+ name: "Physics III",
+ id: "PHYS 33",
+ offered: "F",
+ waived: false,
+ pre_req: "PHYS 32",
+ replace_with: finalCourseOption.id,
+ previous: "PHYS 32"
  },
  {
  name: "Discrete Mathematics",
