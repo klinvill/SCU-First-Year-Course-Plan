@@ -119,14 +119,14 @@ function generateSchedule()
 // Takes as parameters the course and the quarter.
 function prereqsPresentInQuarter(tempCourse, quarter)
 {
-    if (tempCourse.pre_req === "") return false;
+    if (tempCourse.previous === "") return false;
     else {
-        var preReq = courseForID(tempCourse.previous);
+        var prev = courseForID(tempCourse.previous);
         // Checking all courses in quarter.
         for (var i = 0; i < quarter.length; i++)
         {
-            if (preReq.id == quarter[i].id) return true;
+            if (prev.id == quarter[i].id) return true;
         }
-        return prereqsPresentInQuarter(preReq, quarter);
+        return prereqsPresentInQuarter(prev, quarter);
     }
 }

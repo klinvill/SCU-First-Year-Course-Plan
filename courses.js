@@ -268,8 +268,9 @@ var COEN_course_array =
 function courseForID(courseID)
 {
     // Searching through array of courses.
-    for (var tempCourse in COEN_course_array)
+    for (var i = 0; i < COEN_course_array.length; i++)
     {
+        var tempCourse = COEN_course_array[i];
         if (courseID == tempCourse.id)
         {
             return tempCourse;
