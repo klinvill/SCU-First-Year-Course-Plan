@@ -108,3 +108,19 @@ function generateSchedule()
     
     return courseSchedule;
 }
+
+// Function: returns boolean if any of a course's prerequisites are in the quarter.
+// Takes as parameters the course and the quarter.
+function prereqsPresentInQuarter(tempCourse, quarter)
+{
+    if (tempCourse.pre_req === "") return false;
+    else {
+        var preReq = courseForID(tempCourse.previous);
+        // Checking all courses in quarter.
+        for (var i = 0; i < quarter.length; i++)
+        {
+            if (preReq.id == quarter[i].id) return true;
+        }
+        return prereqsPresentInQuarter(preReq, quarter);
+    }
+}
