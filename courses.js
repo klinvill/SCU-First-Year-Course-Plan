@@ -234,5 +234,5 @@ var COEN_course_array =
  previous: ""
  }
  ];
-// An array containing each of the following course arrays.
+// An array containing each of the above course arrays.
 var courseArrays = [COEN_course_array];

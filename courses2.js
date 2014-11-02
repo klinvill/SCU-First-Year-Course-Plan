@@ -5,7 +5,6 @@
 console.warn("Check final math class options logic.");
 console.warn("Is the ID for CTW courses actually 'CTW'?");
 
-
 // An object prototype function for courses.
 function course(name, id, offered, waived, pre_req, replace_with, previous)
 {
@@ -27,42 +26,8 @@ var finalCourseOption =
                "",
                "",
                "");
-                    
 
-// Functions which look through the course array and waive or unwaive courses.
-function waiveCourse(courseID)
-{
-    for (var i = 0; i < courseArrays.length; i++)
-    {
-        var courseArray = courseArrays[i];
-        for (var j = 0; j < courseArray.length; j++)
-        {
-            var tempCourse = courseArray[j];
-            if (tempCourse.id === courseID)
-            {
-                tempCourse.waived = true;
-                break;
-            }
-        }
-    }
-}
-
-function unwaiveCourse(courseID)
-{
-    for (var i = 0; i < courseArrays.length; i++)
-    {
-        var courseArray = courseArrays[i];
-        for (var j = 0; j < courseArray.length; j++)
-        {
-            var tempCourse = courseArray[j];
-            if (tempCourse.id === courseID)
-            {
-                tempCourse.waived = false;
-                break;
-            }
-        }
-    }
-}
+/* --- Array of all courses and related functions --- */
 
 // Array of all courses for all majors known by our system.
 var allCourses =
@@ -285,6 +250,8 @@ function courseForID(courseID)
     return undefined;
 }
 
+/* --- Major Specific Course Arrays --- */
+
 // Array of courses in the COEN major, ordered in terms of priority placement with the highest priority being at the front
 // Each course is structured as: course = {name:”Calculus 3”, id:”MATH 13”, offered:[”F”, “W”, “S”], waived:false, pre_req:”MATH 12”, replace_with: "MATH 14"}
 var COEN_course_array =
@@ -318,14 +285,20 @@ var COEN_course_array =
  courseForID("COEN 19")
 ];
 
-(function testFunc()
-{
- console.log(JSON.stringify(COEN_course_array));
- debugger;
-}
- )
-
-// An array containing each of the following course arrays.
+// An array containing each of the above course arrays.
 var courseArrays = [COEN_course_array];
- 
+
+/* --- Functions for waiving and unwaiving courses --- */
+
+// Functions which look through the course array and waive or unwaive courses.
+function waiveCourse(courseID)
+{
+    courseForID(courseID).waived = true;
+}
+
+function unwaiveCourse(courseID)
+{
+    courseForID(courseID).waived = false;
+}
+
                          

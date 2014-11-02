@@ -119,4 +119,7 @@ function CheckWaived() {
     } else {
         unwaiveCourse("PHYS 33");
     }
+    
+    // --- Individual Course Select Logic ---
+    
 }
