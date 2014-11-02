@@ -27,6 +27,23 @@ var finalCourseOption =
                "",
                "");
 
+// Courses for CNI 1 and 2.
+var CNI1Course =
+new course("Cultures & Ideas 1",
+           "CNI 1",
+           "FW",
+           false,
+           "",
+           "");
+
+var CNI2Course =
+new course("Cultures & Ideas 1",
+           "CNI 1",
+           "WS",
+           false,
+           "",
+           "");
+
 /* --- Array of all courses and related functions --- */
 
 // Array of all courses for all majors known by our system.

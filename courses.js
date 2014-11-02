@@ -20,6 +20,24 @@ new course("University Core",
            false,
            "",
            "");
+
+// Courses for CNI 1 and 2.
+var CNI1Course =
+new course("Cultures & Ideas 1",
+           "CNI 1",
+           "FW",
+           false,
+           "",
+           "");
+
+var CNI2Course =
+new course("Cultures & Ideas 1",
+           "CNI 1",
+           "WS",
+           false,
+           "",
+           "");
+
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
