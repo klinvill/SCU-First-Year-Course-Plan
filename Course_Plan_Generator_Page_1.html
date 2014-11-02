@@ -30,294 +30,294 @@
         <![endif]-->
     </head>
     <body>
-        
         <noscript>
             <h1> Javascript is currently disabled. Enable it to use this website. </h1>
         </noscript>
-        
-        <div class="page-header">
-            <h3 class="text-center">First Year Course Plan Generator</h3>
-        </div>
-        
-        <p class="basic-text" id="welcome-summary">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the Department of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
-        </p>
-        
-        
-        
-        <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
-        <div class="col-md-4">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
-                        <h4 class="panel-title">
-                            <a>Step 1: Select Major</a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <select class="form-control" id="Major" onchange="updateMajor()">
-                                <option value="" selected disabled>Major</option>
-                                <option value="COEN"> COEN </option>
-                                <!-- Hide this value for now
-                                <option value="OTHER"> OTHER </option>
-                                 -->
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
-                        <h4 class="panel-title">
-                            <a>Step 2: Waive Classes</a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <!-- AP Section Header -->
-                            <div class="AP_header page-header">
-                                <span class="basic-text"><b>AP Tests</b></span>
-                                <!-- Toggles displaying the entry form. Also toggles the appearance of the toggle button -->
-                                <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.AP_Entries').toggle(); $('.AP_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                </button>
-                            </div>
-                            
-                            <!-- AP Entry Form -->
-                            <div class="AP_Entries" style="display: none;">
-                                <form id="AP_Form">
-                                    <div class="col-xs-6">
-                                        <p> <b>Calculus AB:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Calc_AB_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Calculus BC:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Calc_BC_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Chemistry:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Chem_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Computer Science A:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Comp_Sci_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Physics B:</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Phys_B_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Physics C (Mechanics):</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_Mech_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                    <br/><br/><br/>
-                                    
-                                    <div class="col-xs-6">
-                                        <p> <b>Physics C (Electricity &amp; Magnetism):</b> </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="AP_EnM_Score" onchange="updateSchedule();">
-                                            <option value="" selected>Score</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
-                                <br/><br/><br/>
-                            </div>
-                            
-                            
-                            <!-- CRE Section Header -->
-                            <div class="CRE_header page-header">
-                                <span class="basic-text"><b>Calculus Readiness Exam</b></span>
-                                <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.CRE_Entries').toggle(); $('.CRE_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                </button>
-                            </div>
-                            
-                            <!-- CRE Scores Entry Form -->
-                            <div class="CRE_Entries" style="display: none;">
-                                <form id="CRE_Form">
-                                    <div class="col-xs-6">
-                                        <select class="form-control" id="CRE_Score">
-                                            <option value="" selected>Score</option>
-                                            <option value="Pass"> More than 15 </option>
-                                            <option value="Fail"> 15 or less </option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
-                            </div>
-                            
-                            
-                            <!-- Other Coursework Header -->
-                            <div class="OC_header page-header">
-                                <span class="basic-text"><b>Other Coursework</b></span>
-                                <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.OC_Entries').toggle(); $('.OC_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                    <span class="glyphicon glyphicon-chevron-down"></span>
-                                </button>
-                            </div>
-                            
-                            <!-- Other Coursework Entry Form -->
-                            <div class="OC_Entries" style="display: none;">
-                                <form id="OC_Form">
-                                    <div class="col-xs-6 checkbox">
-                                    </div>
-                                </form>
-                                <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
-                        <h4 class="panel-title">
-                            <a>Step 3: Select Quarter to Take ENGR 1</a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <select class="form-control" id="ENGR1_Qtr" onchange="placeEngr1()">
-                                <option value="" selected disabled>Quarter</option>
-                                <option value="Fall"> Fall </option>
-                                <option value="Winter"> Winter </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+        <div id="page-wrapper" style="display:none">
+            <div class="page-header">
+                <h3 class="text-center">First Year Course Plan Generator</h3>
             </div>
+            
+            <p class="basic-text" id="welcome-summary">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the Department of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
+            </p>
+            
+            
+            
+            <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
+            <div class="col-md-4">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+                            <h4 class="panel-title">
+                                <a>Step 1: Select Major</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <select class="form-control" id="Major" onchange="updateMajor()">
+                                    <option value="" selected disabled>Major</option>
+                                    <option value="COEN"> COEN </option>
+                                    <!-- Hide this value for now
+                                    <option value="OTHER"> OTHER </option>
+                                     -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
+                            <h4 class="panel-title">
+                                <a>Step 2: Waive Classes</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <!-- AP Section Header -->
+                                <div class="AP_header page-header">
+                                    <span class="basic-text"><b>AP Tests</b></span>
+                                    <!-- Toggles displaying the entry form. Also toggles the appearance of the toggle button -->
+                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.AP_Entries').toggle(); $('.AP_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </button>
+                                </div>
+                                
+                                <!-- AP Entry Form -->
+                                <div class="AP_Entries" style="display: none;">
+                                    <form id="AP_Form">
+                                        <div class="col-xs-6">
+                                            <p> <b>Calculus AB:</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_Calc_AB_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                        <br/><br/><br/>
+                                        
+                                        <div class="col-xs-6">
+                                            <p> <b>Calculus BC:</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_Calc_BC_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                        <br/><br/><br/>
+                                        
+                                        <div class="col-xs-6">
+                                            <p> <b>Chemistry:</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_Chem_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                        <br/><br/><br/>
+                                        
+                                        <div class="col-xs-6">
+                                            <p> <b>Computer Science A:</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_Comp_Sci_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                        <br/><br/><br/>
+                                        
+                                        <div class="col-xs-6">
+                                            <p> <b>Physics B:</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_Phys_B_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                        <br/><br/><br/>
+                                        
+                                        <div class="col-xs-6">
+                                            <p> <b>Physics C (Mechanics):</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_Mech_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                        <br/><br/><br/>
+                                        
+                                        <div class="col-xs-6">
+                                            <p> <b>Physics C (Electricity &amp; Magnetism):</b> </p>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="AP_EnM_Score" onchange="updateSchedule();">
+                                                <option value="" selected>Score</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
+                                    <br/><br/><br/>
+                                </div>
+                                
+                                
+                                <!-- CRE Section Header -->
+                                <div class="CRE_header page-header">
+                                    <span class="basic-text"><b>Calculus Readiness Exam</b></span>
+                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.CRE_Entries').toggle(); $('.CRE_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </button>
+                                </div>
+                                
+                                <!-- CRE Scores Entry Form -->
+                                <div class="CRE_Entries" style="display: none;">
+                                    <form id="CRE_Form">
+                                        <div class="col-xs-6">
+                                            <select class="form-control" id="CRE_Score">
+                                                <option value="" selected>Score</option>
+                                                <option value="Pass"> More than 15 </option>
+                                                <option value="Fail"> 15 or less </option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
+                                </div>
+                                
+                                
+                                <!-- Other Coursework Header -->
+                                <div class="OC_header page-header">
+                                    <span class="basic-text"><b>Other Coursework</b></span>
+                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.OC_Entries').toggle(); $('.OC_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </button>
+                                </div>
+                                
+                                <!-- Other Coursework Entry Form -->
+                                <div class="OC_Entries" style="display: none;">
+                                    <form id="OC_Form">
+                                        <div class="col-xs-6 checkbox">
+                                        </div>
+                                    </form>
+                                    <button type="button" class="btn btn-default" onclick="updateSchedule();">Check Waived</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
+                            <h4 class="panel-title">
+                                <a>Step 3: Select Quarter to Take ENGR 1</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <select class="form-control" id="ENGR1_Qtr" onchange="placeEngr1()">
+                                    <option value="" selected disabled>Quarter</option>
+                                    <option value="Fall"> Fall </option>
+                                    <option value="Winter"> Winter </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        </div>
-        
-        
-        
-        <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
-        <div class="col-md-8 pull-right">
-            <div class="panel panel-default" id="schedule-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Schedule</h3>
-                </div>
-                <div class="panel-body">
-                    <p class="basic-text">Select a major to view a schedule</p>
-                </div>
             </div>
-            <div class="panel panel-default" id="schedule" style="display:none">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Schedule</h3>
+            
+            
+            
+            <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
+            <div class="col-md-8 pull-right">
+                <div class="panel panel-default" id="schedule-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p class="basic-text">Select a major to view a schedule</p>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Fall</th>
-                                <th>Winter</th>
-                                <th>Spring</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="fall-quarter">MATH 11 - Calculus 1</td>
-                                <td class="winter-quarter">MATH 12 - Calculus 2</td>
-                                <td class="spring-quarter">MATH 13 - Calculus 3</td>
-                            </tr>
-                            <tr>
-                                <td class="fall-quarter">COEN 10 - Intro to Programming</td>
-                                <td class="winter-quarter">COEN 11 - Advanced Programming</td>
-                                <td class="spring-quarter">COEN 12 - Data Structures</td>
-                            </tr>
-                            <tr>
-                                <td class="fall-quarter">CHEM 11 - Chemistry 1</td>
-                                <td class="winter-quarter">PHYS 31 - Physics 1</td>
-                                <td class="spring-quarter">PHYS 32 - Physics 2</td>
-                            </tr>
-                            <tr>
-                                <td class="fall-quarter">CTW 1 - Critical Thinking &amp; Writing 1</td>
-                                <td class="winter-quarter">CTW 2 - Critical Thinking &amp; Writing 2</td>
-                                <td class="spring-quarter">COEN 19 - Discrete Mathematics</td>
-                            </tr>
-                            <tr>
-                                <td id="ENGR1-fall">ENGR 1 - Intro. to Engineering</td>
-                                <td id="ENGR1-winter" style="visibility:hidden">ENGR 1 - Intro. to Engineering </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <!-- Section to display classes waived and optionally un-select these classes -->
-                    <div>
-                        <p class="basic-text">
-                        Based on the information you have entered so far you have waived the following classes:
-                        </p>
-                        <ul class = "basic-text waived-courses">
-                        </ul>
-                            
+                <div class="panel panel-default" id="schedule" style="display:none">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fall</th>
+                                    <th>Winter</th>
+                                    <th>Spring</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fall-quarter">MATH 11 - Calculus 1</td>
+                                    <td class="winter-quarter">MATH 12 - Calculus 2</td>
+                                    <td class="spring-quarter">MATH 13 - Calculus 3</td>
+                                </tr>
+                                <tr>
+                                    <td class="fall-quarter">COEN 10 - Intro to Programming</td>
+                                    <td class="winter-quarter">COEN 11 - Advanced Programming</td>
+                                    <td class="spring-quarter">COEN 12 - Data Structures</td>
+                                </tr>
+                                <tr>
+                                    <td class="fall-quarter">CHEM 11 - Chemistry 1</td>
+                                    <td class="winter-quarter">PHYS 31 - Physics 1</td>
+                                    <td class="spring-quarter">PHYS 32 - Physics 2</td>
+                                </tr>
+                                <tr>
+                                    <td class="fall-quarter">CTW 1 - Critical Thinking &amp; Writing 1</td>
+                                    <td class="winter-quarter">CTW 2 - Critical Thinking &amp; Writing 2</td>
+                                    <td class="spring-quarter">COEN 19 - Discrete Mathematics</td>
+                                </tr>
+                                <tr>
+                                    <td id="ENGR1-fall">ENGR 1 - Intro. to Engineering</td>
+                                    <td id="ENGR1-winter" style="visibility:hidden">ENGR 1 - Intro. to Engineering </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- Section to display classes waived and optionally un-select these classes -->
+                        <div>
+                            <p class="basic-text">
+                            Based on the information you have entered so far you have waived the following classes:
+                            </p>
+                            <ul class = "basic-text waived-courses">
+                            </ul>
+                                
+                        </div>
                     </div>
                 </div>
             </div>
@@ -341,6 +341,9 @@
         
         
         <script>
+            // If javascript is enabled, this will display the page
+            $('#page-wrapper').show();
+            
             // Generate options in other coursework section
             $.each(COEN_course_array, function(index, value){
                 $('#OC_Form>div').append('<label><input type="checkbox" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
