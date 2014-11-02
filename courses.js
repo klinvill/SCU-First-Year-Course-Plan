@@ -2,7 +2,7 @@
 // Warnings for reminding us what we need to do.
 console.warn("Check final math class options logic.");
 // An object prototype function for courses.
-function course(name, id, offered, waived, pre_req, replace_with)
+function course(name, id, offered, waived, pre_req, replace_with, previous)
 {
     this.name = name;
     this.id = id;
@@ -10,6 +10,7 @@ function course(name, id, offered, waived, pre_req, replace_with)
     this.waived = waived;
     this.pre_req = pre_req;
     this.replace_with = replace_with;
+    this.previous = previous;
 }
 // The default course to replace all others. Currently, University Core.
 var finalCourseOption =
