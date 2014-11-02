@@ -291,6 +291,21 @@ function courseForID(courseID)
     return undefined;
 }
 
+// Function: called to see if the prerequisites for a course have been fulfilled.
+// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
+function prereqsFulfilled(courseID)
+{
+    var tempCourse = courseForID(courseID);
+    var preReq = courseForID(tempCourse.previous);
+    
+    // Course has no PreReqs.
+    if (preReq == undefined) return true;
+    // Course has PreReqs.
+    else return (preReq.waived && prereqsFulfilled(preReq);
+}
+
+                 
+
 /* --- Major Specific Course Arrays --- */
 
 // Array of courses in the COEN major, ordered in terms of priority placement with the highest priority being at the front
