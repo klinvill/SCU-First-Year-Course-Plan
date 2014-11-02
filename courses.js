@@ -262,6 +262,37 @@ var COEN_course_array =
  }
  ];
 
+// This function takes a string that represents the ID for a course.
+// It returns the course in the COEN_course_array with the given ID.
+// If the ID does not match a course in the array the function returns undefined.
+function courseForID(courseID)
+{
+    // Searching through array of courses.
+    for (var tempCourse in COEN_course_array)
+    {
+        if (courseID == tempCourse.id)
+        {
+            return tempCourse;
+        }
+    }
+    
+    // Course not found. Returning undefined.
+    return undefined;
+}
+
+// Function: called to see if the prerequisites for a course have been fulfilled.
+// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
+function prereqsFulfilled(courseID)
+{
+    var tempCourse = courseForID(courseID);
+    var preReq = courseForID(tempCourse.previous);
+    
+    // Course has no PreReqs.
+    if (preReq == undefined) return true;
+    // Course has PreReqs.
+    else return (preReq.waived && prereqsFulfilled(preReq);
+}
+
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
