@@ -16,8 +16,9 @@ function generateSchedule()
     var courseArray = COEN_course_array;
     console.warn("Need to choose course array.");
     
-    for (tempCourse in courseArray)
+    for (var i = 0; i < courseArray.length; i++)
     {
+        var tempCourse = courseArray[i];
         // Check if the course has been waived.
         if (tempCourse.waived) continue;
         
@@ -38,13 +39,14 @@ function generateSchedule()
             else if (j == 2) quarterID = "W";
             else throw "j is not a valid quarter, thrown from GenerateSchedule.js";
             
-            if (course.offered.search(quarterID) == -1) continue;
+            if (tempCourse.offered.search(quarterID) == -1) continue;
             
             // Check if pre-requisite is already in the quarter.
             var preReqPresent = false;
             
-            for (var courseInSchedule in courseSchedule)
+            for (var k = 0; k < courseSchedule.length; k++)
             {
+                var courseInSchedule = courseSchedule[k];
                 if (courseInSchedule.id === tempCourse.pre_req)
                 {
                     preReqPresent = true;
@@ -59,5 +61,5 @@ function generateSchedule()
         }
     }
     
-    return courseArray;
+    return courseSchedule;
 }

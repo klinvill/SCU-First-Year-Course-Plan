@@ -1,7 +1,7 @@
 // Course Data File
 
 // Warnings for reminding us what we need to do.
-console.warn("Need to add AMATH 108");
+console.warn("Check final math class options logic.");
 
 
 // An object prototype function for courses.

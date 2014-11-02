@@ -122,8 +122,6 @@ function updateSchedule()
                     replace_with: "CORE"
                     }]];
 */
-                    
-    
                    
     
     // Error checking to make sure proper amount of quarters are present
