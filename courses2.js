@@ -262,15 +262,16 @@ var allCourses =
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
-    for (var tempCourse in allCourses)
-    {
-        if (tempCourse.id == "MATH 9")
-        {
-            tempCourse.waived = true;
-        } else {
-            tempCourse.waived = false;
-        }
-    }
+    $.each(courseArrays, function(cArrayIndex, cArray) {
+           $.each(cArray, function(tempCourseIndex, tempCourse) {
+                  if (tempCourse.id == "MATH 9")
+                  {
+                  tempCourse.waived = true;
+                  } else {
+                  tempCourse.waived = false;
+                  }
+                  });
+           });
 }
 
 // This function takes a string that represents the ID for a course.
