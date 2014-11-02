@@ -2,16 +2,14 @@
  Description:    Checks each course to see if it has been waived and updates the information in the course list.
  */
 
-console.warn("Need custom course waiving logic in course waiving function.");
 console.warn("Need to check AMATH 106 waiving logic.");
-console.warn("Need to add AP Physics B Test.");
 
 function CheckWaived() {
     
     // None of the following logic includes the section where they can
     // just choose to waive any course that they want.
     
-    var score;
+    resetWaivedStatuses();
     
     // Getting Scores
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
@@ -33,21 +31,16 @@ function CheckWaived() {
     }
     
     // MATH 11
-    if (CRE_Score != 2 && (AP_Calc_AB_Score >= 3 || AP_Calc_BC_Score >= 3))
+    if (CRE_Score != 2 && AP_Calc_BC_Score >= 3)
     {
         waiveCourse("MATH 11");
-    } else {
-        unwaiveCourse("MATH 11");
     }
     
     //MATH 12
-    if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
+    if (CRE_Score != 2 && (AP_Calc_BC_Score >= 4 || AP_Calc_AB_Score >= 4))
     {
         waiveCourse("MATH 11");
         waiveCourse("MATH 12");
-    } else {
-        unwaiveCourse("MATH 11");
-        unwaiveCourse("MATH 12");
     }
     
     // --- Chem Courses ---
@@ -57,8 +50,6 @@ function CheckWaived() {
     {
         waiveCourse("CHEM 11");
         
-    } else {
-        unwaiveCourse("CHEM 11");
     }
     
     // Chem 12
@@ -67,9 +58,6 @@ function CheckWaived() {
         waiveCourse("CHEM 11");
         waiveCourse("CHEM 12");
         
-    } else {
-        unwaiveCourse("CHEM 11");
-        unwaiveCourse("CHEM 12");
     }
     
     // Chem 13
@@ -77,8 +65,6 @@ function CheckWaived() {
     {
         waiveCourse("CHEM 13");
         
-    } else {
-        unwaiveCourse("CHEM 13");
     }
     
     // --- Coen Courses ----
@@ -87,8 +73,6 @@ function CheckWaived() {
     if (AP_Comp_Sci_Score >= 3)
     {
         waiveCourse("COEN 10");
-    } else {
-        unwaiveCourse("COEN 10");
     }
     
     // COEN 11
@@ -96,9 +80,6 @@ function CheckWaived() {
     {
         waiveCourse("COEN 10");
         waiveCourse("COEN 11");
-    } else {
-        unwaiveCourse("COEN 10");
-        unwaiveCourse("COEN 11");
     }
     
     // --- Physics Courses ----
@@ -108,15 +89,16 @@ function CheckWaived() {
     if (AP_PHYS_Mech_Score > 3)
     {
         waiveCourse("PHYS 31");
-    } else {
-        unwaiveCourse("PHYS 31");
     }
     
     // PHYS 33
     if (AP_PHYS_EnM_Score > 3)
     {
         waiveCourse("PHYS 33");
-    } else {
-        unwaiveCourse("PHYS 33");
     }
+    
+    $.each(COEN_course_array, function(index, value) {
+        if(document.getElementById('OC_'+value.id).checked == true)
+            waiveCourse(value.id);
+    });
 }

@@ -20,6 +20,24 @@ new course("University Core",
            false,
            "",
            "");
+
+// Courses for CNI 1 and 2.
+var CNI1Course =
+new course("Cultures & Ideas 1",
+           "CNI 1",
+           "FW",
+           false,
+           "",
+           "");
+
+var CNI2Course =
+new course("Cultures & Ideas 1",
+           "CNI 1",
+           "WS",
+           false,
+           "",
+           "");
+
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
@@ -212,7 +230,7 @@ var COEN_course_array =
  offered: "W",
  waived: false,
  pre_req: "",
- replace_with: finalCourseOption.id,
+ replace_with: "PHYS 32",
  previous: ""
  },
  {
@@ -221,8 +239,17 @@ var COEN_course_array =
  offered: "S",
  waived: false,
  pre_req: "PHYS 31",
- replace_with: finalCourseOption.id,
+ replace_with: "PHYS 33",
  previous: "PHYS 31"
+ },
+ {
+ name: "Physics III",
+ id: "PHYS 33",
+ offered: "F",
+ waived: false,
+ pre_req: "PHYS 32",
+ replace_with: finalCourseOption.id,
+ previous: "PHYS 32"
  },
  {
  name: "Discrete Mathematics",
@@ -234,5 +261,54 @@ var COEN_course_array =
  previous: ""
  }
  ];
-// An array containing each of the following course arrays.
+
+// This function takes a string that represents the ID for a course.
+// It returns the course in the COEN_course_array with the given ID.
+// If the ID does not match a course in the array the function returns undefined.
+function courseForID(courseID)
+{
+    // Searching through array of courses.
+    for (var tempCourse in COEN_course_array)
+    {
+        if (courseID == tempCourse.id)
+        {
+            return tempCourse;
+        }
+    }
+    
+    // Course not found. Returning undefined.
+    return undefined;
+}
+
+// Function: called to see if the prerequisites for a course have been fulfilled.
+// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
+function prereqsFulfilled(courseID)
+{
+    var tempCourse = courseForID(courseID);
+    var preReq = courseForID(tempCourse.previous);
+    
+    // Course has no PreReqs.
+    if (preReq == undefined) return true;
+    // Course has PreReqs.
+    else return (preReq.waived && prereqsFulfilled(preReq));
+}
+
+// Function: called to reset the waived status of all courses to default.
+function resetWaivedStatuses()
+{
+    for (cArray in courseArrays)
+    {
+        for (var tempCourse in cArray)
+        {
+            if (tempCourse.id == "MATH 9")
+            {
+                tempCourse.waived = true;
+            } else {
+                tempCourse.waived = false;
+            }
+        }
+    }
+}
+
+// An array containing each of the above course arrays.
 var courseArrays = [COEN_course_array];

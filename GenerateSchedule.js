@@ -94,6 +94,8 @@ function generateSchedule()
         }
     }
     
+    // Potentially fill in holes with CNI 1 and 2.
+    
     // Fill in holes with core
     for (var j = 0; j < courseSchedule.length; j++)
     {

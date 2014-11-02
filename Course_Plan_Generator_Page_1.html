@@ -346,7 +346,7 @@
             
             // Generate options in other coursework section
             $.each(COEN_course_array, function(index, value){
-                $('#OC_Form>div').append('<label><input type="checkbox" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
+                $('#OC_Form>div').append('<label><input type="checkbox" onchange="updateSchedule();" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
             });
             
             function updateMajor() {
