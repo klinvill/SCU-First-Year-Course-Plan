@@ -317,6 +317,13 @@ var COEN_course_array =
  courseForID("COEN 19")
 ];
 
+(function testFunc()
+{
+ console.log(JSON.stringify(COEN_course_array));
+ debugger;
+}
+ )
+
 // An array containing each of the following course arrays.
 var courseArrays = [COEN_course_array];
  
