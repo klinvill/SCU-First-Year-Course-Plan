@@ -11,6 +11,8 @@ function updateSchedule()
     
     // Generating a schedule.
     var courseSchedule = generateSchedule();
+    console.log("Generated course schedule: ");
+    console.log(courseSchedule);
     
     // Dummy Course Array for testing
     /*
@@ -171,4 +173,30 @@ function updateSchedule()
             $('.waived-courses').append('<li>'+COEN_course_array[i].id+'</li>');
     }
     
+}
+
+/*
+ * Description: placeEngr1 takes the value of the ENGR1_Qtr select box and uses it to show the engr1 course in the selected quarter while hiding the engr1 course in the other quarter.
+ * Called by: onchange event in the #ENGR1_Qtr select box
+ * Arguments: none
+ * Returns: none
+ * Exceptions: invalid value sent for ENGR_Qtr1
+ */
+function placeEngr1 ()
+{
+    if($('#ENGR1_Qtr').val() === "Fall")
+    {
+        $('#ENGR1-fall').css('visibility','visible');
+        $('#ENGR1-winter').css('visibility','hidden');
+    }
+    else if($('#ENGR1_Qtr').val() === "Winter")
+    {
+        $('#ENGR1-fall').css('visibility','hidden');
+        $('#ENGR1-winter').css('visibility','visible');
+    }
+    else
+    {
+        console.log($('#ENGR1_Qtr').val());
+        throw "Invalid value for ENGR1_Qtr";
+    }
 }

@@ -31,6 +31,10 @@
     </head>
     <body>
         
+        <noscript>
+            <h1> Javascript is currently disabled. Enable it to use this website. </h1>
+        </noscript>
+        
         <div class="page-header">
             <h3 class="text-center">First Year Course Plan Generator</h3>
         </div>
@@ -220,7 +224,7 @@
                                 </button>
                             </div>
                             
-                            <!-- College Courses Entry Form -->
+                            <!-- Other Coursework Entry Form -->
                             <div class="OC_Entries" style="display: none;">
                                 <form id="OC_Form">
                                     <div class="col-xs-6 checkbox">
@@ -239,7 +243,7 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <select class="form-control" id="ENGR1_Qtr">
+                            <select class="form-control" id="ENGR1_Qtr" onchange="placeEngr1()">
                                 <option value="" selected disabled>Quarter</option>
                                 <option value="Fall"> Fall </option>
                                 <option value="Winter"> Winter </option>
@@ -290,7 +294,8 @@
                                 <td class="spring-quarter">COEN 19 - Discrete Mathematics</td>
                             </tr>
                             <tr>
-                                <td colspan="2">ENGR 1 - Intro. to Engineering &nbsp;&nbsp;&nbsp; <i>OR</i> &nbsp;&nbsp;&nbsp; ENGR 1 - Intro. to Engineering </td>
+                                <td id="ENGR1-fall">ENGR 1 - Intro. to Engineering</td>
+                                <td id="ENGR1-winter" style="visibility:hidden">ENGR 1 - Intro. to Engineering </td>
                             </tr>
                         </tbody>
                     </table>
