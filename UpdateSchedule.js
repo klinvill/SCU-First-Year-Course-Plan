@@ -5,6 +5,11 @@ function updateSchedule()
     var quarters = 3
     var classesPerQuarter = 4;
     
+    // Make the schedule visible
+    $('#schedule').show();
+    $('#schedule-default').hide();
+    
+    
     console.log("Updating Schedule.");
     // Updated waived status of courses.
     CheckWaived();

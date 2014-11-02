@@ -59,7 +59,9 @@
                             <select class="form-control" id="Major" onchange="updateMajor()">
                                 <option value="" selected disabled>Major</option>
                                 <option value="COEN"> COEN </option>
+                                <!-- Hide this value for now
                                 <option value="OTHER"> OTHER </option>
+                                 -->
                             </select>
                         </div>
                     </div>
@@ -259,7 +261,15 @@
         
         <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
         <div class="col-md-8 pull-right">
-            <div class="panel panel-default" id="schedule">
+            <div class="panel panel-default" id="schedule-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Schedule</h3>
+                </div>
+                <div class="panel-body">
+                    <p class="basic-text">Select a major to view a schedule</p>
+                </div>
+            </div>
+            <div class="panel panel-default" id="schedule" style="display:none">
                 <div class="panel-heading">
                     <h3 class="panel-title">Schedule</h3>
                 </div>
@@ -309,7 +319,6 @@
                         </ul>
                             
                     </div>
-                    <button onclick="updateSchedule()">Test Button: Click to update schedule</button>
                 </div>
             </div>
         </div>
