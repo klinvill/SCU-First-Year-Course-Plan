@@ -2,9 +2,7 @@
  Description:    Checks each course to see if it has been waived and updates the information in the course list.
  */
 
-console.warn("Need custom course waiving logic in course waiving function.");
 console.warn("Need to check AMATH 106 waiving logic.");
-console.warn("Need to add AP Physics B Test.");
 
 function CheckWaived() {
     
@@ -12,8 +10,6 @@ function CheckWaived() {
     // just choose to waive any course that they want.
     
     resetWaivedStatuses();
-    
-    var score;
     
     // Getting Scores
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;

@@ -290,7 +290,7 @@ function prereqsFulfilled(courseID)
     // Course has no PreReqs.
     if (preReq == undefined) return true;
     // Course has PreReqs.
-    else return (preReq.waived && prereqsFulfilled(preReq);
+    else return (preReq.waived && prereqsFulfilled(preReq));
 }
 
 // Function: called to reset the waived status of all courses to default.
