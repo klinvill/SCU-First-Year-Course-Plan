@@ -13,8 +13,6 @@ function CheckWaived() {
     
     resetWaivedStatuses();
     
-    var score;
-    
     // Getting Scores
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
     var AP_Calc_BC_Score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
