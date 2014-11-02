@@ -72,6 +72,12 @@ function generateSchedule()
                 
             }
             
+            // If any of the pre-reqs are in the same quarter, move to the next quarter
+            if (prereqsPresentInQuarter(tempCourse, quarter))
+            {
+                continue;
+            }
+            
             // check to see if the pre-req is already waived
             if (!preReqPresent)
             {
