@@ -297,16 +297,23 @@ function prereqsFulfilled(courseID)
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
-    $.each(courseArrays, function(cArrayIndex, cArray) {
-        $.each(cArray, function(tempCourseIndex, tempCourse) {
+    for (var i = 0; i < courseArrays.length; i++)
+    {
+        var cArray = courseArrays[i];
+        
+        for (var j = 0; j < cArray.length; j++)
+        {
+            var tempCourse = cArray[j];
+            
             if (tempCourse.id == "MATH 9")
             {
                 tempCourse.waived = true;
             } else {
                 tempCourse.waived = false;
             }
-        });
-    });
+            
+        }
+    }
 }
 // An array containing each of the above course arrays.
 var courseArrays = [COEN_course_array];
