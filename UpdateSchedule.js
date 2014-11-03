@@ -6,8 +6,11 @@ function updateSchedule()
     var classesPerQuarter = 4;
     
     // Make the schedule visible
-    $('#schedule').show();
-    $('#schedule-default').hide();
+    if($('#Major').val() != null)
+    {
+        $('#schedule').show();
+        $('#schedule-default').hide();
+    }
     
     
     console.log("Updating Schedule.");
@@ -16,120 +19,6 @@ function updateSchedule()
     
     // Generating a schedule.
     var courseSchedule = generateSchedule();
-    console.log("Generated course schedule: ");
-    console.log(courseSchedule);
-    
-    // Dummy Course Array for testing
-    /*
-    courseSchedule = [[{
-                   name: "Precalculus",
-                   id: "MATH 9",
-                   offered: "F",
-                   waived: true,
-                   pre_req: "",
-                   replace_with: "MATH 11"
-                   },
-                    
-                    {
-                    name: "Intro. to Programming",
-                    id: "COEN 10",
-                    offered:"FW",
-                    waived: false,
-                    pre_req: "",
-                    replace_with: "COEN 11"
-                    },
-                    
-                    {
-                    name:"Critical Thinking & Writing 1",
-                    id: "CTW 1",
-                    offered:"FWS",
-                    waived:false,
-                    pre_req:"",
-                    replace_with: "CTW 2"
-                    },
-                    
-                    {
-                    name:"Chemistry I",
-                    id: "CHEM 11",
-                    offered: "F",
-                    waived: false,
-                    pre_req:"",
-                    replace_with: "CORE"
-                    }],
-                   
-                   [{
-                    name: "Calculus I",
-                    id: "MATH 11",
-                    offered: "FWS",
-                    waived: false,
-                    pre_req: "MATH 9",
-                    replace_with: "MATH 12"
-                    },
-                    
-                    {
-                    name: "Advanced Programming",
-                    id: "COEN 11",
-                    offered: "FWS",
-                    waived: false,
-                    pre_req: "COEN 10",
-                    replace_with: "COEN 12"
-                    },
-                    
-                    {
-                    name: "Advanced Programming",
-                    id: "COEN 11",
-                    offered: "FWS",
-                    waived: false,
-                    pre_req: "COEN 10",
-                    replace_with: "COEN 12"
-                    },
-                    
-                    {
-                    name: "Physics I",
-                    id: "PHYS 31",
-                    offered: "W",
-                    waived: false,
-                    pre_req: "",
-                    replace_with: "CORE",
-                    }],
-                   
-                   [{
-                    name: "Calculus II",
-                    id: "MATH 12",
-                    offered: "FWS",
-                    waived: false,
-                    pre_req: "MATH 11",
-                    replace_with: "MATH 13"
-                    },
-                    
-                    {
-                    name: "Data Structures",
-                    id: "COEN 12",
-                    offered: "FWS",
-                    waived: false,
-                    pre_req: "COEN 11",
-                    replace_with: "COEN 21"
-                    },
-                    
-                    {
-                    name: "Physics II",
-                    id: "PHYS 32",
-                    offered: "S",
-                    waived: false,
-                    pre_req: "PHYS 31",
-                    replace_with: "CORE"
-                    },
-                    
-                    {
-                    name: "Discrete Mathematics",
-                    id: "COEN 19",
-                    offered: "FS",
-                    waived: false,
-                    pre_req: "",
-                    replace_with: "CORE"
-                    }]];
-*/
-                   
     
     // Error checking to make sure proper amount of quarters are present
     if (courseSchedule.length != quarters)
