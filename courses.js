@@ -31,8 +31,8 @@ new course("Cultures & Ideas 1",
            "");
 
 var CNI2Course =
-new course("Cultures & Ideas 1",
-           "CNI 1",
+new course("Cultures & Ideas 2",
+           "CNI 2",
            "WS",
            false,
            "",
