@@ -25,9 +25,9 @@ function CheckWaived() {
     // MATH 9
     if (CRE_Score == 2) // Score of 15 or less
     {
-        waiveCourse("MATH 9");
-    } else if (CRE_Score == 1) {
         unwaiveCourse("MATH 9");
+    } else if (CRE_Score == 1) {
+        waiveCourse("MATH 9");
     }
     
     // MATH 11
