@@ -199,7 +199,7 @@ var allCourses =
  {
  name:"Critical Thinking & Writing 2",
  id: "CTW 2",
- offered:"FWS",
+ offered:"WS",
  waived:false,
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
