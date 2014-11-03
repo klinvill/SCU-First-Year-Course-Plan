@@ -58,15 +58,25 @@ function updateSchedule()
         }
     }
     
-    // Update the courses waived section
+    // Update the courses waived section into two columns
     $('.waived-courses').empty();
+    var coursesWaived = [];
     for (var i = 0; i < COEN_course_array.length; i++)
     {
         //console.log(COEN_course_array[i]);
         if(COEN_course_array[i].waived)
-            $('.waived-courses').append('<li>'+COEN_course_array[i].id+'</li>');
+        {
+            coursesWaived.push(COEN_course_array[i].id);
+        }
     }
-    
+    for (var i = 0; i < 3; i++)
+    {
+        for (var j = 0; j < Math.ceil(coursesWaived.length / 3); j++)
+        {
+            if(j + i * Math.ceil(coursesWaived.length / 3) < coursesWaived.length)
+                $('#waived-column-'+i).append('<li>'+coursesWaived[j + i * Math.ceil(coursesWaived.length / 3)]+'</li>');
+        }
+    }
 }
 
 /*
