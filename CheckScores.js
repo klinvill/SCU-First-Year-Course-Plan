@@ -84,7 +84,6 @@ function CheckWaived() {
     
     // --- Physics Courses ----
     
-    //Need to add AP Phisics B Test.
     // PHYS 31
     if (AP_PHYS_Mech_Score > 3)
     {
