@@ -132,7 +132,7 @@ function generateSchedule()
         var quarter = courseSchedule[j]; // Array of courses for quarter.
         
         // Check if the quarter already has 4 courses.
-        if (quarter.length < classesPerQuarter)
+        while (quarter.length < classesPerQuarter)
             quarter.push(finalCourseOption);
     }
     
