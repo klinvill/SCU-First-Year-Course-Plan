@@ -101,6 +101,30 @@ function generateSchedule()
     }
     
     // Potentially fill in holes with CNI 1 and 2.
+    var fallQuarter = courseSchedule[0];
+    var winterQuarter = courseSchedule[1];
+    var springQuarter = courseSchedule[2];
+        //Check Fall and Winter
+    if (fallQuarter.length < classesPerQuarter &&
+        winterQuarter.length < classesPerQuarter)
+    {
+        fallQuarter.push(CNI1Course);
+        winterQuarter.push(CNI2Course);
+    }
+        //Check Winter and Spring
+    else if (winterQuarter.length < classesPerQuarter &&
+        springQuarter.length < classesPerQuarter)
+    {
+        winterQuarter.push(CNI1Course);
+        springQuarter.push(CNI2Course);
+    }
+    //Check Winter and Spring
+    else if (fallQuarter.length < classesPerQuarter &&
+             springQuarter.length < classesPerQuarter)
+    {
+        fallQuarter.push(CNI1Course);
+        springQuarter.push(CNI2Course);
+    }
     
     // Fill in holes with core
     for (var j = 0; j < courseSchedule.length; j++)
