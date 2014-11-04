@@ -247,6 +247,7 @@ var COEN_course_array =
  id: "PHYS 33",
  offered: "F",
  waived: false,
+ // Also needs pre-req of MATH 12
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
  previous: "PHYS 32"
@@ -254,7 +255,7 @@ var COEN_course_array =
  {
  name: "Discrete Mathematics",
  id: "COEN 19",
- offered: "FS",
+ offered: "S",
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id,
