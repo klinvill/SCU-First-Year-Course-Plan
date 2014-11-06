@@ -50,6 +50,8 @@ function waiveCourse(courseID)
             if (tempCourse.id === courseID)
             {
                 tempCourse.waived = true;
+                if(tempCourse.pre_req)
+                    waiveCourse(tempCourse.pre_req);
                 break;
             }
         }
@@ -298,6 +300,7 @@ function prereqsFulfilled(courseID)
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
+    console.log("reset");
     for (var i = 0; i < courseArrays.length; i++)
     {
         var cArray = courseArrays[i];

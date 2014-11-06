@@ -31,13 +31,13 @@ function CheckWaived() {
     }
     
     // MATH 11
-    if (CRE_Score != 2 && AP_Calc_BC_Score >= 3)
+    if (CRE_Score != 2 && (AP_Calc_BC_Score >= 3 || AP_Calc_AB_Score >= 4))
     {
         waiveCourse("MATH 11");
     }
     
     //MATH 12
-    if (CRE_Score != 2 && (AP_Calc_BC_Score >= 4 || AP_Calc_AB_Score >= 4))
+    if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
     {
         waiveCourse("MATH 11");
         waiveCourse("MATH 12");
@@ -57,6 +57,7 @@ function CheckWaived() {
     {
         waiveCourse("CHEM 11");
         waiveCourse("CHEM 12");
+        waiveCourse("AMTH 106");
         
     }
     
@@ -96,8 +97,10 @@ function CheckWaived() {
         waiveCourse("PHYS 33");
     }
     
-    $.each(COEN_course_array, function(index, value) {
-        if(document.getElementById('OC_'+value.id).checked == true)
-            waiveCourse(value.id);
+    $("#OC_Form input").each(function() {
+        if($(this).is(":checked"))
+        {
+            waiveCourse($(this).val());
+        }
     });
 }

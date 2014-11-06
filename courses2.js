@@ -351,7 +351,10 @@ var courseArrays = [COEN_course_array];
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
-    courseForID(courseID).waived = true;
+    course = courseForID(courseID);
+    course.waived = true;
+    if(course.pre_req)
+        waiveCourse(course.pre_req);
 }
 
 function unwaiveCourse(courseID)
