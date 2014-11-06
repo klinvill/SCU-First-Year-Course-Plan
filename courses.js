@@ -173,7 +173,7 @@ var COEN_course_array =
  {
  name: "Data Structures",
  id: "COEN 12",
- offered: "FWS",
+ offered: "S",
  waived: false,
  pre_req: "COEN 11",
  replace_with: "COEN 21",
