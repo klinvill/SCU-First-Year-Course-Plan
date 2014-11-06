@@ -65,25 +65,18 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
+                    <!-- AP Section -->
                     <div class="panel panel-default">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
                             <h4 class="panel-title">
-                                <a>Step 2: Waive Classes</a>
+                                <a>Step 2: Enter AP Test Scores</a>
                             </h4>
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <!-- AP Section Header -->
-                                <div class="AP_header page-header">
-                                    <span class="basic-text"><b>AP Tests</b></span>
-                                    <!-- Toggles displaying the entry form. Also toggles the appearance of the toggle button -->
-                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.AP_Entries').toggle(); $('.AP_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </button>
-                                </div>
-                                
-                                <!-- AP Entry Form -->
-                                <div class="AP_Entries" style="display: none;">
+                                <div class="AP_Entries">
                                     <form id="AP_Form">
                                         <div class="col-xs-6">
                                             <p> <b>Calculus AB:</b> </p>
@@ -191,22 +184,24 @@
                                     </form>
                                     <br/><br/><br/>
                                 </div>
-                                
-                                
-                                
-                                
-                                
-                                
-                                <!-- Previous Programming Experience (PPE) Section Header -->
-                                <div class="PPE_header page-header">
-                                    <span class="basic-text"><b>Programming Experience</b></span>
-                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.PPE_Entries').toggle(); $('.PPE_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </button>
-                                </div>
-                                
-                                <!-- PPE Scores Entry Form -->
-                                <div class="PPE_Entries" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                            
+                            
+                            
+                            
+                            
+                    <!-- Previous Programming Experience (PPE) Section -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
+                            <h4 class="panel-title">
+                                <a>Step 3: Enter Previous Programming Experience</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="PPE_Entries">
                                     <p>Are you comfortable with loops, functions, and conditionals in PHP, C, C++, or Java?</p>
                                     <form id="PPE_Form">
                                         <div class="col-xs-6">
@@ -218,23 +213,22 @@
                                     </form>
                                     <br/><br/>
                                 </div>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <!-- CRE Section Header -->
-                                <div class="CRE_header page-header">
-                                    <span class="basic-text"><b>Calculus Readiness Exam</b></span>
-                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.CRE_Entries').toggle(); $('.CRE_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </button>
-                                </div>
-                                
-                                <!-- CRE Scores Entry Form -->
-                                <div class="CRE_Entries" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                            
+                    <!-- Calculus Readiness Exam Section -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour">
+                            <h4 class="panel-title">
+                                <a>Step 4: Enter Calculus Readiness Exam Score</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="CRE_Entries">
                                     <form id="CRE_Form">
                                         <div class="col-xs-6">
                                             <select class="form-control" id="CRE_Score" onchange="updateSchedule()">
@@ -246,18 +240,21 @@
                                     </form>
                                     <br/><br/>
                                 </div>
-                                
-                                
-                                <!-- Other Coursework Header -->
-                                <div class="OC_header page-header">
-                                    <span class="basic-text"><b>Other Coursework</b></span>
-                                    <button type="button" class="btn btn-default btn-xs pull-right" onclick="$('.OC_Entries').toggle(); $('.OC_header').find('.glyphicon').toggleClass('glyphicon-chevron-down glyphicon-chevron-up')">
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </button>
-                                </div>
-                                
-                                <!-- Other Coursework Entry Form -->
-                                <div class="OC_Entries" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                    
+                            
+                    <!-- Other Coursework Section -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive">
+                            <h4 class="panel-title">
+                                <a>Step 5: Enter Other Coursework</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="OC_Entries">
                                     <form id="OC_Form">
                                         <div class="col-xs-6 checkbox">
                                         </div>
@@ -266,13 +263,15 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix">
                             <h4 class="panel-title">
-                                <a>Step 3: Select Quarter to Take ENGR 1</a>
+                                <a>Step 6: Select Quarter to Take ENGR 1</a>
                             </h4>
                         </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
+                        <div id="collapseSix" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <select class="form-control" id="ENGR1_Qtr" onchange="placeEngr1()">
                                     <option value="" selected disabled>Quarter</option>
@@ -338,6 +337,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button type="button" class="btn btn-danger" onclick="resetPage()">Reset Schedule</button>
                         
                         <!-- Section to display classes waived and optionally un-select these classes -->
                         <div>
@@ -351,7 +351,6 @@
                             <ul class="basic-text waived-courses col-md-3" id="waived-column-2">
                             </ul>
                         </div>
-                        <button type="button" class="btn btn-danger" onclick="resetPage()">Reset Schedule</button>
                     </div>
                 </div>
             </div>
