@@ -19,6 +19,7 @@ function CheckWaived() {
     var AP_Comp_Sci_Score = document.getElementById("AP_Comp_Sci_Score").selectedIndex;
     var AP_PHYS_Mech_Score = document.getElementById("AP_Mech_Score").selectedIndex;
     var AP_PHYS_EnM_Score = document.getElementById("AP_EnM_Score").selectedIndex;
+    var Prog_Exp = document.getElementById("PPE_Value").selectedIndex;
     
     // --- Math Courses ---
     
@@ -71,7 +72,7 @@ function CheckWaived() {
     // --- Coen Courses ----
     
     // COEN 10
-    if (AP_Comp_Sci_Score >= 3)
+    if (AP_Comp_Sci_Score >= 3 || Prog_Exp == 1)
     {
         waiveCourse("COEN 10");
     }
