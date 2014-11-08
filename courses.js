@@ -50,6 +50,8 @@ function waiveCourse(courseID)
             if (tempCourse.id === courseID)
             {
                 tempCourse.waived = true;
+                if(tempCourse.pre_req)
+                    waiveCourse(tempCourse.pre_req);
                 break;
             }
         }
@@ -171,7 +173,7 @@ var COEN_course_array =
  {
  name: "Data Structures",
  id: "COEN 12",
- offered: "FWS",
+ offered: "S",
  waived: false,
  pre_req: "COEN 11",
  replace_with: "COEN 21",
@@ -208,7 +210,7 @@ var COEN_course_array =
  {
  name:"Critical Thinking & Writing 2",
  id: "CTW 2",
- offered:"FWS",
+ offered:"WS",
  waived:false,
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
@@ -247,6 +249,7 @@ var COEN_course_array =
  id: "PHYS 33",
  offered: "F",
  waived: false,
+ // Also needs pre-req of MATH 12
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
  previous: "PHYS 32"
@@ -254,7 +257,7 @@ var COEN_course_array =
  {
  name: "Discrete Mathematics",
  id: "COEN 19",
- offered: "FS",
+ offered: "S",
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id,
@@ -297,6 +300,7 @@ function prereqsFulfilled(courseID)
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
+    console.log("reset");
     for (var i = 0; i < courseArrays.length; i++)
     {
         var cArray = courseArrays[i];

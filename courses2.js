@@ -156,7 +156,7 @@ var allCourses =
  {
  name: "Data Structures",
  id: "COEN 12",
- offered: "FWS",
+ offered: "S",
  waived: false,
  pre_req: "COEN 11",
  replace_with: "COEN 21",
@@ -199,7 +199,7 @@ var allCourses =
  {
  name:"Critical Thinking & Writing 2",
  id: "CTW 2",
- offered:"FWS",
+ offered:"WS",
  waived:false,
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
@@ -351,7 +351,10 @@ var courseArrays = [COEN_course_array];
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
-    courseForID(courseID).waived = true;
+    course = courseForID(courseID);
+    course.waived = true;
+    if(course.pre_req)
+        waiveCourse(course.pre_req);
 }
 
 function unwaiveCourse(courseID)

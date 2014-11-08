@@ -53,7 +53,6 @@ function generateSchedule()
             // check to see if the pre-req is already waived
             if (!preReqPresent)
             {
-                //console.log("Course schedule", courseSchedule);
                 // Only check the previous quarters (not the current quarter)
                 for (var k = 0; k < j; k++)
                 {
@@ -92,7 +91,6 @@ function generateSchedule()
             
             if (preReqPresent == true) //continue;
             {
-                console.log("Adding to quarter: ", j, tempCourse);
                 // Add course to schedule.
                 quarter.push(tempCourse);
                 break;
