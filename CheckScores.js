@@ -21,6 +21,7 @@ function CheckWaived() {
     var AP_PHYS_EnM_Score = document.getElementById("AP_EnM_Score").selectedIndex;
     
     var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
+    
     // --- Math Courses ---
     
     // MATH 9
@@ -44,8 +45,9 @@ function CheckWaived() {
         waiveCourse("MATH 12");
     }
     
+    //Note this logic might not be correct for ELEN's.
     // AMATH 106
-    if (AP_Chem_Score >= 3 && AP_Env_Sci_Score >=4)
+    if ((AP_Chem_Score == 3 && AP_Env_Sci_Score >=4) || AP_Chem_Score >= 4)
     {
         waiveCourse("AMATH 106");
     }
