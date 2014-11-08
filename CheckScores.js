@@ -14,12 +14,13 @@ function CheckWaived() {
     // Getting Scores
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
     var AP_Calc_BC_Score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
-    var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
     var AP_Chem_Score = document.getElementById("AP_Chem_Score").selectedIndex;
     var AP_Comp_Sci_Score = document.getElementById("AP_Comp_Sci_Score").selectedIndex;
+    var AP_Env_Sci_Score = document.getElementById("AP_Env_Sci_Score").selectedIndex;
     var AP_PHYS_Mech_Score = document.getElementById("AP_Mech_Score").selectedIndex;
     var AP_PHYS_EnM_Score = document.getElementById("AP_EnM_Score").selectedIndex;
     
+    var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
     // --- Math Courses ---
     
     // MATH 9
@@ -36,17 +37,22 @@ function CheckWaived() {
         waiveCourse("MATH 11");
     }
     
-    //MATH 12
+    // MATH 12
     if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
     {
         waiveCourse("MATH 11");
         waiveCourse("MATH 12");
     }
     
+    // AMATH 106
+    if (AP_Chem_Score >= 3 && AP_Env_Sci_Score >=4)
+    {
+        waiveCourse("AMATH 106");
+    }
     // --- Chem Courses ---
     
     // Chem 11
-    if (AP_Chem_Score >= 3)
+    if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
     {
         waiveCourse("CHEM 11");
         
@@ -55,9 +61,7 @@ function CheckWaived() {
     // Chem 12
     if (AP_Chem_Score >= 4)
     {
-        waiveCourse("CHEM 11");
         waiveCourse("CHEM 12");
-        waiveCourse("AMTH 106");
         
     }
     
