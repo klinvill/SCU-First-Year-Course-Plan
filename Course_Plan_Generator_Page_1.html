@@ -381,7 +381,7 @@
             $.each(COEN_course_array, function(index, value){
                    if (value.id != "CTW 1" && value.id != "CTW 2")
                    {
-                        $('#OC_Form>div').append('<label><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
+                        $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
                    }
             });
             
