@@ -13,6 +13,12 @@ function updateSchedule()
     }
     
     console.log("Updating Schedule.");
+    
+    // See if a checkbox was just checked (used for CheckWaived())
+    checked = 0;
+    if(this.checked == true)
+        checked = 1;
+    
     // Updated waived status of courses.
     CheckWaived();
     

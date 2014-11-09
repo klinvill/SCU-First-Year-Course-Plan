@@ -374,6 +374,10 @@
         
         
         <script>
+            
+            //global variable to determine whether a checkbox was checked or unchecked
+            var checked = 0;
+            
             // If javascript is enabled, this will display the page
             $('#page-wrapper').show();
             
@@ -382,6 +386,7 @@
                    if (value.id != "CTW 1" && value.id != "CTW 2")
                    {
                         $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
+                        $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
                    }
             });
             
