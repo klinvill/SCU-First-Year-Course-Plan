@@ -39,7 +39,7 @@
             </div>
             
             <p class="basic-text" id="welcome-summary">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the Department of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the School of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
             </p>
             
             
@@ -381,7 +381,7 @@
             $.each(COEN_course_array, function(index, value){
                    if (value.id != "CTW 1" && value.id != "CTW 2")
                    {
-                        $('#OC_Form>div').append('<label><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
+                        $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
                    }
             });
             

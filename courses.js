@@ -179,6 +179,7 @@ var COEN_course_array =
  replace_with: "COEN 21",
  previous: "COEN 11"
  },
+ /*
  {
  name: "Logic Design",
  id: "COEN 21",
@@ -197,6 +198,7 @@ var COEN_course_array =
  replace_with: finalCourseOption.id,
  previous: "COEN 21"
  },
+  */
 /* CTW Series */
  {
  name:"Critical Thinking & Writing 1",
@@ -252,7 +254,7 @@ var COEN_course_array =
  // Also needs pre-req of MATH 12
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
- previous: "PHYS 32"
+ previous: ["PHYS 32", "MATH 11", "MATH 12"],
  },
  {
  name: "Discrete Mathematics",
@@ -289,18 +291,39 @@ function courseForID(courseID)
 function prereqsFulfilled(courseID)
 {
     var tempCourse = courseForID(courseID);
-    var preReq = courseForID(tempCourse.previous);
+    var preReq;
     
-    // Course has no PreReqs.
-    if (preReq == undefined) return true;
-    // Course has PreReqs.
-    else return (preReq.waived && prereqsFulfilled(preReq));
+    // Previous is a string.
+    if (typeof(tempCourse.previous) == "string")
+    {
+        preReq = courseForID(tempCourse.previous);
+        // Course has no PreReqs.
+        if (preReq == undefined) return true;
+        // Course has PreReqs.
+        else return (preReq.waived && prereqsFulfilled(preReq));
+    }
+    // Previous is an array of strings.
+    else if (typeof(tempCourse.previous) == "object")
+    {
+        var fulfilled = true;
+        
+        for (var i = 0; i < tempCourse.previous.length; i++)
+        {
+            preReq = courseForID(tempCourse.previous[i]);
+            debugger;
+            // Course has no PreReqs.
+            if (preReq == undefined) fulfilled = fulfilled && true;
+            // Course has PreReqs.
+            else fulfilled = fulfilled && (preReq.waived && prereqsFulfilled(preReq));
+        }
+        
+        return fulfilled;
+    }
 }
 
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
-    console.log("reset");
     for (var i = 0; i < courseArrays.length; i++)
     {
         var cArray = courseArrays[i];

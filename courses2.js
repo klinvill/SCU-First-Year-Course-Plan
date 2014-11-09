@@ -299,10 +299,28 @@ function prereqsFulfilled(courseID)
     var tempCourse = courseForID(courseID);
     var preReq = courseForID(tempCourse.previous);
     
-    // Course has no PreReqs.
-    if (preReq == undefined) return true;
-    // Course has PreReqs.
-    else return (preReq.waived && prereqsFulfilled(preReq);
+    // Still Using Strings
+    if (typeof(tempCourse.previous) == "string")
+    {
+        // Course has no PreReqs.
+        if (preReq == undefined) return true;
+        // Course has PreReqs.
+        else return (preReq.waived && prereqsFulfilled(preReq));
+    }
+    // Using Arrays
+    {
+        var fulfilled = true;
+        
+        for (var i = 0; i < tempCourse.previous.length; i++)
+        {
+            // Course has no PreReqs.
+            if (preReq == undefined) fulfilled = fulfilled && true;
+            // Course has PreReqs.
+            else fulfilled = fulfilled && (preReq.waived && prereqsFulfilled(preReq));
+        }
+        
+        return fulfilled;
+    }
 }
 
                  
