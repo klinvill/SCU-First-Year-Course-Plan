@@ -105,6 +105,16 @@ function CheckWaived() {
         if($(this).is(":checked"))
         {
             waiveCourse($(this).val());
+            var tempCourse = courseForID($(this).val());
+            
+            //check every prereq's checkbox
+            while(tempCourse.pre_req != "") {
+                var tempCourse = courseForID(tempCourse.pre_req);
+                document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
+                document.getElementById("OC_"+tempCourse.id).onclick = "return false";//make it uneditable
+                //document.getElementById("Label_"+tempCourse.id).addClass("Uneditable");//gray it out
+            }
         }
-    });
+    });    
+    
 }
