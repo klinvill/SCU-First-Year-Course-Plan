@@ -252,7 +252,7 @@ var COEN_course_array =
  // Also needs pre-req of MATH 12
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
- previous: "PHYS 32"
+ previous: ["PHYS 32", "MATH 11", "MATH 12"],
  },
  {
  name: "Discrete Mathematics",
@@ -289,22 +289,26 @@ function courseForID(courseID)
 function prereqsFulfilled(courseID)
 {
     var tempCourse = courseForID(courseID);
-    var preReq = courseForID(tempCourse.previous);
+    var preReq;
     
-    // Still Using Strings
+    // Previous is a string.
     if (typeof(tempCourse.previous) == "string")
     {
+        preReq = courseForID(tempCourse.previous);
         // Course has no PreReqs.
         if (preReq == undefined) return true;
         // Course has PreReqs.
         else return (preReq.waived && prereqsFulfilled(preReq));
     }
-    // Using Arrays
+    // Previous is an array of strings.
+    else if (typeof(tempCourse.previous) == "object")
     {
         var fulfilled = true;
         
         for (var i = 0; i < tempCourse.previous.length; i++)
         {
+            preReq = courseForID(tempCourse.previous[i]);
+            debugger;
             // Course has no PreReqs.
             if (preReq == undefined) fulfilled = fulfilled && true;
             // Course has PreReqs.

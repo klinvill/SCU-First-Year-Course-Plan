@@ -141,14 +141,37 @@ function generateSchedule()
 // Takes as parameters the course and the quarter.
 function prereqsPresentInQuarter(tempCourse, quarter)
 {
-    if (tempCourse.previous === "") return false;
-    else {
-        var prev = courseForID(tempCourse.previous);
-        // Checking all courses in quarter.
-        for (var i = 0; i < quarter.length; i++)
-        {
-            if (prev.id == quarter[i].id) return true;
+    //For courses with a single previous string.
+    if (typeof(tempCourse.previous) == "string")
+    {
+        if (tempCourse.previous === "") return false;
+        else {
+            var prev = courseForID(tempCourse.previous);
+            if (prev == undefined) debugger;
+            // Checking all courses in quarter.
+            for (var i = 0; i < quarter.length; i++)
+            {
+                if (prev.id == quarter[i].id) return true;
+            }
+            return prereqsPresentInQuarter(prev, quarter);
         }
-        return prereqsPresentInQuarter(prev, quarter);
+    }
+    // For courses with and array of previous course strings.
+    else if (typeof(tempCourse.previous) == "object")
+    {
+        var allPresent = true;
+        
+        for (var i = 0; i < tempCourse.previous; i++)
+        {
+            var prev = courseForID(tempCourse.previous[i]);
+            // Checking all courses in quarter.
+            for (var i = 0; i < quarter.length; i++)
+            {
+                if (prev.id == quarter[i].id) return true;
+            }
+            allPresent = allPresent && prereqsPresentInQuarter(prev, quarter);
+        }
+        
+        return allPresent;
     }
 }
