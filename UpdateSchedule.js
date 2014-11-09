@@ -12,7 +12,6 @@ function updateSchedule()
         $('#schedule-default').hide();
     }
     
-    
     console.log("Updating Schedule.");
     // Updated waived status of courses.
     CheckWaived();
