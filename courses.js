@@ -179,6 +179,7 @@ var COEN_course_array =
  replace_with: "COEN 21",
  previous: "COEN 11"
  },
+ /*
  {
  name: "Logic Design",
  id: "COEN 21",
@@ -197,6 +198,7 @@ var COEN_course_array =
  replace_with: finalCourseOption.id,
  previous: "COEN 21"
  },
+  */
 /* CTW Series */
  {
  name:"Critical Thinking & Writing 1",
