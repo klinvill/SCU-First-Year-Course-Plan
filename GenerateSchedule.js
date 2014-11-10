@@ -185,3 +185,25 @@ function prereqsPresentInQuarter(tempCourse, quarter)
         return allPresent;
     }
 }
+
+//Function: called on a quarter to get the number of courses
+//          with labs in the quarter.
+// Parameters: a quarter from within the courseSchedule array.
+// Return Value: the number of courses with labs in the quarter.
+function labsInQuarter(quarter)
+{
+    if (typeof(quarter != "object"))
+    {
+        throw "Invalid value for quarter in labsInQuarter function.";
+    }
+    
+    var numLabs = 0;
+    
+    for (var i = 0; i < quarter.length; i++)
+    {
+        var tempCourse = quarter[i];
+        if (tempCourse.hasLab == true) numLabs++;
+    }
+    
+    return numLabs;
+}
