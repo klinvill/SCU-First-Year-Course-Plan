@@ -380,6 +380,37 @@ var ELEN_course_array =
  hasLab: false
  },
  
+ /* ELEN Series */
+ {
+ name: "Circuits I",
+ id: "ELEN 50",
+ offered: "FWS",
+ waived: false,
+ pre_req: "",
+ replace_with: "ELEN 100",
+ previous: ["PHYS 32", "MATH 11", "MATH 12"],
+ hasLab: true
+ },
+ {
+ name: "Circuits II",
+ id: "ELEN 100",
+ offered: "W",
+ waived: false,
+ pre_req: "",
+ replace_with: finalCourseOption.id,
+ previous: ["ELEN 50", "PHYS 33", "MATH 11", "MATH 12"],
+ hasLab: true
+ },
+ {
+ name: "Digital Systems Architecture",
+ id: "ELEN 33",
+ offered: "W",
+ pre_req: "",
+ replace_with: finalCourseOption.id,
+ previous: ["ELEN 21", "COEN 44"],
+ hasLab: true
+ }
+ 
 /* Others */
  {
  name:"Chemistry I",
@@ -455,37 +486,6 @@ var ELEN_course_array =
  previous: ["PHYS 33", "MATH 11", "MATH 12"],
  hasLab: true
  },
- 
- /* ELEN Series */
- {
- name: "Circuits I",
- id: "ELEN 50",
- offered: "FWS",
- waived: false,
- pre_req: "",
- replace_with: "ELEN 100",
- previous: ["PHYS 32", "MATH 11", "MATH 12"],
- hasLab: true
- },
- {
- name: "Circuits II",
- id: "ELEN 100",
- offered: "W",
- waived: false,
- pre_req: "",
- replace_with: finalCourseOption.id,
- previous: ["ELEN 50", "PHYS 33", "MATH 11", "MATH 12"],
- hasLab: true
- },
- {
- name: "Digital Systems Architecture",
- id: "ELEN 33",
- offered: "W",
- pre_req: "",
- replace_with: finalCourseOption.id,
- previous: ["ELEN 21", "COEN 44"],
- hasLab: true
- }
  ];
 
 // Functions which look through the course array and waive or unwaive courses.
