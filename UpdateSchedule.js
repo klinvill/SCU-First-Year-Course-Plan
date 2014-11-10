@@ -97,11 +97,27 @@ function placeEngr1 ()
     {
         $('#ENGR1-fall').css('visibility','visible');
         $('#ENGR1-winter').css('visibility','hidden');
+        $('#ENGR1-spring').css('visibility','hidden');
     }
     else if($('#ENGR1_Qtr').val() === "Winter")
     {
         $('#ENGR1-fall').css('visibility','hidden');
         $('#ENGR1-winter').css('visibility','visible');
+        $('#ENGR1-spring').css('visibility','hidden');
+    }
+    else if($('#ENGR1_Qtr').val() === "Spring")
+    {
+        $('#ENGR1-fall').css('visibility','hidden');
+        $('#ENGR1-winter').css('visibility','hidden');
+        $('#ENGR1-spring').css('visibility','visible');
+    }
+    // Auto select quarter for user
+    else if($('#ENGR1_Qtr').val() === "Auto")
+    {
+        // Change to quarter w/ least units, if tied prioritize fall
+        $('#ENGR1-fall').css('visibility','visible');
+        $('#ENGR1-winter').css('visibility','visible');
+        $('#ENGR1-spring').css('visibility','visible');
     }
     else
     {
