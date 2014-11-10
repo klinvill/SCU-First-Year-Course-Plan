@@ -9,6 +9,8 @@ function CheckWaived() {
     // None of the following logic includes the section where they can
     // just choose to waive any course that they want.
     
+    //alert($(this).id);
+    
     resetWaivedStatuses();
     
     // Getting Scores
@@ -110,18 +112,29 @@ function CheckWaived() {
             waiveCourse($(this).val());
             var tempCourse = courseForID($(this).val());
             
-            //check every prereq's checkbox
-            while(tempCourse.pre_req != "") {
-                var tempCourse = courseForID(tempCourse.pre_req);
-                document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
-                document.getElementById("OC_"+tempCourse.id).onclick = "return false";//make it uneditable
-                document.getElementById("Label_"+tempCourse.id).className = "Uneditable ";//gray it out
+            //check every prereq's checkbox only if a checkbox was checked
+            if(checked == 1) {
+                while(tempCourse.pre_req != "") {
+                    var tempCourse = courseForID(tempCourse.pre_req);
+                    document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
+                    //document.getElementById("OC_"+tempCourse.id).onclick = "return false";//make it uneditable
+                    //document.getElementById("Label_"+tempCourse.id).addClass("Uneditable");//gray it out
+                }
             }
         }
-        else
+    });
+
+    //uncheck every checkbox whose prereq is not satisfied
+    $("#OC_Form input").each(function() {
+        var tempCourse = courseForID($(this).val());
+        if(tempCourse.pre_req != "") 
         {
-               //un-gray it out
+            var checkCourse = courseForID(tempCourse.pre_req);
+            if(document.getElementById("OC_"+checkCourse.id).checked == false) {
+                $(this).attr('checked', false);
+                unwaiveCourse(courseForID($(this).val()));
+            }
         }
-    });    
+    });
     
 }
