@@ -90,6 +90,7 @@ function CheckWaived() {
     {
         waiveCourse("COEN 10");
         waiveCourse("COEN 11");
+        waiveCourse("COEN 44");
     }
     
     // --- Physics Courses ----
