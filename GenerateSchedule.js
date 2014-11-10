@@ -190,7 +190,7 @@ function prereqsPresentInQuarter(tempCourse, quarter)
 //          with labs in the quarter.
 // Parameters: a quarter from within the courseSchedule array.
 // Return Value: the number of courses with labs in the quarter.
-function labsInQuarter(quarter)
+function numLabsInQuarter(quarter)
 {
     if (typeof(quarter != "object"))
     {
