@@ -63,13 +63,13 @@ function updateSchedule()
         }
     }
     
-    // Update the courses waived section into two columns
+    // Update the courses waived section into three columns
     $('.waived-courses').empty();
     var coursesWaived = [];
     for (var i = 0; i < COEN_course_array.length; i++)
     {
         //console.log(COEN_course_array[i]);
-        if(COEN_course_array[i].waived)
+        if(COEN_course_array[i].waived && COEN_course_array[i].id != "MATH 9")
         {
             coursesWaived.push(COEN_course_array[i].id);
         }
