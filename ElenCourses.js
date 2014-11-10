@@ -75,6 +75,7 @@ var ELEN_course_array =
  },
     
 /* CandI Series */
+    /*
  {
  name:"Cultures & Ideas 1",
  id: "C&I 1",
@@ -95,12 +96,13 @@ var ELEN_course_array =
  previous: "C&I 1",
  hasLab: false
  },
+ */
     
 /* CTW Series */
  {
  name:"Critical Thinking & Writing 1",
  id: "CTW 1",
- offered:"FWS",
+ offered:"F",
  waived:false,
  pre_req:"",
  replace_with: "CTW 2",
@@ -110,7 +112,7 @@ var ELEN_course_array =
  {
  name:"Critical Thinking & Writing 2",
  id: "CTW 2",
- offered:"WS",
+ offered:"S",
  waived:false,
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
