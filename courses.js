@@ -388,7 +388,7 @@ function courseArrayForMajor(major)
     }
     else if (major == "ELEN")
     {
-        
+        return ELEN_course_array;
     }
     else throw "Invalid Major provided to courseArrayForMajor function.";
 }
