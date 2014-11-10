@@ -14,9 +14,19 @@ function generateSchedule()
 {
     var courseSchedule = [ [], [], [] ];
     
-    // Need to add logic here for choosing which course array to use.
-    var courseArray = COEN_course_array;
-    console.warn("Need to choose course array.");
+    var major = document.getElementById("Major").value;
+    var courseArray;
+    
+    // Sleceting correct course array.
+    
+    if (major == "ELEN") {
+        courseArray = courseArrayForMajor("ELEN");
+    }
+    else if (major == "COEN" || major == undefined)
+    {
+        courseArray = courseArrayForMajor("COEN");
+    }
+    else throw "Improper major selection in generateSchedule function.";
     
     
     for (var i = 0; i < courseArray.length; i++)
