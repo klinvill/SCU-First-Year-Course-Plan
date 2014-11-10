@@ -115,9 +115,20 @@ function placeEngr1 ()
     else if($('#ENGR1_Qtr').val() === "Auto")
     {
         // Change to quarter w/ least units, if tied prioritize fall
-        $('#ENGR1-fall').css('visibility','visible');
-        $('#ENGR1-winter').css('visibility','visible');
-        $('#ENGR1-spring').css('visibility','visible');
+        var numLabsFall = numLabsInQuarter(courseSchedule[0]);
+        var numLabsWinter = numLabsInQuarter(courseSchedule[1]);
+        var numLabsSpring = numLabsInQuarter(courseSchedule[2]);
+        
+        if (numLabsSpring > numLabsFall && numLabsSpring > numLabsWinter)
+        {
+            $('#ENGR1-spring').css('visibility','visible');
+        }
+        else if (numLabsWinter > numLabsFall)
+        {
+            $('#ENGR1-winter').css('visibility','visible');
+        }
+        else $('#ENGR1-fall').css('visibility','visible');
+        
     }
     else
     {
