@@ -27,7 +27,7 @@ new course("University Core",
 // Courses for CNI 1 and 2.
 var CNI1Course =
 new course("Cultures & Ideas 1",
-           "CNI 1",
+           "C&I 1",
            "FW",
            false,
            "",
@@ -37,7 +37,7 @@ new course("Cultures & Ideas 1",
 
 var CNI2Course =
 new course("Cultures & Ideas 2",
-           "CNI 2",
+           "C&I 2",
            "WS",
            false,
            "",
@@ -157,7 +157,6 @@ var COEN_course_array =
  previous: "AMTH 106",
  hasLab: false
  },
- // Use replace_with instead of pre_req for ordering
  {
  name: "Linear Algebra",
  id: "MATH 53",

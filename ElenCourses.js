@@ -75,8 +75,7 @@ var ELEN_course_array =
  },
     
 /* CandI Series */
-    /*
- {
+ /*{
  name:"Cultures & Ideas 1",
  id: "C&I 1",
  offered:"F",
