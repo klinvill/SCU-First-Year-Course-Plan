@@ -281,7 +281,7 @@ var COEN_course_array =
  // Also needs pre-req of MATH 12
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
- previous: ["PHYS 32", "MATH 11", "MATH 12"],,
+ previous: ["PHYS 32", "MATH 11", "MATH 12"],
  hasLab: true
  },
  {

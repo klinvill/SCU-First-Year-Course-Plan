@@ -18,11 +18,10 @@ function generateSchedule()
     var courseArray;
     
     // Sleceting correct course array.
-    
     if (major == "ELEN") {
         courseArray = courseArrayForMajor("ELEN");
     }
-    else if (major == "COEN" || major == undefined)
+    else if (major == "COEN" || major == "")
     {
         courseArray = courseArrayForMajor("COEN");
     }
