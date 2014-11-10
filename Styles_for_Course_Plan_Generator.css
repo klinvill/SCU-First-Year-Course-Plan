@@ -28,3 +28,8 @@ body {
 #accordion .panel-heading {
     cursor: pointer;
 }
+
+/* Grey-out the checkboxes when they can't be changed */
+.Uneditable {
+    color: grey;
+}

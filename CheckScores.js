@@ -115,8 +115,12 @@ function CheckWaived() {
                 var tempCourse = courseForID(tempCourse.pre_req);
                 document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
                 document.getElementById("OC_"+tempCourse.id).onclick = "return false";//make it uneditable
-                //document.getElementById("Label_"+tempCourse.id).addClass("Uneditable");//gray it out
+                document.getElementById("Label_"+tempCourse.id).className = "Uneditable ";//gray it out
             }
+        }
+        else
+        {
+               //un-gray it out
         }
     });    
     
