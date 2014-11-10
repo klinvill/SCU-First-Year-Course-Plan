@@ -1,6 +1,7 @@
+/* --- Coen Course Array --- */
 // Array of courses, ordered in terms of priority placement with the highest priority being at the front
 // Each course is structured as: course = {name:”Calculus 3”, id:”MATH 13”, offered:[”F”, “W”, “S”], waived:false, pre_req:”MATH 12”, replace_with: "MATH 14"}
-var ELEN_course_array =
+var COEN_course_array =
 [
 /* Math Series */
  {
@@ -64,43 +65,83 @@ var ELEN_course_array =
  hasLab: false
  },
  {
- name: "Applied Programming in C",
- id: "COEN 44",
- offered: "FW",
+ name: "Probability and Statistics",
+ id: "AMTH 108",
+ offered: "FWS",
  waived: false,
- pre_req: "MATH 13",
- replace_with: "ELEN 33",
- previous: "MATH 13",
- hasLab: true
- },
-    
-/* CandI Series */
- /*{
- name:"Cultures & Ideas 1",
- id: "C&I 1",
- offered:"F",
- waived:false,
- pre_req:"",
- replace_with: "C&I 2",
- previous: "",
+ pre_req: "MATH 14",
+ replace_with: "MATH 53",
+ previous: "AMTH 106",
  hasLab: false
  },
  {
- name:"Cultures & Ideas 1",
- id: "C&I 1",
- offered:"W",
- waived:false,
- pre_req:"C&I 2",
+ name: "Linear Algebra",
+ id: "MATH 53",
+ offered: "WS",
+ waived: false,
+ pre_req: "MATH 13",
  replace_with: finalCourseOption.id,
- previous: "C&I 1",
+ previous: "AMTH 108",
  hasLab: false
- },*/
-    
+ },
+/* COEN intro Series */
+ {
+ name: "Intro. to Programming",
+ id: "COEN 10",
+ offered:"FW",
+ waived: false,
+ pre_req: "",
+ replace_with: "COEN 11",
+ previous: "",
+ hasLab: true
+ },
+ {
+ name: "Advanced Programming",
+ id: "COEN 11",
+ offered: "FWS",
+ waived: false,
+ pre_req: "COEN 10",
+ replace_with: "COEN 12",
+ previous: "COEN 10",
+ hasLab: true
+ },
+ {
+ name: "Data Structures",
+ id: "COEN 12",
+ offered: "S",
+ waived: false,
+ pre_req: "COEN 11",
+ replace_with: "COEN 21",
+ previous: "COEN 11",
+ hasLab: true
+ },
+ /*
+ {
+ name: "Logic Design",
+ id: "COEN 21",
+ offered: "FWS",
+ waived: false,
+ pre_req: "",
+ replace_with: "COEN 20",
+ previous: "COEN 12",
+ hasLab: true
+ },
+ {
+ name: "Embedded Systems",
+ id: "COEN 20",
+ offered: "FS",
+ waived: false,
+ pre_req: "COEN 11",
+ replace_with: finalCourseOption.id,
+ previous: "COEN 21",
+ hasLab: true
+ },
+  */
 /* CTW Series */
  {
  name:"Critical Thinking & Writing 1",
  id: "CTW 1",
- offered:"F",
+ offered:"FWS",
  waived:false,
  pre_req:"",
  replace_with: "CTW 2",
@@ -110,14 +151,13 @@ var ELEN_course_array =
  {
  name:"Critical Thinking & Writing 2",
  id: "CTW 2",
- offered:"S",
+ offered:"WS",
  waived:false,
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
  previous: "CTW 1",
  hasLab: false
  },
-    
 /* Others */
  {
  name:"Chemistry I",
@@ -128,28 +168,6 @@ var ELEN_course_array =
  replace_with: finalCourseOption.id,
  previous: "",
  hasLab: true
- },
-    
- {
- name: "Logic Design",
- id: "ELEN 21",
- offered: "FWS",
- waived: false,
- pre_req: "",
- replace_with: "COEN 20",
- previous: "COEN 12",
- hasLab: true
- },
-    
- {
- name:"Energy and Nanotechnology",
- id: "ELEN 20",
- offered: "S",
- waived: false,
- pre_req:"",
- replace_with: finalCourseOption.id,
- previous: "",
- hasLab: false
  },
  {
  name: "Physics I",
@@ -183,45 +201,13 @@ var ELEN_course_array =
  hasLab: true
  },
  {
- name: "Physics IV",
- id: "PHYS 34",
- offered: "W",
- waived: false,
- // Also needs pre-req of MATH 12
- pre_req: "PHYS 33",
- replace_with: finalCourseOption.id,
- previous: ["PHYS 33", "MATH 11", "MATH 12"],
- hasLab: true
- },
-    
- /* ELEN Series */
- {
- name: "Circuits I",
- id: "ELEN 50",
- offered: "FWS",
- waived: false,
- pre_req: "",
- replace_with: "ELEN 100",
- previous: ["PHYS 32", "MATH 11", "MATH 12"],
- hasLab: true
- },
- {
- name: "Circuits II",
- id: "ELEN 100",
- offered: "W",
+ name: "Discrete Mathematics",
+ id: "COEN 19",
+ offered: "S",
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id,
- previous: ["ELEN 50", "PHYS 33", "MATH 11", "MATH 12"],
- hasLab: true
- },
- {
- name: "Digital Systems Architecture",
- id: "ELEN 33",
- offered: "W",
- pre_req: "",
- replace_with: finalCourseOption.id,
- previous: ["ELEN 21", "COEN 44"],
- hasLab: true
+ previous: "",
+ hasLab: false
  }
  ];
