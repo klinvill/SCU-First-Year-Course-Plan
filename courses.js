@@ -409,7 +409,7 @@ var ELEN_course_array =
  replace_with: finalCourseOption.id,
  previous: ["ELEN 21", "COEN 44"],
  hasLab: true
- }
+ },
  
 /* Others */
  {
