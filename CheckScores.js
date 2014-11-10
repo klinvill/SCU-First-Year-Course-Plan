@@ -2,7 +2,7 @@
  Description:    Checks each course to see if it has been waived and updates the information in the course list.
  */
 
-console.warn("Need to check AMATH 106 waiving logic.");
+console.warn("Need to check AMTH 106 waiving logic.");
 
 function CheckWaived() {
     
@@ -49,10 +49,10 @@ function CheckWaived() {
     }
     
     //Note this logic might not be correct for ELEN's.
-    // AMATH 106
+    // AMTH 106
     if ((AP_Chem_Score == 3 && AP_Env_Sci_Score >=4) || AP_Chem_Score >= 4)
     {
-        waiveCourse("AMATH 106");
+        waiveCourse("AMTH 106");
     }
     // --- Chem Courses ---
     
