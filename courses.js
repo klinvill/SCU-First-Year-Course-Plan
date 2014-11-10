@@ -607,8 +607,6 @@ function resetWaivedStatuses()
 // Return Value: course array correspnding to the provided major.
 function courseArrayForMajor(major)
 {
-    console.log(JSON.stringify(COEN_course_array));
-    debugger;
     if (major === "COEN")
     {
         return COEN_course_array;
