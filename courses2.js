@@ -380,4 +380,7 @@ function unwaiveCourse(courseID)
     courseForID(courseID).waived = false;
 }
 
+/* --- Data and functions involving selection of course arrays --- */
+
+
                          

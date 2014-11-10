@@ -19,6 +19,7 @@ new course("University Core",
            "FWS",
            false,
            "",
+           "",
            "");
 
 // Courses for CNI 1 and 2.
@@ -28,6 +29,7 @@ new course("Cultures & Ideas 1",
            "FW",
            false,
            "",
+           "",
            "");
 
 var CNI2Course =
@@ -35,6 +37,7 @@ new course("Cultures & Ideas 2",
            "CNI 2",
            "WS",
            false,
+           "",
            "",
            "");
 
@@ -73,6 +76,8 @@ function unwaiveCourse(courseID)
         }
     }
 }
+
+/* --- Coen Course Array --- */
 // Array of courses, ordered in terms of priority placement with the highest priority being at the front
 // Each course is structured as: course = {name:”Calculus 3”, id:”MATH 13”, offered:[”F”, “W”, “S”], waived:false, pre_req:”MATH 12”, replace_with: "MATH 14"}
 var COEN_course_array =
@@ -342,5 +347,24 @@ function resetWaivedStatuses()
         }
     }
 }
+
+/* --- Data and functions involving selection of course arrays --- */
+
 // An array containing each of the above course arrays.
 var courseArrays = [COEN_course_array];
+
+// Function: called to select the course array for a given major.
+// Parameters: a string corresponding to the major.
+// Return Value: course array correspnding to the provided major.
+function courseArrayForMajor(major)
+{
+    if (major === "COEN")
+    {
+        return COEN_course_array;
+    }
+    else if (major == "ELEN")
+    {
+        
+    }
+    else throw "Invalid Major provided to courseArrayForMajor function.";
+}
