@@ -585,6 +585,11 @@ function resetWaivedStatuses()
     {
         var cArray = courseArrays[i];
         
+        if (cArray === COEN_course_array)
+            console.log("Reseting COEN course array.");
+        else if (cArray === ELEN_course_array)
+            console.log("Reseting COEN course array.");
+        
         for (var j = 0; j < cArray.length; j++)
         {
             var tempCourse = cArray[j];
