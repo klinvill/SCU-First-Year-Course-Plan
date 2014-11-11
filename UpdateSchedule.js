@@ -23,7 +23,8 @@ function updateSchedule()
     CheckWaived();
     
     // Generating a schedule.
-    var courseSchedule = generateSchedule();
+    var major = document.getElementById("Major").value;
+    var courseSchedule = generateSchedule(major);
     
     // Error checking to make sure proper amount of quarters are present
     if (courseSchedule.length != quarters)

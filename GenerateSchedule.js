@@ -10,11 +10,9 @@ var classesPerQuarter = 4;
 
 // Function called to fill the courseSchedule with courses.
 
-function generateSchedule()
+function generateSchedule(major)
 {
     var courseSchedule = [ [], [], [] ];
-    
-    var major = document.getElementById("Major").value;
     var courseArray;
     
     // Sleceting correct course array.
