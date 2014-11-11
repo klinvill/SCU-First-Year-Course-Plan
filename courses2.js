@@ -49,6 +49,8 @@ new course("Cultures & Ideas 2",
 // Array of all courses for all majors known by our system.
 var allCourses =
 [
+ CNI1Course,
+ CNI2Course,
  {
  name: "Precalculus",
  id: "MATH 9",
@@ -279,6 +281,9 @@ function resetWaivedStatuses()
 // If the ID does not match a course in the array the function returns undefined.
 function courseForID(courseID)
 {
+    if (typeof(courseID) == "string")
+        throw "Invalid parameter type in courseForID.";
+    
     // Searching through array of courses.
     for (var tempCourse in allCourses)
     {
@@ -296,6 +301,9 @@ function courseForID(courseID)
 // Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
 function prereqsFulfilled(courseID)
 {
+    if (typeof(courseID) == "string")
+        throw "Invalid parameter type in courseForID.";
+    
     var tempCourse = courseForID(courseID);
     var preReq = courseForID(tempCourse.previous);
     
