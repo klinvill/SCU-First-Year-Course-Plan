@@ -60,7 +60,10 @@ function updateSchedule()
         // The inner loop iterates through the array of classes w/in a quarter
         for (var j = 0; j < courseSchedule[i].length; j++)
         {
-            $('.'+quarterClass+':eq('+j+')').text(courseSchedule[i][j].id + " - " + courseSchedule[i][j].name);
+            if (courseSchedule[i][j].hasLab)
+                $('.'+quarterClass+':eq('+j+')').text(courseSchedule[i][j].id + " - " + courseSchedule[i][j].name + " + L");
+            else
+                $('.'+quarterClass+':eq('+j+')').text(courseSchedule[i][j].id + " - " + courseSchedule[i][j].name);
         }
     }
     
@@ -83,16 +86,20 @@ function updateSchedule()
                 $('#waived-column-'+i).append('<li>'+coursesWaived[j + i * Math.ceil(coursesWaived.length / 3)]+'</li>');
         }
     }
+    
+    
+    // Place engineering 1
+    placeEngr1(courseSchedule);
 }
 
 /*
  * Description: placeEngr1 takes the value of the ENGR1_Qtr select box and uses it to show the engr1 course in the selected quarter while hiding the engr1 course in the other quarter.
  * Called by: onchange event in the #ENGR1_Qtr select box
- * Arguments: none
+ * Arguments: courseSchedule
  * Returns: none
  * Exceptions: invalid value sent for ENGR_Qtr1
  */
-function placeEngr1 ()
+function placeEngr1 (courseSchedule)
 {
     if($('#ENGR1_Qtr').val() === "Fall")
     {
@@ -120,15 +127,29 @@ function placeEngr1 ()
         var numLabsWinter = numLabsInQuarter(courseSchedule[1]);
         var numLabsSpring = numLabsInQuarter(courseSchedule[2]);
         
-        if (numLabsSpring > numLabsFall && numLabsSpring > numLabsWinter)
+        console.log("Fall labs: ", numLabsFall);
+        console.log("Winter labs: ", numLabsWinter);
+        console.log("Spring labs: ", numLabsSpring);
+        
+        
+        if (numLabsSpring < numLabsFall && numLabsSpring < numLabsWinter)
         {
+            $('#ENGR1-fall').css('visibility','hidden');
+            $('#ENGR1-winter').css('visibility','hidden');
             $('#ENGR1-spring').css('visibility','visible');
         }
-        else if (numLabsWinter > numLabsFall)
+        else if (numLabsWinter < numLabsFall)
         {
+            $('#ENGR1-fall').css('visibility','hidden');
             $('#ENGR1-winter').css('visibility','visible');
+            $('#ENGR1-spring').css('visibility','hidden');
         }
-        else $('#ENGR1-fall').css('visibility','visible');
+        else
+        {
+            $('#ENGR1-fall').css('visibility','visible');
+            $('#ENGR1-winter').css('visibility','hidden');
+            $('#ENGR1-spring').css('visibility','hidden');
+        }
         
     }
     else

@@ -189,7 +189,7 @@ function prereqsPresentInQuarter(tempCourse, quarter)
 // Return Value: the number of courses with labs in the quarter.
 function numLabsInQuarter(quarter)
 {
-    if (typeof(quarter != "object"))
+    if (typeof(quarter) != "object")
     {
         throw "Invalid value for quarter in labsInQuarter function.";
     }
