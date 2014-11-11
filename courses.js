@@ -2,7 +2,7 @@
 // Warnings for reminding us what we need to do.
 console.warn("Check final math class options logic.");
 // An object prototype function for courses.
-function course(name, id, offered, waived, pre_req, replace_with, previous, hasLab)
+function course(name, id, offered, waived, pre_req, replace_with, previous, hasLab, shouldHaveCheckBox)
 {
     this.name = name;
     this.id = id;
@@ -12,6 +12,7 @@ function course(name, id, offered, waived, pre_req, replace_with, previous, hasL
     this.replace_with = replace_with;
     this.previous = previous;
     this.hasLab = hasLab;
+    this.shouldHaveCheckBox = shouldHaveCheckBox;
 }
 // The default course to replace all others. Currently, University Core.
 var finalCourseOption =
@@ -22,6 +23,7 @@ new course("University Core",
            "",
            "",
            "",
+           false,
            false);
 
 // Courses for CNI 1 and 2.
@@ -33,6 +35,7 @@ new course("Cultures & Ideas 1",
            "",
            "",
            "",
+           false,
            false);
 
 var CNI2Course =
@@ -43,6 +46,7 @@ new course("Cultures & Ideas 2",
            "",
            "",
            "",
+           false,
            false);
 
 /* --- Coen Course Array --- */
@@ -59,7 +63,8 @@ var COEN_course_array =
  pre_req: "",
  replace_with: "MATH 11",
  previous: "",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name: "Calculus I",
@@ -69,7 +74,8 @@ var COEN_course_array =
  pre_req: "MATH 9",
  replace_with: "MATH 12",
  previous: "MATH 9",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Calculus II",
@@ -79,7 +85,8 @@ var COEN_course_array =
  pre_req: "MATH 11",
  replace_with: "MATH 13",
  previous: "MATH 11",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Calculus III",
@@ -89,7 +96,8 @@ var COEN_course_array =
  pre_req: "MATH 12",
  replace_with: "MATH 14",
  previous: "MATH 12",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Calculus IV",
@@ -99,7 +107,8 @@ var COEN_course_array =
  pre_req: "MATH 13",
  replace_with: "AMTH 106",
  previous: "MATH 13",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Differential Equations",
@@ -109,7 +118,8 @@ var COEN_course_array =
  pre_req: "MATH 14",
  replace_with: "AMTH 108",
  previous: "MATH 14",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name: "Probability and Statistics",
@@ -119,7 +129,8 @@ var COEN_course_array =
  pre_req: "MATH 14",
  replace_with: "MATH 53",
  previous: "AMTH 106",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name: "Linear Algebra",
@@ -129,7 +140,8 @@ var COEN_course_array =
  pre_req: "MATH 13",
  replace_with: finalCourseOption.id,
  previous: "AMTH 108",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
 /* COEN intro Series */
  {
@@ -140,7 +152,8 @@ var COEN_course_array =
  pre_req: "",
  replace_with: "COEN 11",
  previous: "",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Advanced Programming",
@@ -150,7 +163,8 @@ var COEN_course_array =
  pre_req: "COEN 10",
  replace_with: "COEN 12",
  previous: "COEN 10",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Data Structures",
@@ -160,7 +174,8 @@ var COEN_course_array =
  pre_req: "COEN 11",
  replace_with: "COEN 21",
  previous: "COEN 11",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  /*
   {
@@ -171,7 +186,8 @@ var COEN_course_array =
   pre_req: "",
   replace_with: "COEN 20",
   previous: "COEN 12",
-  hasLab: true
+  hasLab: true,
+  shouldHaveCheckBox: false
   },
   {
   name: "Embedded Systems",
@@ -181,7 +197,8 @@ var COEN_course_array =
   pre_req: "COEN 11",
   replace_with: finalCourseOption.id,
   previous: "COEN 21",
-  hasLab: true
+  hasLab: true,
+  shouldHaveCheckBox: false
   },
   */
 /* CTW Series */
@@ -193,7 +210,8 @@ var COEN_course_array =
  pre_req:"",
  replace_with: "CTW 2",
  previous: "",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name:"Critical Thinking & Writing 2",
@@ -203,7 +221,8 @@ var COEN_course_array =
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
  previous: "CTW 1",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
 /* Others */
  {
@@ -214,7 +233,8 @@ var COEN_course_array =
  pre_req:"",
  replace_with: finalCourseOption.id,
  previous: "",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Physics I",
@@ -224,7 +244,8 @@ var COEN_course_array =
  pre_req: "",
  replace_with: "PHYS 32",
  previous: "",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Physics II",
@@ -234,7 +255,8 @@ var COEN_course_array =
  pre_req: "PHYS 31",
  replace_with: "PHYS 33",
  previous: "PHYS 31",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Physics III",
@@ -245,7 +267,8 @@ var COEN_course_array =
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
  previous: ["PHYS 32", "MATH 11", "MATH 12"],
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Discrete Mathematics",
@@ -255,7 +278,8 @@ var COEN_course_array =
  pre_req: "",
  replace_with: finalCourseOption.id,
  previous: "",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  }
  ];
 
@@ -273,7 +297,8 @@ var ELEN_course_array =
  pre_req: "",
  replace_with: "MATH 11",
  previous: "",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name: "Calculus I",
@@ -283,7 +308,8 @@ var ELEN_course_array =
  pre_req: "MATH 9",
  replace_with: "MATH 12",
  previous: "MATH 9",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Calculus II",
@@ -293,7 +319,8 @@ var ELEN_course_array =
  pre_req: "MATH 11",
  replace_with: "MATH 13",
  previous: "MATH 11",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Calculus III",
@@ -303,7 +330,8 @@ var ELEN_course_array =
  pre_req: "MATH 12",
  replace_with: "MATH 14",
  previous: "MATH 12",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Calculus IV",
@@ -313,7 +341,8 @@ var ELEN_course_array =
  pre_req: "MATH 13",
  replace_with: "AMTH 106",
  previous: "MATH 13",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
  {
  name: "Differential Equations",
@@ -323,7 +352,8 @@ var ELEN_course_array =
  pre_req: "MATH 14",
  replace_with: "AMTH 108",
  previous: "MATH 14",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name: "Applied Programming in C",
@@ -333,7 +363,8 @@ var ELEN_course_array =
  pre_req: "MATH 13",
  replace_with: "ELEN 33",
  previous: "MATH 13",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
  
 /* CandI Series */
@@ -345,7 +376,8 @@ var ELEN_course_array =
   pre_req:"",
   replace_with: "C&I 2",
   previous: "",
-  hasLab: false
+  hasLab: false,
+  shouldHaveCheckBox: false
   },
   {
   name:"Cultures & Ideas 1",
@@ -355,7 +387,8 @@ var ELEN_course_array =
   pre_req:"C&I 2",
   replace_with: finalCourseOption.id,
   previous: "C&I 1",
-  hasLab: false
+  hasLab: false,
+  shouldHaveCheckBox: false
   },*/
  
 /* CTW Series */
@@ -367,7 +400,8 @@ var ELEN_course_array =
  pre_req:"",
  replace_with: "CTW 2",
  previous: "",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name:"Critical Thinking & Writing 2",
@@ -377,7 +411,8 @@ var ELEN_course_array =
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
  previous: "CTW 1",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  
  /* ELEN Series */
@@ -389,7 +424,8 @@ var ELEN_course_array =
  pre_req: "",
  replace_with: "ELEN 100",
  previous: ["PHYS 32", "MATH 11", "MATH 12"],
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Circuits II",
@@ -399,7 +435,8 @@ var ELEN_course_array =
  pre_req: "",
  replace_with: finalCourseOption.id,
  previous: ["ELEN 50", "PHYS 33", "MATH 11", "MATH 12"],
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
  {
  name: "Digital Systems Architecture",
@@ -408,7 +445,8 @@ var ELEN_course_array =
  pre_req: "",
  replace_with: finalCourseOption.id,
  previous: ["ELEN 21", "COEN 44"],
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
  
 /* Others */
@@ -420,7 +458,8 @@ var ELEN_course_array =
  pre_req:"",
  replace_with: finalCourseOption.id,
  previous: "",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  
  {
@@ -431,7 +470,8 @@ var ELEN_course_array =
  pre_req: "",
  replace_with: "COEN 20",
  previous: "COEN 12",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
  
  {
@@ -442,7 +482,8 @@ var ELEN_course_array =
  pre_req:"",
  replace_with: finalCourseOption.id,
  previous: "",
- hasLab: false
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  {
  name: "Physics I",
@@ -452,7 +493,8 @@ var ELEN_course_array =
  pre_req: "",
  replace_with: "PHYS 32",
  previous: "",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Physics II",
@@ -462,7 +504,8 @@ var ELEN_course_array =
  pre_req: "PHYS 31",
  replace_with: "PHYS 33",
  previous: "PHYS 31",
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Physics III",
@@ -473,7 +516,8 @@ var ELEN_course_array =
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
  previous: ["PHYS 32", "MATH 11", "MATH 12"],
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  {
  name: "Physics IV",
@@ -484,7 +528,8 @@ var ELEN_course_array =
  pre_req: "PHYS 33",
  replace_with: finalCourseOption.id,
  previous: ["PHYS 33", "MATH 11", "MATH 12"],
- hasLab: true
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
  ];
 
