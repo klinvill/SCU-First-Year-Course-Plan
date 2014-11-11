@@ -6,7 +6,7 @@ console.warn("Check final math class options logic.");
 console.warn("Is the ID for CTW courses actually 'CTW'?");
 
 // An object prototype function for courses.
-function course(name, id, offered, waived, pre_req, replace_with, previous)
+function course(name, id, offered, waived, pre_req, replace_with, previous, hasLab, shouldHaveCheckBox)
 {
     this.name = name;
     this.id = id;
@@ -15,34 +15,44 @@ function course(name, id, offered, waived, pre_req, replace_with, previous)
     this.pre_req = pre_req;
     this.replace_with = replace_with;
     this.previous = previous;
+    this.hasLab = hasLab;
+    this.shouldHaveCheckBox = shouldHaveCheckBox;
 }
 
 // The default course to replace all others. Currently, University Core.
 var finalCourseOption =
-    new course("University Core",
-               "CORE",
-               "FWS",
-               false,
-               "",
-               "",
-               "");
+new course("University Core",
+           "CORE",
+           "FWS",
+           false,
+           "",
+           "",
+           "",
+           false,
+           false);
 
 // Courses for CNI 1 and 2.
 var CNI1Course =
 new course("Cultures & Ideas 1",
-           "CNI 1",
+           "C&I 1",
            "FW",
            false,
            "",
-           "");
+           "",
+           "",
+           false,
+           false);
 
 var CNI2Course =
 new course("Cultures & Ideas 2",
-           "CNI 2",
+           "C&I 2",
            "WS",
            false,
            "",
-           "");
+           "",
+           "",
+           false,
+           false);
 
 /* --- Array of all courses and related functions --- */
 
@@ -51,6 +61,9 @@ var allCourses =
 [
  CNI1Course,
  CNI2Course,
+ 
+ 
+ /* --- Intro Math Series --- */
  {
  name: "Precalculus",
  id: "MATH 9",
@@ -58,9 +71,10 @@ var allCourses =
  waived: true,
  pre_req: "",
  replace_with: "MATH 11",
- previous: ""
+ previous: "",
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
- 
  {
  name: "Calculus I",
  id: "MATH 11",
@@ -68,9 +82,10 @@ var allCourses =
  waived: false,
  pre_req: "MATH 9",
  replace_with: "MATH 12",
- previous: "MATH 9"
+ previous: "MATH 9",
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Calculus II",
  id: "MATH 12",
@@ -78,9 +93,10 @@ var allCourses =
  waived: false,
  pre_req: "MATH 11",
  replace_with: "MATH 13",
- previous: "MATH 11"
+ previous: "MATH 11",
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Calculus III",
  id: "MATH 13",
@@ -88,9 +104,10 @@ var allCourses =
  waived: false,
  pre_req: "MATH 12",
  replace_with: "MATH 14",
- previous: "MATH 12"
+ previous: "MATH 12",
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Calculus IV",
  id: "MATH 14",
@@ -98,9 +115,10 @@ var allCourses =
  waived: false,
  pre_req: "MATH 13",
  replace_with: "AMTH 106",
- previous: "MATH 13"
+ previous: "MATH 13",
+ hasLab: false,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Differential Equations",
  id: "AMTH 106",
@@ -108,9 +126,10 @@ var allCourses =
  waived: false,
  pre_req: "MATH 14",
  replace_with: "AMTH 108",
- previous: "MATH 14"
+ previous: "MATH 14",
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
- 
  {
  name: "Probability and Statistics",
  id: "AMTH 108",
@@ -118,10 +137,10 @@ var allCourses =
  waived: false,
  pre_req: "MATH 14",
  replace_with: "MATH 53",
- previous: "AMTH 106"
+ previous: "AMTH 106",
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
- 
- // Use replace_with instead of pre_req for ordering
  {
  name: "Linear Algebra",
  id: "MATH 53",
@@ -129,12 +148,14 @@ var allCourses =
  waived: false,
  pre_req: "MATH 13",
  replace_with: finalCourseOption.id,
- previous: "AMTH 108"
+ previous: "AMTH 108",
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  
  
  
- /* COEN intro Series */
+/* COEN intro Series */
  {
  name: "Intro. to Programming",
  id: "COEN 10",
@@ -142,9 +163,10 @@ var allCourses =
  waived: false,
  pre_req: "",
  replace_with: "COEN 11",
- previous: ""
+ previous: "",
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Advanced Programming",
  id: "COEN 11",
@@ -152,9 +174,10 @@ var allCourses =
  waived: false,
  pre_req: "COEN 10",
  replace_with: "COEN 12",
- previous: "COEN 10"
+ previous: "COEN 10",
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Data Structures",
  id: "COEN 12",
@@ -162,7 +185,9 @@ var allCourses =
  waived: false,
  pre_req: "COEN 11",
  replace_with: "COEN 21",
- previous: "COEN 11"
+ previous: "COEN 11",
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
  
  {
@@ -172,9 +197,10 @@ var allCourses =
  waived: false,
  pre_req: "",
  replace_with: "COEN 20",
- previous: "COEN 12"
+ previous: "COEN 12",
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
- 
  {
  name: "Embedded Systems",
  id: "COEN 20",
@@ -182,12 +208,12 @@ var allCourses =
  waived: false,
  pre_req: "COEN 11",
  replace_with: finalCourseOption.id,
- previous: "COEN 21"
+ previous: "COEN 21",
+ hasLab: true,
+ shouldHaveCheckBox: false
  },
  
- 
- 
- /* CTW Series */
+/* CTW Series */
  {
  name:"Critical Thinking & Writing 1",
  id: "CTW 1",
@@ -195,9 +221,10 @@ var allCourses =
  waived:false,
  pre_req:"",
  replace_with: "CTW 2",
- previous: ""
+ previous: "",
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
- 
  {
  name:"Critical Thinking & Writing 2",
  id: "CTW 2",
@@ -205,11 +232,14 @@ var allCourses =
  waived:false,
  pre_req:"CTW 1",
  replace_with: finalCourseOption.id,
- previous: "CTW 1"
+ previous: "CTW 1",
+ hasLab: false,
+ shouldHaveCheckBox: false
  },
  
  
- /* Others */
+ 
+/* Others */
  {
  name:"Chemistry I",
  id: "CHEM 11",
@@ -217,9 +247,10 @@ var allCourses =
  waived: false,
  pre_req:"",
  replace_with: finalCourseOption.id,
- previous: ""
+ previous: "",
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Physics I",
  id: "PHYS 31",
@@ -227,9 +258,10 @@ var allCourses =
  waived: false,
  pre_req: "",
  replace_with: "PHYS 32",
- previous: ""
+ previous: "",
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Physics II",
  id: "PHYS 32",
@@ -237,28 +269,114 @@ var allCourses =
  waived: false,
  pre_req: "PHYS 31",
  replace_with: "PHYS 33",
- previous: "PHYS 31"
+ previous: "PHYS 31",
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
- 
  {
  name: "Physics III",
  id: "PHYS 33",
  offered: "F",
  waived: false,
+ // Also needs pre-req of MATH 12
  pre_req: "PHYS 32",
  replace_with: finalCourseOption.id,
- previous: "PHYS 32"
+ previous: ["PHYS 32", "MATH 11", "MATH 12"],
+ hasLab: true,
+ shouldHaveCheckBox: true
  },
- 
+ {
+ name: "Physics IV",
+ id: "PHYS 34",
+ offered: "W",
+ waived: false,
+ // Also needs pre-req of MATH 12
+ pre_req: "PHYS 33",
+ replace_with: finalCourseOption.id,
+ previous: ["PHYS 33", "MATH 11", "MATH 12"],
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
  {
  name: "Discrete Mathematics",
  id: "COEN 19",
- offered: "FS",
+ offered: "S",
  waived: false,
  pre_req: "",
  replace_with: finalCourseOption.id,
- previous: ""
- }
+ previous: "",
+ hasLab: false,
+ shouldHaveCheckBox: false
+ },
+ 
+ 
+ 
+ /* --- ELEN Additions --- */
+ {
+ name: "Applied Programming in C",
+ id: "COEN 44",
+ offered: "FW",
+ waived: false,
+ pre_req: "MATH 13",
+ replace_with: "ELEN 33",
+ previous: "MATH 13",
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
+ {
+ name: "Circuits I",
+ id: "ELEN 50",
+ offered: "FWS",
+ waived: false,
+ pre_req: "",
+ replace_with: "ELEN 100",
+ previous: ["PHYS 32", "MATH 11", "MATH 12"],
+ hasLab: true,
+ shouldHaveCheckBox: true
+ },
+ {
+ name: "Circuits II",
+ id: "ELEN 100",
+ offered: "W",
+ waived: false,
+ pre_req: "",
+ replace_with: finalCourseOption.id,
+ previous: ["ELEN 50", "PHYS 33", "MATH 11", "MATH 12"],
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
+ {
+ name: "Digital Systems Architecture",
+ id: "ELEN 33",
+ offered: "W",
+ pre_req: "",
+ replace_with: finalCourseOption.id,
+ previous: ["ELEN 21", "COEN 44"],
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
+ {
+ name: "Logic Design",
+ id: "ELEN 21",
+ offered: "FWS",
+ waived: false,
+ pre_req: "",
+ replace_with: "COEN 20",
+ previous: "COEN 12",
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
+ {
+ name:"Energy and Nanotechnology",
+ id: "ELEN 20",
+ offered: "S",
+ waived: false,
+ pre_req:"",
+ replace_with: finalCourseOption.id,
+ previous: "",
+ hasLab: false,
+ shouldHaveCheckBox: false
+ },
 ]
 
 // Function: called to reset the waived status of all courses to default.
@@ -369,8 +487,71 @@ var COEN_course_array =
  courseForID("COEN 19")
 ];
 
+var COEN_course_array =
+[
+ /* Math Series */
+ courseForID("MATH 9"),
+ courseForID("MATH 11"),
+ courseForID("MATH 12"),
+ courseForID("MATH 13"),
+ courseForID("MATH 14"),
+ courseForID("AMATH 106"),
+ courseForID("AMATH 108"),
+ courseForID("MATH 53"),
+ 
+ /* COEN intro Series */
+ courseForID("COEN 10"),
+ courseForID("COEN 11"),
+ courseForID("COEN 12"),
+ courseForID("COEN 21"),
+ courseForID("COEN 20"),
+ 
+ /* CTW Series */
+ // Note: CTW id's might be worng.
+ courseForID("CTW 1");
+ courseForID("CTW 2");
+ 
+ /* Others */
+ courseForID("CHEM 11"),
+ courseForID("PHYS 31"),
+ courseForID("PHYS 32"),
+ courseForID("PHYS 33"),
+ courseForID("COEN 19")
+ ];
+
+var ELEN_course_array =
+[
+ /* Math Series */
+ courseForID("MATH 9"),
+ courseForID("MATH 11"),
+ courseForID("MATH 12"),
+ courseForID("MATH 13"),
+ courseForID("MATH 14"),
+ courseForID("AMATH 106"),
+ courseForID("COEN 44"),
+ 
+ /* CTW Series */
+ // Note: CTW id's might be worng.
+ courseForID("CTW 1");
+ courseForID("CTW 2");
+ 
+ /* Others */
+ courseForID("CHEM 11"),
+ courseForID("ELEN 21"),
+ courseForID("ELEN 20"),
+ courseForID("PHYS 31"),
+ courseForID("PHYS 32"),
+ courseForID("PHYS 33"),
+ courseForID("PHYS 34"),
+ 
+ /* Later ELEN Series */
+ courseForID("ELEN 50"),
+ courseForID("ELEN 100"),
+ courseForID("ELEN 33")
+ ];
+
 // An array containing each of the above course arrays.
-var courseArrays = [COEN_course_array];
+var courseArrays = [COEN_course_array, ELEN_course_array];
 
 /* --- Functions for waiving and unwaiving courses --- */
 
