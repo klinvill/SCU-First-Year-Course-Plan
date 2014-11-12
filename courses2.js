@@ -412,8 +412,8 @@ var COEN_course_array =
  courseForID("MATH 12"),
  courseForID("MATH 13"),
  courseForID("MATH 14"),
- courseForID("AMATH 106"),
- courseForID("AMATH 108"),
+ courseForID("AMTH 106"),
+ courseForID("AMTH 108"),
  courseForID("MATH 53"),
  
  /* COEN intro Series */
@@ -444,7 +444,7 @@ var ELEN_course_array =
  courseForID("MATH 12"),
  courseForID("MATH 13"),
  courseForID("MATH 14"),
- courseForID("AMATH 106"),
+ courseForID("AMTH 106"),
  courseForID("COEN 44"),
  
  /* CTW Series */
@@ -475,11 +475,15 @@ var ELEN_course_array =
 function courseForID(courseID)
 {
     if (typeof(courseID) != "string")
+    {
+        console.log(courseID);
         throw "Invalid parameter type in courseForID.";
+    }
     
     // Searching through array of courses.
-    for (var tempCourse in allCourses)
+    for (var i = 0; i < allCourses.length; i++)
     {
+        tempCourse = allCourses[i];
         if (courseID == tempCourse.id)
         {
             return tempCourse;
@@ -587,6 +591,10 @@ function courseArrayForMajor(major)
     else if (major == "ELEN")
     {
         return ELEN_course_array;
+    }
+    else if (major === null)
+    {
+        return COEN_course_array;
     }
     else throw "Invalid Major provided to courseArrayForMajor function.";
 }
