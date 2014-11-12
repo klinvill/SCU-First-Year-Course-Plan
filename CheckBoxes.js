@@ -342,6 +342,35 @@ function decrementDisabledGroup(courseIDArray, sourceName)
     }
 }
 
+// Function: calls incrementChecks and incrementDisabled on the given parameters.
+function incrementChecksAndDisabled(courseID, sourceName)
+{
+    incrementChecks(courseID, sourceName);
+    incrementDisabled(courseID, sourceName);
+}
+
+// Function: calls decrementChecks and decrementDisabled on the given parameters.
+function decrementChecksAndDisabled(courseID, sourceName)
+{
+    decrementChecks(courseID, sourceName);
+    decrementDisabled(courseID, sourceName);
+}
+
+// Function: calls incrementChecksGroup and incrementDisabledGroup on the given parameters.
+function incrementChecksAndDisabledGroup(courseIDArray, sourceName)
+{
+    incrementChecksGroup(courseIDArray, sourceName);
+    incrementDisabledGroup(courseIDArray, sourceName);
+}
+
+// Function: calls decrementChecksGroup and decrementDisabledGroup on the given parameters.
+function decrementChecksAndDisabledGroup(courseIDArray, sourceName)
+{
+    decrementChecksGroup(courseIDArray, sourceName);
+    decrementDisabledGroup(courseIDArray, sourceName);
+}
+
+
 /* --- Interfacing with the HTML code. --- */
 
 // Function: gets the HTML element for the check box corresponding to the course ID.

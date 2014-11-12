@@ -40,8 +40,10 @@ function CheckWaived() {
     {
         waiveCourse("MATH 11");
         incrementChecks("MATH 11", "AP_Score");
+        incrementDisabled("MATH 11", "AP_Score");
     } else {
         decrementChecks("MATH 11", "AP_Score");
+        decrementDisabled("MATH 11", "AP_Score");
     }
     
     // MATH 12
