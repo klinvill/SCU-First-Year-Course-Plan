@@ -136,7 +136,7 @@ function removeCheckBox(courseID)
 }
 
 
-/* --- Functions for check count and disable count Manipulation --- */
+/* --- Functions for check count and disable count manipulation --- */
 
 // Function: increments the number of times the checkBox for the given ID has been checked.
 // Parameters: a course ID and name of source checking.
@@ -148,7 +148,7 @@ function incrementChecks(courseID, sourceName)
     
     var tempCheckBox = getCheckBoxForID(courseID);
     if (tempCheckBox == undefined)
-        throw "No checkBox for provided ID in incrementChecks.";
+        throw "No checkBox for ID " + courseID + " in incrementChecks.";
     
     //Check box has not yet been checked by the given source.
     if (!(tempCheckBox.hasSource(sourceName)))
@@ -158,6 +158,34 @@ function incrementChecks(courseID, sourceName)
         return true;
     } else {
         return false;
+    }
+}
+
+// Function Notes: Same as incrementChecks, but works on an array of courseIDs.
+function incrementChecksGroup(courseIDArray, sourceName)
+{
+    throwIfTypeDoesNotMatch(courseIDArray, "object", "incrementChecksGroup");
+    throwIfTypeDoesNotMatch(sourceName, "string", "incrementChecksGroup");
+    
+    for (var i = 0; i < courseIDArray.length; i++)
+    {
+        var courseID = courseIDArray[i]
+        if (typeof(courseID) != "string")
+            throwIfTypeDoesNotMatch(courseID, "string", "incrementChecksGroup");
+        
+        var tempCheckBox = getCheckBoxForID(courseID);
+        if (tempCheckBox == undefined)
+            throw "No checkBox for ID " + courseID + " in incrementChecksGroup.";
+        
+        //Check box has not yet been checked by the given source.
+        if (!(tempCheckBox.hasSource(sourceName)))
+        {
+            tempCheckBox.numTimesChecked++;
+            tempCheckBox.addSouce(sourceName);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -171,7 +199,7 @@ function decrementChecks(courseID, sourceName)
     
     var tempCheckBox = getCheckBoxForID(courseID);
     if (tempCheckBox == undefined)
-        throw "No checkBox for provided ID in incrementChecks.";
+        throw "No checkBox for ID " + courseID + " in incrementChecks.";
     
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasSource(sourceName))
@@ -181,6 +209,34 @@ function decrementChecks(courseID, sourceName)
         return true;
     } else {
         return false;
+    }
+}
+
+// Function Notes: Same as decrementChecks, but works on an array of courseIDs.
+function decrementChecksGroup(courseIDArray, sourceName)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "decrementChecksGroup");
+    throwIfTypeDoesNotMatch(sourceName, "string", "decrementChecksGroup");
+    
+    for (var i = 0; i < courseIDArray.length; i++)
+    {
+        var courseID = courseIDArray[i]
+        if (typeof(courseID) != "string")
+            throwIfTypeDoesNotMatch(courseID, "string", "decrementChecksGroup");
+        
+        var tempCheckBox = getCheckBoxForID(courseID);
+        if (tempCheckBox == undefined)
+            throw "No checkBox for ID " + courseID + " in decrementChecksGroup.";
+        
+        //Check box has not yet been checked by the given source.
+        if (tempCheckBox.hasSource(sourceName))
+        {
+            tempCheckBox.numTimesChecked--;
+            tempCheckBox.removeSource(sourceName);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -194,7 +250,7 @@ function incrementDisabled(courseID, sourceName)
     
     var tempCheckBox = getCheckBoxForID(courseID);
     if (tempCheckBox == undefined)
-        throw "No checkBox for provided ID in incrementChecks.";
+        throw "No checkBox for ID " + courseID + " in incrementChecks.";
     
     //Check box has not yet been checked by the given source.
     if (!(tempCheckBox.hasSource(sourceName)))
@@ -204,6 +260,34 @@ function incrementDisabled(courseID, sourceName)
         return true;
     } else {
         return false;
+    }
+}
+
+// Function Notes: Same as incrementDisabled, but works on an array of courseIDs.
+function incrementDisabledGroup(courseIDArray, sourceName)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "incrementDisabledGroup");
+    throwIfTypeDoesNotMatch(sourceName, "string", "incrementDisabledGroup");
+    
+    for (var i = 0; i < courseIDArray.length; i++)
+    {
+        var courseID = courseIDArray[i]
+        if (typeof(courseID) != "string")
+            throwIfTypeDoesNotMatch(courseID, "string", "incrementDisabledGroup");
+        
+        var tempCheckBox = getCheckBoxForID(courseID);
+        if (tempCheckBox == undefined)
+            throw "No checkBox for ID " + courseID + " in incrementDisabledGroup";
+        
+        //Check box has not yet been checked by the given source.
+        if (!(tempCheckBox.hasSource(sourceName)))
+        {
+            tempCheckBox.numTimesDisabled++;
+            tempCheckBox.addSouce(sourceName);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -217,7 +301,7 @@ function decrementDisabled(courseID, sourceName)
     
     var tempCheckBox = getCheckBoxForID(courseID);
     if (tempCheckBox == undefined)
-        throw "No checkBox for provided ID in incrementChecks.";
+        throw "No checkBox for ID " + courseID + " in incrementChecks.";
     
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasSource(sourceName))
@@ -227,6 +311,34 @@ function decrementDisabled(courseID, sourceName)
         return true;
     } else {
         return false;
+    }
+}
+
+// Function Notes: Same as decrementDisabled, but works on an array of courseIDs.
+function decrementDisabledGroup(courseIDArray, sourceName)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "decrementDisabledGroup");
+    throwIfTypeDoesNotMatch(sourceName, "string", "decrementDisabledGroup");
+    
+    for (var i = 0; i < courseIDArray.length; i++)
+    {
+        var courseID = courseIDArray[i]
+        if (typeof(courseID) != "string")
+            throwIfTypeDoesNotMatch(courseID, "string", "decrementDisabledGroup");
+        
+        var tempCheckBox = getCheckBoxForID(courseID);
+        if (tempCheckBox == undefined)
+            throw "No checkBox for ID " + courseID + " in incrementChecks.";
+        
+        //Check box has not yet been checked by the given source.
+        if (tempCheckBox.hasSource(sourceName))
+        {
+            tempCheckBox.numTimesDisabled--;
+            tempCheckBox.removeSource(sourceName);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
