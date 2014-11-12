@@ -7,6 +7,7 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
     this.courseID = ID;
     this.numTimesChecked = numTimesChecked;
     this.numTimesDisabled = numTimesDisabled;
+    this.sources = []; // Array of string of source ID's.
 }
 
 /* --- Array of All Check Box Instances --- */
@@ -25,15 +26,33 @@ function getCheckBoxForID(courseID)
     {
         var tempCheckBox = checkBoxArray[i];
         
-        if (tempCheckBox.ID == courseID)
+        if (tempCheckBox.ID == courseID) return tempCheckBox;
     }
+    
+    return undefinded;
+}
+
+// Function: returns whether the check box for the given ID should be checked.
+// Parameters: a course ID.
+// Return value: Boolean.
+function shouldBeChecked()
+{
+    
+}
+
+// Function: returns whether the check box for the given ID should be disabled.
+// Parameters: a course ID.
+// Return value: Boolean.
+function shouldBeDisabled()
+{
+    
 }
 
 // Function: Creates a new check box and adds it to the array of check boxes.
 function addCheckBox(courseID, numTimesChecked, numTimesDisabled)
 {
     var newCheckBox = new checkBox(courseID, numTimesChecked, numTimesDisabled);
-    
+    checkBoxArray.push(newCheckBox);
 }
 
 // Function: Removes a checkbox from the array.
@@ -47,7 +66,7 @@ function removeCheckBox(courseID)
 // Function: increments the number of times the checkBox for the given ID has been checked.
 // Parameters: a course ID.
 // Return value: true if a checkBox for the courseID was found. False if not.
-function incrementChecks(courseID)
+function incrementChecks(courseID, sourceName)
 {
     
 }
