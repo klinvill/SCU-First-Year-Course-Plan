@@ -1,3 +1,30 @@
+function majorChanged()
+{
+    // Change checkboxes shown on page
+    // Generate options in other coursework section
+    console.log(courseArrayForMajor($("#Major").val()));
+    $("#OC_Form>div").empty();
+    $.each(courseArrayForMajor($("#Major").val()).sort(function(course1, course2){
+                                                       if (course1.id < course2.id)
+                                                            return -1;
+                                                       else if (course1.id > course2.id)
+                                                            return 1;
+                                                       else
+                                                            return 0;
+                                                       })
+                                        , function(index, value){
+           console.log(value);
+           if (value.shouldHaveCheckBox)
+           {
+           $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
+           $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
+           }
+           });
+    
+    updateSchedule();
+}
+
+
 // Function to be called whenever something changes on the website.
 
 function updateSchedule()
