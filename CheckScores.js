@@ -39,9 +39,9 @@ function CheckWaived() {
     if (CRE_Score != 2 && (AP_Calc_BC_Score >= 3 || AP_Calc_AB_Score >= 4))
     {
         waiveCourse("MATH 11");
-        incrementChecks("MATH 11", "AP_Score");
+        incrementChecksAndDisabled("MATH 11", "AP_Score");
     } else {
-        decrementChecks("MATH 11", "AP_Score");
+        decrementChecksAndDisabled("MATH 11", "AP_Score");
     }
     
     // MATH 12
