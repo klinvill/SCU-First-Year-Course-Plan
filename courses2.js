@@ -534,6 +534,27 @@ function prereqsFulfilled(courseID)
     }
 }
 
+//Function: returns an array of strings of all preReqs and their preReqs for the course.
+// Paramter: a string for the course ID.
+// Return Value: an array of preReq strings.
+//               If not preReqs, returns empty array.
+function preReqsChain(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "preReqsChain");
+    
+    var tempCourse = courseForID(courseForID);
+    if (tempCourse == undefined)
+        throw "No course for given ID in preReqsChain.";
+    
+    if (tempCourse.pre_req == "")
+        return [];
+    else
+    {
+        return [tempCourse.pre_req].concat(preReqsChain(tempCourse.pre_req));
+    }
+}
+
+
 
 /* --- Data altering functions --- */
 

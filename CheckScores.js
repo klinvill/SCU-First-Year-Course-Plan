@@ -39,12 +39,16 @@ function CheckWaived() {
     if (CRE_Score != 2 && (AP_Calc_BC_Score >= 3 || AP_Calc_AB_Score >= 4))
     {
         waiveCourse("MATH 11");
+        incrementChecks("MATH 11", "AP_Score");
+    } else {
+        decrementChecks("MATH 11", "AP_Score");
     }
     
     // MATH 12
     if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
     {
         waiveCourse("MATH 12");
+        incrementChecks("MATH 12");
     }
     
     //Note this logic might not be correct for ELEN's.
@@ -59,7 +63,7 @@ function CheckWaived() {
     if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
     {
         waiveCourse("CHEM 11");
-        incrementCheckBox("CHEM 11", "AP_Chem_Score");
+        incrementChecks("CHEM 11", "AP_Chem_Score");
     }
     
     // Chem 12
