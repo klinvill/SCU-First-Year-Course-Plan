@@ -192,7 +192,8 @@ var allCourses =
  {
  name: "Logic Design",
  id: "COEN 21",
- offered: "FWS",
+ // Actually offered FWS, F is removed in order to prevent it from showing up fall quarter for a freshman
+ offered: "WS",
  waived: false,
  pre_req: "",
  replace_with: "COEN 20",
@@ -203,7 +204,8 @@ var allCourses =
  {
  name: "Embedded Systems",
  id: "COEN 20",
- offered: "FS",
+ // Actually offered FS, F is removed in order to prevent it from showing up fall quarter for a freshman
+ offered: "S",
  waived: false,
  pre_req: "COEN 11",
  replace_with: finalCourseOption.id,
