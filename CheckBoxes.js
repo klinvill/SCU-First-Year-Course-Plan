@@ -68,11 +68,9 @@ function shouldBeDisabled(courseID)
     
 }
 
+
+
 /* --- Functions for populating and manipulating the array ---*/
-
-
-
-
 
 // Function: Creates a new check box and adds it to the array of check boxes.
 function addCheckBox(courseID, numTimesChecked, numTimesDisabled)
@@ -93,6 +91,38 @@ function removeCheckBox(courseID)
     throwIfTypeDoesNotMatch(courseID, "string", "removeCheckBox");
     
 }
+
+
+
+/* --- Functions for Source Manipulation --- */
+
+function hasSource(sourceName, tempCheckBox){
+    throwIfTypeDoesNotMatch(sourceName, "string", "hasSource");
+    throwIfTypeDoesNotMatch(tempCheckBox, "string", "hasSource");
+    
+    
+}
+
+// Function:
+function addSouceToCheckBox(sourceName, tempCheckBox);
+{
+    throwIfTypeDoesNotMatch(sourceName, "string", "addSouceToCheckBox");
+    throwIfTypeDoesNotMatch(tempCheckBox, "string", "addSouceToCheckBox");
+    
+    
+}
+
+
+function removeSource(sourceName, tempCheckBox)
+{
+    throwIfTypeDoesNotMatch(sourceName, "string", "removeSource");
+    throwIfTypeDoesNotMatch(tempCheckBox, "string", "removeSource");
+    
+    
+}
+
+
+/* --- Functions for check count and disable count Manipulation --- */
 
 // Function: increments the number of times the checkBox for the given ID has been checked.
 // Parameters: a course ID and name of source checking.
@@ -151,13 +181,4 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
 {
     getHTMLElementForCourseID(tempCheckBox.ID);
-}
-
-
-
-/* --- Security Functions --- */
-function throwIfTypeDoesNotMatch(parameter, typeString, functionName)
-{
-    if (typeof(parameter) != typeString)
-        throw "Invalid parameter type in" + functionName + ".";
 }
