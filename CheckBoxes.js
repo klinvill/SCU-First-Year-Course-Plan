@@ -19,7 +19,7 @@ var checkBoxArray = [];
 // Parameter: a course ID.
 // Return Value: the checkBox object for the courseID.
 //               undefinded if check box for course not found.
-function checkBoxForID(courseID)
+function getCheckBoxForID(courseID)
 {
     
 }
