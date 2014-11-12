@@ -534,41 +534,7 @@ var ELEN_course_array =
  },
  ];
 
-// Functions which look through the course array and waive or unwaive courses.
-function waiveCourse(courseID)
-{
-    for (var i = 0; i < courseArrays.length; i++)
-    {
-        var courseArray = courseArrays[i];
-        for (var j = 0; j < courseArray.length; j++)
-        {
-            var tempCourse = courseArray[j];
-            if (tempCourse.id === courseID)
-            {
-                tempCourse.waived = true;
-                if(tempCourse.pre_req)
-                    waiveCourse(tempCourse.pre_req);
-                break;
-            }
-        }
-    }
-}
-function unwaiveCourse(courseID)
-{
-    for (var i = 0; i < courseArrays.length; i++)
-    {
-        var courseArray = courseArrays[i];
-        for (var j = 0; j < courseArray.length; j++)
-        {
-            var tempCourse = courseArray[j];
-            if (tempCourse.id === courseID)
-            {
-                tempCourse.waived = false;
-                break;
-            }
-        }
-    }
-}
+/* --- Data Getting --- */
 
 // This function takes a string that represents the ID for a course.
 // It returns the course in the COEN_course_array with the given ID.
@@ -578,7 +544,7 @@ function courseForID(courseID)
     if (typeof(courseID) != "string")
     {
         var myString = "Invalid parameter type in courseForID."
-            + "courseID type is: " + typeof(courseID);
+        + "courseID type is: " + typeof(courseID);
         throw myString;
     }
     
@@ -631,6 +597,44 @@ function prereqsFulfilled(courseID)
         }
         
         return fulfilled;
+    }
+}
+
+/* --- Data Setting --- */
+
+// Functions which look through the course array and waive or unwaive courses.
+function waiveCourse(courseID)
+{
+    for (var i = 0; i < courseArrays.length; i++)
+    {
+        var courseArray = courseArrays[i];
+        for (var j = 0; j < courseArray.length; j++)
+        {
+            var tempCourse = courseArray[j];
+            if (tempCourse.id === courseID)
+            {
+                tempCourse.waived = true;
+                if(tempCourse.pre_req)
+                    waiveCourse(tempCourse.pre_req);
+                break;
+            }
+        }
+    }
+}
+function unwaiveCourse(courseID)
+{
+    for (var i = 0; i < courseArrays.length; i++)
+    {
+        var courseArray = courseArrays[i];
+        for (var j = 0; j < courseArray.length; j++)
+        {
+            var tempCourse = courseArray[j];
+            if (tempCourse.id === courseID)
+            {
+                tempCourse.waived = false;
+                break;
+            }
+        }
     }
 }
 

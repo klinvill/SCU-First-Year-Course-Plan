@@ -400,80 +400,6 @@ var allCourses =
  },
 ]
 
-// Function: called to reset the waived status of all courses to default.
-function resetWaivedStatuses()
-{
-    for (var j = 0; j < allCourses.length; j++)
-    {
-        var tempCourse = allCourses[j];
-        
-        if (tempCourse.id == "MATH 9")
-        {
-            tempCourse.waived = true;
-        } else {
-            tempCourse.waived = false;
-        }
-        
-    }
-}
-
-// This function takes a string that represents the ID for a course.
-// It returns the course in the allCourses array with the given ID.
-// If the ID does not match a course in the array the function returns undefined.
-function courseForID(courseID)
-{
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type in courseForID.";
-    
-    // Searching through array of courses.
-    for (var tempCourse in allCourses)
-    {
-        if (courseID == tempCourse.id)
-        {
-            return tempCourse;
-        }
-    }
-    
-    // Course not found. Returning undefined.
-    return undefined;
-}
-
-// Function: called to see if the prerequisites for a course have been fulfilled.
-// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
-function prereqsFulfilled(courseID)
-{
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type in courseForID.";
-    
-    var tempCourse = courseForID(courseID);
-    var preReq = courseForID(tempCourse.previous);
-    
-    // Still Using Strings
-    if (typeof(tempCourse.previous) == "string")
-    {
-        // Course has no PreReqs.
-        if (preReq == undefined) return true;
-        // Course has PreReqs.
-        else return (preReq.waived && prereqsFulfilled(preReq));
-    }
-    // Using Arrays
-    {
-        var fulfilled = true;
-        
-        for (var i = 0; i < tempCourse.previous.length; i++)
-        {
-            // Course has no PreReqs.
-            if (preReq == undefined) fulfilled = fulfilled && true;
-            // Course has PreReqs.
-            else fulfilled = fulfilled && (preReq.waived && prereqsFulfilled(preReq));
-        }
-        
-        return fulfilled;
-    }
-}
-
-                 
-
 /* --- Major Specific Course Arrays --- */
 
 // Array of courses in the COEN major, ordered in terms of priority placement with the highest priority being at the front
@@ -541,9 +467,65 @@ var ELEN_course_array =
  courseForID("ELEN 33")
  ];
 
+/* --- Data Retreival Functions --- */
+
+// This function takes a string that represents the ID for a course.
+// It returns the course in the allCourses array with the given ID.
+// If the ID does not match a course in the array the function returns undefined.
+function courseForID(courseID)
+{
+    if (typeof(courseID) != "string")
+        throw "Invalid parameter type in courseForID.";
+    
+    // Searching through array of courses.
+    for (var tempCourse in allCourses)
+    {
+        if (courseID == tempCourse.id)
+        {
+            return tempCourse;
+        }
+    }
+    
+    // Course not found. Returning undefined.
+    return undefined;
+}
+
+// Function: called to see if the prerequisites for a course have been fulfilled.
+// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
+function prereqsFulfilled(courseID)
+{
+    if (typeof(courseID) != "string")
+        throw "Invalid parameter type in courseForID.";
+    
+    var tempCourse = courseForID(courseID);
+    var preReq = courseForID(tempCourse.previous);
+    
+    // Still Using Strings
+    if (typeof(tempCourse.previous) == "string")
+    {
+        // Course has no PreReqs.
+        if (preReq == undefined) return true;
+        // Course has PreReqs.
+        else return (preReq.waived && prereqsFulfilled(preReq));
+    }
+    // Using Arrays
+    {
+        var fulfilled = true;
+        
+        for (var i = 0; i < tempCourse.previous.length; i++)
+        {
+            // Course has no PreReqs.
+            if (preReq == undefined) fulfilled = fulfilled && true;
+            // Course has PreReqs.
+            else fulfilled = fulfilled && (preReq.waived && prereqsFulfilled(preReq));
+        }
+        
+        return fulfilled;
+    }
+}
 
 
-/* --- Functions for waiving and unwaiving courses --- */
+/* --- Data altering functions --- */
 
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
@@ -557,6 +539,23 @@ function waiveCourse(courseID)
 function unwaiveCourse(courseID)
 {
     courseForID(courseID).waived = false;
+}
+
+// Function: called to reset the waived status of all courses to default.
+function resetWaivedStatuses()
+{
+    for (var j = 0; j < allCourses.length; j++)
+    {
+        var tempCourse = allCourses[j];
+        
+        if (tempCourse.id == "MATH 9")
+        {
+            tempCourse.waived = true;
+        } else {
+            tempCourse.waived = false;
+        }
+        
+    }
 }
 
 
