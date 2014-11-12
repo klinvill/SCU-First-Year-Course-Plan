@@ -433,7 +433,9 @@ var COEN_course_array =
  courseForID("PHYS 31"),
  courseForID("PHYS 32"),
  courseForID("PHYS 33"),
- courseForID("COEN 19")
+ courseForID("COEN 19"),
+ /* ENVS 21 is only here for the checkbox */
+ courseForID("ENVS 21")
 ];
 
 var ELEN_course_array =
@@ -460,6 +462,8 @@ var ELEN_course_array =
  courseForID("PHYS 32"),
  courseForID("PHYS 33"),
  courseForID("PHYS 34"),
+ /* ENVS 21 is only here for the checkbox */
+ courseForID("ENVS 21"),
  
  /* Later ELEN Series */
  courseForID("ELEN 50"),

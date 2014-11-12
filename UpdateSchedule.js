@@ -1,24 +1,36 @@
+
+function createCheckboxes()
+{
+    var tempCourseArray = jQuery.extend(true, [], allCourses);
+    tempCourseArray.sort(function(course1, course2){
+                         if (course1.id < course2.id)
+                            return -1;
+                         else if (course1.id > course2.id)
+                            return 1;
+                         else
+                            return 0;
+                         });
+    
+    $.each(tempCourseArray, function(index, value){
+           if (value.shouldHaveCheckBox)
+           {
+                $('#OC_Form>div').append('<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>');
+                $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
+           }
+           });
+}
+
 function majorChanged()
 {
     // Change checkboxes shown on page
-    // Generate options in other coursework section
-    $("#OC_Form>div").empty();
-    // clone courseArrayForMajor
-    var tempCourseArray = jQuery.extend(true, [], courseArrayForMajor($("#Major").val()));
+    // Hide all checkboxes
+    $('#OC_Form>div').children().hide();
     
-    $.each(tempCourseArray.sort(function(course1, course2){
-                                                       if (course1.id < course2.id)
-                                                            return -1;
-                                                       else if (course1.id > course2.id)
-                                                            return 1;
-                                                       else
-                                                            return 0;
-                                                       })
-                                        , function(index, value){
-           if (value.shouldHaveCheckBox)
+    $.each(courseArrayForMajor($('#Major').val()), function(index, value){
+           if ($("[id = 'Label_"+value.id+"']") != null)
            {
-           $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
-           $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
+                $("[id = 'Label_"+value.id+"']").show();
+                $("[id = 'Label_"+value.id+"']").next("br").show();
            }
            });
     

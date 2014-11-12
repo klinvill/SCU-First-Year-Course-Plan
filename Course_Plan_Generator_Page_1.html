@@ -381,6 +381,9 @@
             // If javascript is enabled, this will display the page
             $('#page-wrapper').show();
             
+            // Create checkboxes on page
+            createCheckboxes();
+            
             // Fixes a bug where the onchange event for the major couldnt be detected upon a "half" refresh
             updateSchedule();
             
