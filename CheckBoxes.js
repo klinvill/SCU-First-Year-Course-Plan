@@ -2,9 +2,9 @@
 
 
 /* --- Object Prototype --- */
-function checkBox(courseID, numTimesChecked, numTimesDisabled)
+function checkBox(ID, numTimesChecked, numTimesDisabled)
 {
-    this.courseID = courseID;
+    this.courseID = ID;
     this.numTimesChecked = numTimesChecked;
     this.numTimesDisabled = numTimesDisabled;
 }
@@ -21,7 +21,12 @@ var checkBoxArray = [];
 //               undefinded if check box for course not found.
 function getCheckBoxForID(courseID)
 {
-    
+    for (var i = 0; i < checkBoxArray.length; i++)
+    {
+        var tempCheckBox = checkBoxArray[i];
+        
+        if (tempCheckBox.ID == courseID)
+    }
 }
 
 // Function: Creates a new check box and adds it to the array of check boxes.
