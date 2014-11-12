@@ -614,13 +614,31 @@ function waiveCourse(courseID)
             if (tempCourse.id === courseID)
             {
                 tempCourse.waived = true;
-                if(tempCourse.pre_req)
-                    waiveCourse(tempCourse.pre_req);
                 break;
             }
         }
     }
 }
+
+function waiveCourseAndPreReqs(courseID)
+{
+    for (var i = 0; i < courseArrays.length; i++)
+    {
+        var courseArray = courseArrays[i];
+        for (var j = 0; j < courseArray.length; j++)
+        {
+            var tempCourse = courseArray[j];
+            if (tempCourse.id === courseID)
+            {
+                tempCourse.waived = true;
+                if(tempCourse.pre_req)
+                    waiveCourseAndPreReqs(tempCourse.pre_req);
+                break;
+            }
+        }
+    }
+}
+
 function unwaiveCourse(courseID)
 {
     for (var i = 0; i < courseArrays.length; i++)
@@ -632,6 +650,25 @@ function unwaiveCourse(courseID)
             if (tempCourse.id === courseID)
             {
                 tempCourse.waived = false;
+                break;
+            }
+        }
+    }
+}
+
+function unwaiveCourseAndPreReqs(courseID)
+{
+    for (var i = 0; i < courseArrays.length; i++)
+    {
+        var courseArray = courseArrays[i];
+        for (var j = 0; j < courseArray.length; j++)
+        {
+            var tempCourse = courseArray[j];
+            if (tempCourse.id === courseID)
+            {
+                tempCourse.waived = false;
+                if(tempCourse.pre_req)
+                    unwaiveCourseAndPreReqs(tempCourse.pre_req);
                 break;
             }
         }

@@ -530,15 +530,28 @@ function prereqsFulfilled(courseID)
 // Functions which look through the course array and waive or unwaive courses.
 function waiveCourse(courseID)
 {
-    course = courseForID(courseID);
-    course.waived = true;
-    if(course.pre_req)
-        waiveCourse(course.pre_req);
+    courseForID(courseID).waived = true;
+}
+
+function waiveCourseAndPreReqs(courseID)
+{
+    var tempCourse = courseForID(courseID);
+    tempCourse.waived = true;
+    if(tempCourse.pre_req)
+        waiveCourseAndPreReqs(course.pre_req);
 }
 
 function unwaiveCourse(courseID)
 {
     courseForID(courseID).waived = false;
+}
+
+function unwaiveCourseAndPreReqs(courseID)
+{
+    var tempCourse = courseForID(courseID);
+    tempCourse.waived = false;
+    if(tempCourse.pre_req)
+        unwaiveCourseAndPreReqs(course.pre_req);
 }
 
 // Function: called to reset the waived status of all courses to default.

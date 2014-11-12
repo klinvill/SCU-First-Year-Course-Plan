@@ -44,7 +44,6 @@ function CheckWaived() {
     // MATH 12
     if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
     {
-        waiveCourse("MATH 11");
         waiveCourse("MATH 12");
     }
     
@@ -88,7 +87,6 @@ function CheckWaived() {
     // COEN 11
     if (AP_Comp_Sci_Score >= 4)
     {
-        waiveCourse("COEN 10");
         waiveCourse("COEN 11");
         waiveCourse("COEN 44");
     }
