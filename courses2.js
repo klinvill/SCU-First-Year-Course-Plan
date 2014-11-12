@@ -321,7 +321,7 @@ var allCourses =
  {
  name: "Intro to Environmental Science",
  id: "ENVS 21",
- offered: "F?",
+ offered: "",
  waived: false,
  pre_req: "",
  replace_with: "CORE",

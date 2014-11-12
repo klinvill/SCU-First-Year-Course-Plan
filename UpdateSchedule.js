@@ -2,9 +2,11 @@ function majorChanged()
 {
     // Change checkboxes shown on page
     // Generate options in other coursework section
-    console.log(courseArrayForMajor($("#Major").val()));
     $("#OC_Form>div").empty();
-    $.each(courseArrayForMajor($("#Major").val()).sort(function(course1, course2){
+    // clone courseArrayForMajor
+    var tempCourseArray = jQuery.extend(true, [], courseArrayForMajor($("#Major").val()));
+    
+    $.each(tempCourseArray.sort(function(course1, course2){
                                                        if (course1.id < course2.id)
                                                             return -1;
                                                        else if (course1.id > course2.id)
@@ -13,7 +15,6 @@ function majorChanged()
                                                             return 0;
                                                        })
                                         , function(index, value){
-           console.log(value);
            if (value.shouldHaveCheckBox)
            {
            $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
@@ -39,8 +40,6 @@ function updateSchedule()
         $('#schedule-default').hide();
     }
     
-    console.log("Updating Schedule.");
-    
     // See if a checkbox was just checked (used for CheckWaived())
     checked = 0;
     if(this.checked == true)
@@ -52,6 +51,7 @@ function updateSchedule()
     // Generating a schedule.
     var major = document.getElementById("Major").value;
     var courseSchedule = generateSchedule(major);
+    console.log(courseSchedule);
     
     // Error checking to make sure proper amount of quarters are present
     if (courseSchedule.length != quarters)
