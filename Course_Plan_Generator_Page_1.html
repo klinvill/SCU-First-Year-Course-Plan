@@ -38,10 +38,6 @@
                 <h3 class="text-center">First Year Course Plan Generator</h3>
             </div>
             
-            <p class="basic-text" id="welcome-summary">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome to the School of Engineering&#39;s First Year Course Plan Generator. This application will allow you to generate a personalized preliminary course schedule. Please answer the questions below to begin. Note that this is only a preliminary schedule; you will still need to meet with your academic advisor to finalize your schedule and discuss any questions or concerns you may have.
-            </p>
-            
             
             
             <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
@@ -252,9 +248,23 @@
                         </div>
                         <div id="collapseFive" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <div class="OC_Entries">
+                                <div class="OC_Entries checkbox">
                                     <form id="OC_Form">
-                                        <div class="col-xs-6 checkbox">
+                                        <div class="col-xs-6">
+                                            <div id="Math Checkboxes">
+                                                Math Courses: <br class="unhidable"/>
+                                            </div>
+                                            <div id="Coen Checkboxes" style="display:none">
+                                                <br class="unhidable"/> Coen Courses: <br class="unhidable"/>
+                                            </div>
+                                            <div id="Elen Checkboxes" style="display:none">
+                                                <br class="unhidable"/> Elen Courses: <br class="unhidable"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <div id="Science Checkboxes">
+                                                Science Courses: <br class="unhidable"/>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -382,6 +392,9 @@
             
             // If javascript is enabled, this will display the page
             $('#page-wrapper').show();
+            
+            // Create checkboxes on page
+            createCheckboxes();
             
             // Fixes a bug where the onchange event for the major couldnt be detected upon a "half" refresh
             updateSchedule();

@@ -1,25 +1,68 @@
+
+function createCheckboxes()
+{
+    var tempCourseArray = jQuery.extend(true, [], allCourses);
+    tempCourseArray.sort(function(course1, course2){
+                         if (course1.id < course2.id)
+                            return -1;
+                         else if (course1.id > course2.id)
+                            return 1;
+                         else
+                            return 0;
+                         });
+    
+    $.each(tempCourseArray, function(index, value){
+           if (value.shouldHaveCheckBox)
+           {
+                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
+                if (value.id.substring(0, 4) == "MATH" || value.id.substring(0, 4) == "AMTH")
+                {
+                    $("[id = 'Math Checkboxes']").append(htmlString);
+                }
+               else if (value.id.substring(0, 4) == "PHYS" || value.id.substring(0, 4) == "CHEM" || value.id.substring(0, 4) == "ENVS")
+               {
+                    $("[id = 'Science Checkboxes']").append(htmlString);
+               }
+               else if (value.id.substring(0, 4) == "COEN")
+               {
+                    $("[id = 'Coen Checkboxes']").append(htmlString);
+               }
+               else if (value.id.substring(0, 4) == "ELEN")
+               {
+                    $("[id = 'Elen Checkboxes']").append(htmlString);
+               }
+           else throw ("Uncategorized Checkbox: ", value.id.substring(0, 4));
+           
+                $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
+           }
+           });
+}
+
 function majorChanged()
 {
     // Change checkboxes shown on page
-    // Generate options in other coursework section
-    console.log(courseArrayForMajor($("#Major").val()));
-    $("#OC_Form>div").empty();
-    $.each(courseArrayForMajor($("#Major").val()).sort(function(course1, course2){
-                                                       if (course1.id < course2.id)
-                                                            return -1;
-                                                       else if (course1.id > course2.id)
-                                                            return 1;
-                                                       else
-                                                            return 0;
-                                                       })
-                                        , function(index, value){
-           console.log(value);
-           if (value.shouldHaveCheckBox)
+    // Hide all checkboxes
+    $('#OC_Form>div').children().children(":not(.unhidable)").hide();
+    
+    $.each(courseArrayForMajor($('#Major').val()), function(index, value){
+           if ($("[id = 'Label_"+value.id+"']") != null)
            {
-           $('#OC_Form>div').append('<label id="Label_'+value.id+'"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br/>');
-           $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
+                $("[id = 'Label_"+value.id+"']").show();
+                $("[id = 'Label_"+value.id+"']").next("br").show();
            }
            });
+    
+    if($('#Major').val() == "COEN")
+    {
+        $("[id = 'Coen Checkboxes']").show();
+        $("[id = 'Elen Checkboxes']").hide();
+    }
+    else if($('#Major').val() == "ELEN")
+    {
+        $("[id = 'Coen Checkboxes']").hide();
+        $("[id = 'Elen Checkboxes']").show();
+    }
+    else throw "Unsupported Major";
     
     updateSchedule();
 }
@@ -39,8 +82,6 @@ function updateSchedule()
         $('#schedule-default').hide();
     }
     
-    console.log("Updating Schedule.");
-    
     // See if a checkbox was just checked (used for CheckWaived())
     checked = 0;
     if(this.checked == true)
@@ -52,6 +93,7 @@ function updateSchedule()
     // Generating a schedule.
     var major = document.getElementById("Major").value;
     var courseSchedule = generateSchedule(major);
+    console.log(courseSchedule);
     
     // Error checking to make sure proper amount of quarters are present
     if (courseSchedule.length != quarters)

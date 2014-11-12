@@ -192,7 +192,8 @@ var allCourses =
  {
  name: "Logic Design",
  id: "COEN 21",
- offered: "FWS",
+ // Actually offered FWS, F is removed in order to prevent it from showing up fall quarter for a freshman
+ offered: "WS",
  waived: false,
  pre_req: "",
  replace_with: "COEN 20",
@@ -203,7 +204,8 @@ var allCourses =
  {
  name: "Embedded Systems",
  id: "COEN 20",
- offered: "FS",
+ // Actually offered FS, F is removed in order to prevent it from showing up fall quarter for a freshman
+ offered: "S",
  waived: false,
  pre_req: "COEN 11",
  replace_with: finalCourseOption.id,
@@ -321,7 +323,7 @@ var allCourses =
  {
  name: "Intro to Environmental Science",
  id: "ENVS 21",
- offered: "F?",
+ offered: "",
  waived: false,
  pre_req: "",
  replace_with: "CORE",
@@ -433,7 +435,9 @@ var COEN_course_array =
  courseForID("PHYS 31"),
  courseForID("PHYS 32"),
  courseForID("PHYS 33"),
- courseForID("COEN 19")
+ courseForID("COEN 19"),
+ /* ENVS 21 is only here for the checkbox */
+ courseForID("ENVS 21")
 ];
 
 var ELEN_course_array =
@@ -460,6 +464,8 @@ var ELEN_course_array =
  courseForID("PHYS 32"),
  courseForID("PHYS 33"),
  courseForID("PHYS 34"),
+ /* ENVS 21 is only here for the checkbox */
+ courseForID("ENVS 21"),
  
  /* Later ELEN Series */
  courseForID("ELEN 50"),

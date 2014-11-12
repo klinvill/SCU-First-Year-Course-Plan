@@ -15,7 +15,7 @@ function generateSchedule(major)
     var courseSchedule = [ [], [], [] ];
     var courseArray;
     
-    // Sleceting correct course array.
+    // Seleceting correct course array.
     if (major == "ELEN") {
         courseArray = courseArrayForMajor("ELEN");
     }
@@ -24,7 +24,6 @@ function generateSchedule(major)
         courseArray = courseArrayForMajor("COEN");
     }
     else throw "Improper major selection in generateSchedule function.";
-    
     
     for (var i = 0; i < courseArray.length; i++)
     {

@@ -140,7 +140,7 @@ function CheckWaived() {
         if(tempCourse.pre_req != "") 
         {
             var checkCourse = courseForID(tempCourse.pre_req);
-            if(document.getElementById("OC_"+checkCourse.id).checked == false) {
+            if(document.getElementById("OC_"+checkCourse.id) != null && document.getElementById("OC_"+checkCourse.id).checked == false) {
                 $(this).attr('checked', false);
                 unwaiveCourse($(this).val());
             }
