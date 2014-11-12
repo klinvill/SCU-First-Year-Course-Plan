@@ -43,8 +43,10 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
         
         var index = this.sources.indexOf(sourceName);
         if (index > -1)
+        {
             this.sources.splice(index, 1);
             return true;
+        }
         else
             return false;
     }
@@ -56,7 +58,7 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
 // Function: returns the checkBox object for the given courseID.
 // Parameter: a course ID.
 // Return Value: the checkBox object for the courseID.
-//               undefinded if check box for course not found.
+//               undefined if check box for course not found.
 function getCheckBoxForID(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "getCheckBoxForID");
@@ -68,7 +70,7 @@ function getCheckBoxForID(courseID)
         if (tempCheckBox.ID == courseID) return tempCheckBox;
     }
     
-    return undefinded;
+    return undefined;
 }
 
 // Function: tells whether there is a check box for the given ID.
@@ -78,7 +80,7 @@ function checkBoxForIDExists(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "checkBoxForIDExists");
     
-    return (getCheckBoxForID(courseID) != undefinded);
+    return (getCheckBoxForID(courseID) != undefined);
 }
 
 // Function: returns whether the check box for the given ID should be checked.
@@ -383,7 +385,7 @@ function getHTMLCheckBoxElementForCourseID(courseID)
     if (checkBoxForIDExists(courseID))
         return document.getElementById("OC_" + courseID);
     else
-        return undefinded;
+        return undefined;
 }
 
 // Function: gets the HTML element for the check box corresponding to the checkBox instance.

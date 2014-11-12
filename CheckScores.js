@@ -87,8 +87,6 @@ function CheckWaived() {
         waiveCourse("ENVS 21");
     }
     
-    if
-    
     // --- Coen Courses ----
     
     // COEN 10
