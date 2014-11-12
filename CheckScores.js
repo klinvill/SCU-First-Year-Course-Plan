@@ -2,8 +2,6 @@
  Description:    Checks each course to see if it has been waived and updates the information in the course list.
  */
 
-console.warn("Need to check AMTH 106 waiving logic.");
-
 function CheckWaived() {
     
     // None of the following logic includes the section where they can
