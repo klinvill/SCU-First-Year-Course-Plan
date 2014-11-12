@@ -1,9 +1,8 @@
 
 // Course Data File
 
-// Warnings for reminding us what we need to do.
-console.warn("Check final math class options logic.");
-console.warn("Is the ID for CTW courses actually 'CTW'?");
+/* --- Warnings for reminding us what we need to do. --- */
+console.warn("Update ENVS 21 with correct information.")
 
 // An object prototype function for courses.
 function course(name, id, offered, waived, pre_req, replace_with, previous, hasLab, shouldHaveCheckBox)
@@ -308,6 +307,28 @@ var allCourses =
  hasLab: false,
  shouldHaveCheckBox: false
  },
+ {
+ name: "Applied Programming in C",
+ id: "COEN 44",
+ offered: "FW",
+ waived: false,
+ pre_req: "MATH 13",
+ replace_with: "ELEN 33",
+ previous: "MATH 13",
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
+ {
+ name: "Intro to Environmental Science",
+ id: "ENVS 21",
+ offered: "F",
+ waived: false,
+ pre_req: "MATH 13",
+ replace_with: "ELEN 33",
+ previous: "MATH 13",
+ hasLab: true,
+ shouldHaveCheckBox: false
+ },
  
  
  
@@ -382,16 +403,18 @@ var allCourses =
 // Function: called to reset the waived status of all courses to default.
 function resetWaivedStatuses()
 {
-    $.each(courseArrays, function(cArrayIndex, cArray) {
-           $.each(cArray, function(tempCourseIndex, tempCourse) {
-                  if (tempCourse.id == "MATH 9")
-                  {
-                  tempCourse.waived = true;
-                  } else {
-                  tempCourse.waived = false;
-                  }
-                  });
-           });
+    for (var j = 0; j < allCourses.length; j++)
+    {
+        var tempCourse = allCourses[j];
+        
+        if (tempCourse.id == "MATH 9")
+        {
+            tempCourse.waived = true;
+        } else {
+            tempCourse.waived = false;
+        }
+        
+    }
 }
 
 // This function takes a string that represents the ID for a course.
@@ -550,8 +573,7 @@ var ELEN_course_array =
  courseForID("ELEN 33")
  ];
 
-// An array containing each of the above course arrays.
-var courseArrays = [COEN_course_array, ELEN_course_array];
+
 
 /* --- Functions for waiving and unwaiving courses --- */
 
@@ -569,7 +591,26 @@ function unwaiveCourse(courseID)
     courseForID(courseID).waived = false;
 }
 
+
+
 /* --- Data and functions involving selection of course arrays --- */
 
+// Function: called to select the course array for a given major.
+// Parameters: a string corresponding to the major.
+// Return Value: course array correspnding to the provided major.
+function courseArrayForMajor(major)
+{
+    if (major === "COEN")
+    {
+        return COEN_course_array;
+    }
+    else if (major == "ELEN")
+    {
+        return ELEN_course_array;
+    }
+    else throw "Invalid Major provided to courseArrayForMajor function.";
+}
 
+// An array containing each of the above course arrays.
+var courseArrays = [COEN_course_array, ELEN_course_array];
                          

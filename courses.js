@@ -1,6 +1,7 @@
 // Course Data File
-// Warnings for reminding us what we need to do.
-console.warn("Check final math class options logic.");
+
+/* --- Warnings for reminding us what we need to do. --- */
+
 // An object prototype function for courses.
 function course(name, id, offered, waived, pre_req, replace_with, previous, hasLab, shouldHaveCheckBox)
 {
