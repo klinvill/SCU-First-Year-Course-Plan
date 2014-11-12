@@ -499,8 +499,8 @@ var COEN_course_array =
  
  /* CTW Series */
  // Note: CTW id's might be worng.
- courseForID("CTW 1");
- courseForID("CTW 2");
+ courseForID("CTW 1"),
+ courseForID("CTW 2"),
  
  /* Others */
  courseForID("CHEM 11"),
@@ -509,38 +509,6 @@ var COEN_course_array =
  courseForID("PHYS 33"),
  courseForID("COEN 19")
 ];
-
-var COEN_course_array =
-[
- /* Math Series */
- courseForID("MATH 9"),
- courseForID("MATH 11"),
- courseForID("MATH 12"),
- courseForID("MATH 13"),
- courseForID("MATH 14"),
- courseForID("AMATH 106"),
- courseForID("AMATH 108"),
- courseForID("MATH 53"),
- 
- /* COEN intro Series */
- courseForID("COEN 10"),
- courseForID("COEN 11"),
- courseForID("COEN 12"),
- courseForID("COEN 21"),
- courseForID("COEN 20"),
- 
- /* CTW Series */
- // Note: CTW id's might be worng.
- courseForID("CTW 1");
- courseForID("CTW 2");
- 
- /* Others */
- courseForID("CHEM 11"),
- courseForID("PHYS 31"),
- courseForID("PHYS 32"),
- courseForID("PHYS 33"),
- courseForID("COEN 19")
- ];
 
 var ELEN_course_array =
 [
@@ -555,8 +523,8 @@ var ELEN_course_array =
  
  /* CTW Series */
  // Note: CTW id's might be worng.
- courseForID("CTW 1");
- courseForID("CTW 2");
+ courseForID("CTW 1"),
+ courseForID("CTW 2"),
  
  /* Others */
  courseForID("CHEM 11"),
