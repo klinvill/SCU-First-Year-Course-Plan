@@ -14,7 +14,25 @@ function createCheckboxes()
     $.each(tempCourseArray, function(index, value){
            if (value.shouldHaveCheckBox)
            {
-                $('#OC_Form>div').append('<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>');
+                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onchange="updateSchedule()" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
+                if (value.id.substring(0, 4) == "MATH" || value.id.substring(0, 4) == "AMTH")
+                {
+                    $("[id = 'Math Checkboxes']").append(htmlString);
+                }
+               else if (value.id.substring(0, 4) == "PHYS" || value.id.substring(0, 4) == "CHEM" || value.id.substring(0, 4) == "ENVS")
+               {
+                    $("[id = 'Science Checkboxes']").append(htmlString);
+               }
+               else if (value.id.substring(0, 4) == "COEN")
+               {
+                    $("[id = 'Coen Checkboxes']").append(htmlString);
+               }
+               else if (value.id.substring(0, 4) == "ELEN")
+               {
+                    $("[id = 'Elen Checkboxes']").append(htmlString);
+               }
+           else throw ("Uncategorized Checkbox: ", value.id.substring(0, 4));
+           
                 $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
            }
            });
@@ -24,7 +42,7 @@ function majorChanged()
 {
     // Change checkboxes shown on page
     // Hide all checkboxes
-    $('#OC_Form>div').children().hide();
+    $('#OC_Form>div').children().children(":not(.unhidable)").hide();
     
     $.each(courseArrayForMajor($('#Major').val()), function(index, value){
            if ($("[id = 'Label_"+value.id+"']") != null)
@@ -33,6 +51,18 @@ function majorChanged()
                 $("[id = 'Label_"+value.id+"']").next("br").show();
            }
            });
+    
+    if($('#Major').val() == "COEN")
+    {
+        $("[id = 'Coen Checkboxes']").show();
+        $("[id = 'Elen Checkboxes']").hide();
+    }
+    else if($('#Major').val() == "ELEN")
+    {
+        $("[id = 'Coen Checkboxes']").hide();
+        $("[id = 'Elen Checkboxes']").show();
+    }
+    else throw "Unsupported Major";
     
     updateSchedule();
 }
