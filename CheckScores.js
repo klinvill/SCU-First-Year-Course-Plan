@@ -59,7 +59,6 @@ function CheckWaived() {
     if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
     {
         waiveCourse("CHEM 11");
-        
     }
     
     // Chem 12
@@ -73,8 +72,17 @@ function CheckWaived() {
     if (AP_Chem_Score >= 5)
     {
         waiveCourse("CHEM 13");
-        
     }
+    
+    // --- ENVS Course ---
+    
+    // ENVS 21
+    if (AP_Env_Sci_Score >= 4)
+    {
+        waiveCourse("ENVS 21");
+    }
+    
+    if
     
     // --- Coen Courses ----
     

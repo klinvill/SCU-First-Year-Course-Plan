@@ -143,10 +143,66 @@ function generateSchedule(major)
     return courseSchedule;
 }
 
+
+
+/* --- Schedule Analysis Functions --- */
+
+// Function: determines whether a given course is in a quarter.
+// Parameters: a course ID and a quarter.
+// Return valude: Boolean.
+function coursePresentInQuarter(courseID, quarter)
+{
+    // Parameter security.
+    if (typeof(quarter) != "object")
+        throw "Invalid parameter type for quarter in coursePresentInQuarter.";
+    
+    if (typeof(courseID) != "string")
+        throw "Invalid parameter type for courseID in coursePresentInQuarter.";
+    
+    // Functionality
+    
+    for (var i = 0; i < quarter.length; i++)
+    {
+        var tempCourse = quarter[i];
+        
+        // Course is present.
+        if (tempCourse.id == courseID) return true;
+    }
+    
+    // Course not in quarter.
+    return false;
+}
+
+// Function: determines whether a given course is in a schedule.
+// Parameters: a course ID and a schedule.
+// Return valude: Boolean.
+function coursePresentInSchedule(courseID, schedule)
+{
+    // Parameter security.
+    if (typeof(schedule) != "object")
+        throw "Invalid parameter type for schedule in coursePresentInSchedule.";
+    
+    if (typeof(courseID) != "string")
+        throw "Invalid parameter type for courseID in coursePresentInSchedule.";
+    
+    // True if the course is in any of the quarters.
+    return (coursePresentInQuarter(schedule[0], courseID) ||
+            coursePresentInQuarter(schedule[1], courseID) ||
+            coursePresentInQuarter(schedule[2], courseID));
+}
+
 // Function: returns boolean if any of a course's prerequisites are in the quarter.
 // Takes as parameters the course and the quarter.
+// Return value: a boolean.
 function prereqsPresentInQuarter(tempCourse, quarter)
 {
+    // Parameter security.
+    if (typeof(quarter) != "object")
+        throw "Invalid parameter type for quarter in prereqsPresentInQuarter.";
+    
+    if (typeof(tempCourse) != "object")
+        throw "Invalid parameter type for tempCourse in prereqsPresentInQuarter.";
+    
     //For courses with a single previous string.
     if (typeof(tempCourse.previous) == "string")
     {
