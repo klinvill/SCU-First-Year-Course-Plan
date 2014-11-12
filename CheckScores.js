@@ -59,6 +59,7 @@ function CheckWaived() {
     if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
     {
         waiveCourse("CHEM 11");
+        incrementCheckBox("CHEM 11", "AP_Chem_Score");
     }
     
     // Chem 12
