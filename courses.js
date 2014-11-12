@@ -575,8 +575,12 @@ function unwaiveCourse(courseID)
 // If the ID does not match a course in the array the function returns undefined.
 function courseForID(courseID)
 {
-    if (typeof(courseID) == "string")
-        throw "Invalid parameter type in courseForID.";
+    if (typeof(courseID) != "string")
+    {
+        var myString = "Invalid parameter type in courseForID."
+            + "courseID type is: " + typeof(courseID);
+        throw myString;
+    }
     
     // Searching through array of courses.
     for (var i = 0; i < COEN_course_array.length; i++)
@@ -596,7 +600,7 @@ function courseForID(courseID)
 // Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
 function prereqsFulfilled(courseID)
 {
-    if (typeof(courseID) == "string")
+    if (typeof(courseID) != "string")
         throw "Invalid parameter type in courseForID.";
     
     var tempCourse = courseForID(courseID);

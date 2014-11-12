@@ -321,13 +321,13 @@ var allCourses =
  {
  name: "Intro to Environmental Science",
  id: "ENVS 21",
- offered: "F",
+ offered: "F?",
  waived: false,
- pre_req: "MATH 13",
- replace_with: "ELEN 33",
- previous: "MATH 13",
+ pre_req: "",
+ replace_with: "CORE",
+ previous: "",
  hasLab: true,
- shouldHaveCheckBox: false
+ shouldHaveCheckBox: true
  },
  
  
@@ -422,7 +422,7 @@ function resetWaivedStatuses()
 // If the ID does not match a course in the array the function returns undefined.
 function courseForID(courseID)
 {
-    if (typeof(courseID) == "string")
+    if (typeof(courseID) != "string")
         throw "Invalid parameter type in courseForID.";
     
     // Searching through array of courses.
@@ -442,7 +442,7 @@ function courseForID(courseID)
 // Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
 function prereqsFulfilled(courseID)
 {
-    if (typeof(courseID) == "string")
+    if (typeof(courseID) != "string")
         throw "Invalid parameter type in courseForID.";
     
     var tempCourse = courseForID(courseID);
