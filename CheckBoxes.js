@@ -1,24 +1,57 @@
 /* The Data Structure for Check Boxes */
 
+/* --- Array of All Check Box Instances --- */
 
-/* --- Object Prototype --- */
+var checkBoxArray = [];
+
+
+/* --- CheckBox Object Prototype --- */
+
 function checkBox(ID, numTimesChecked, numTimesDisabled)
 {
     this.courseID = ID;
     this.numTimesChecked = numTimesChecked;
     this.numTimesDisabled = numTimesDisabled;
     this.sources = []; // Array of string of source ID's.
+    
+    /* -- CheckBox Methods -- */
+    
+    // Function: tells whether the object has the given source.
+    // Parameters: string for a source name.
+    // Return Value: Boolean.
+    this.hasSource = function (sourceName){
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method hasSource");
+        
+        return (this.sources.indexOf(sourceName) > -1);
+    }
+    
+    // Function: adds the given source to the checkBox's sources.
+    // Parameters: string for a source name.
+    this.addSouceToCheckBoxfunction = function (sourceName, tempCheckBox)
+    {
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method addSouceToCheckBox");
+        
+        this.sources.push(sourceName);
+    }
+    
+    // Function: removes the given source from the checkBox's list of sources.
+    // Parameters: string for a source name.
+    // Return Value: Boolean for whether the given source was found or not.
+    this.removeSource = function (sourceName, tempCheckBox)
+    {
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method removeSource");
+        
+        var index = this.sources.indexOf(sourceName);
+        if (index > -1)
+            this.sources.splice(index, 1);
+            return true;
+        else
+            return false;
+    }
 }
 
 
-
-/* --- Array of All Check Box Instances --- */
-
-var checkBoxArray = [];
-
-
-
-/* --- Functions for analyzing checkBoxes --- */
+/* --- Functions for analyzing checkBoxes array. --- */
 
 // Function: returns the checkBox object for the given courseID.
 // Parameter: a course ID.
@@ -68,11 +101,9 @@ function shouldBeDisabled(courseID)
     
 }
 
+
+
 /* --- Functions for populating and manipulating the array ---*/
-
-
-
-
 
 // Function: Creates a new check box and adds it to the array of check boxes.
 function addCheckBox(courseID, numTimesChecked, numTimesDisabled)
@@ -93,6 +124,9 @@ function removeCheckBox(courseID)
     throwIfTypeDoesNotMatch(courseID, "string", "removeCheckBox");
     
 }
+
+
+/* --- Functions for check count and disable count Manipulation --- */
 
 // Function: increments the number of times the checkBox for the given ID has been checked.
 // Parameters: a course ID and name of source checking.
@@ -151,13 +185,4 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
 {
     getHTMLElementForCourseID(tempCheckBox.ID);
-}
-
-
-
-/* --- Security Functions --- */
-function throwIfTypeDoesNotMatch(parameter, typeString, functionName)
-{
-    if (typeof(parameter) != typeString)
-        throw "Invalid parameter type in" + functionName + ".";
 }
