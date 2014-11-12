@@ -9,7 +9,7 @@ var checkBoxArray = [];
 
 function checkBox(ID, numTimesChecked, numTimesDisabled)
 {
-    this.courseID = ID;
+    this.ID = ID;
     this.numTimesChecked = numTimesChecked;
     this.numTimesDisabled = numTimesDisabled;
     this.sources = []; // Array of string of source ID's.
@@ -27,7 +27,7 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
     
     // Function: adds the given source to the checkBox's sources.
     // Parameters: string for a source name.
-    this.addSouceToCheckBoxfunction = function (sourceName, tempCheckBox)
+    this.addSouce = function (sourceName, tempCheckBox)
     {
         throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method addSouceToCheckBox");
         
@@ -74,9 +74,9 @@ function getCheckBoxForID(courseID)
 // Function: tells whether there is a check box for the given ID.
 // Parameter: string for course ID.
 // Return value: Boolean.
-function isCheckBoxForID(courseID)
+function checkBoxForIDExists(courseID)
 {
-    throwIfTypeDoesNotMatch(courseID, "string", "isCheckBoxForID");
+    throwIfTypeDoesNotMatch(courseID, "string", "checkBoxForIDExists");
     
     return (getCheckBoxForID(courseID) != undefinded);
 }
@@ -88,7 +88,7 @@ function shouldBeChecked(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "shouldBeChecked");
     
-    
+    return (getCheckBoxForID(courseID).numTimesChecked >= 1);
 }
 
 // Function: returns whether the check box for the given ID should be disabled.
@@ -98,7 +98,7 @@ function shouldBeDisabled(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "shouldBeDisabled");
     
-    
+    return (getCheckBoxForID(courseID).numTimesDisabled >= 1);
 }
 
 
@@ -123,6 +123,16 @@ function removeCheckBox(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "removeCheckBox");
     
+    for (var i = 0; i < checkBoxArray.length; i++)
+    {
+        if (checkBoxArray[i].ID == courseID)
+        {
+            checkBoxArray.splice(i, 1);
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 
@@ -130,38 +140,94 @@ function removeCheckBox(courseID)
 
 // Function: increments the number of times the checkBox for the given ID has been checked.
 // Parameters: a course ID and name of source checking.
-// Return value: true if a checkBox for the courseID was found. False if not.
+// Return value: true if number of checks was incremented. False if not.
 function incrementChecks(courseID, sourceName)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "incrementChecks");
     throwIfTypeDoesNotMatch(sourceName, "string", "incrementChecks");
+    
+    var tempCheckBox = getCheckBoxForID(courseID);
+    if (tempCheckBox == undefined)
+        throw "No checkBox for provided ID in incrementChecks.";
+    
+    //Check box has not yet been checked by the given source.
+    if (!(tempCheckBox.hasSource(sourceName)))
+    {
+        tempCheckBox.numTimesChecked++;
+        tempCheckBox.addSouce(sourceName);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // Function: decrements the number of times the checkBox for the given ID has been checked.
 // Parameters: a course ID and name of source checking.
-// Return value: true if a checkBox for the courseID was found. False if not.
+// Return value: true if number of checks was decremented. False if not.
 function decrementChecks(courseID, sourceName)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "decrementChecks");
     throwIfTypeDoesNotMatch(sourceName, "string", "decrementChecks");
+    
+    var tempCheckBox = getCheckBoxForID(courseID);
+    if (tempCheckBox == undefined)
+        throw "No checkBox for provided ID in incrementChecks.";
+    
+    //Check box has not yet been checked by the given source.
+    if (tempCheckBox.hasSource(sourceName))
+    {
+        tempCheckBox.numTimesChecked--;
+        tempCheckBox.removeSource(sourceName);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // Function: increments the number of times the checkBox for the given ID has been disabled.
 // Parameters: a course ID and name of source checking.
-// Return value: true if a checkBox for the courseID was found. False if not.
+// Return value: true if number of disablings was incremented. False if not.
 function incrementDisabled(courseID, sourceName)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "incrementDisabled");
     throwIfTypeDoesNotMatch(sourceName, "string", "incrementDisabled");
+    
+    var tempCheckBox = getCheckBoxForID(courseID);
+    if (tempCheckBox == undefined)
+        throw "No checkBox for provided ID in incrementChecks.";
+    
+    //Check box has not yet been checked by the given source.
+    if (!(tempCheckBox.hasSource(sourceName)))
+    {
+        tempCheckBox.numTimesDisabled++;
+        tempCheckBox.addSouce(sourceName);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 // Function: decrements the number of times the checkBox for the given ID has been disabled.
 // Parameters: a course ID and name of source checking.
-// Return value: true if a checkBox for the courseID was found. False if not.
+// Return value: true if number of disablings was decremented. False if not.
 function decrementDisabled(courseID, sourceName)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "decrementDisabled");
     throwIfTypeDoesNotMatch(sourceName, "string", "decrementDisabled");
+    
+    var tempCheckBox = getCheckBoxForID(courseID);
+    if (tempCheckBox == undefined)
+        throw "No checkBox for provided ID in incrementChecks.";
+    
+    //Check box has not yet been checked by the given source.
+    if (tempCheckBox.hasSource(sourceName))
+    {
+        tempCheckBox.numTimesDisabled--;
+        tempCheckBox.removeSource(sourceName);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /* --- Interfacing with the HTML code. --- */
@@ -173,7 +239,7 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "getHTMLCheckBoxElementForCourseID");
     
-    if (isCheckBoxForID(courseID))
+    if (checkBoxForIDExists(courseID))
         return document.getElementById("OC_" + courseID);
     else
         return undefinded;
