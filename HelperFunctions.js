@@ -22,8 +22,8 @@ function arrayContains(myArray, element)
 /* --- Security Functions --- */
 
 // Function: checks that the parameter has the desired type and throws an exception if it doesn't.
-function throwIfTypeDoesNotMatch(parameter, typeString, functionName)
+function throwIfTypeDoesNotMatch(parameter, typeString, callLocationString)
 {
     if (typeof(parameter) != typeString)
-        throw "Invalid parameter type in" + functionName + ".";
+        throw "Invalid parameter type in" + callLocationString + ".";
 }
