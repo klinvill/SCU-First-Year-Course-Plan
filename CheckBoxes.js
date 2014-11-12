@@ -64,7 +64,7 @@ function removeCheckBox(courseID)
 }
 
 // Function: increments the number of times the checkBox for the given ID has been checked.
-// Parameters: a course ID.
+// Parameters: a course ID and name of source checking.
 // Return value: true if a checkBox for the courseID was found. False if not.
 function incrementChecks(courseID, sourceName)
 {
@@ -72,25 +72,25 @@ function incrementChecks(courseID, sourceName)
 }
 
 // Function: decrements the number of times the checkBox for the given ID has been checked.
-// Parameters: a course ID.
+// Parameters: a course ID and name of source checking.
 // Return value: true if a checkBox for the courseID was found. False if not.
-function decrementChecks(courseID)
+function decrementChecks(courseID, sourceName)
 {
     
 }
 
 // Function: increments the number of times the checkBox for the given ID has been disabled.
-// Parameters: a course ID.
+// Parameters: a course ID and name of source checking.
 // Return value: true if a checkBox for the courseID was found. False if not.
-function incrementDisabled(courseID)
+function incrementDisabled(courseID, sourceName)
 {
     
 }
 
 // Function: decrements the number of times the checkBox for the given ID has been disabled.
-// Parameters: a course ID.
+// Parameters: a course ID and name of source checking.
 // Return value: true if a checkBox for the courseID was found. False if not.
-function decrementDisabled(courseID)
+function decrementDisabled(courseID, sourceName)
 {
     
 }
