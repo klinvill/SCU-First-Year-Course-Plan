@@ -29,8 +29,15 @@ function CheckWaived() {
     if (CRE_Score == 2) // Score of 15 or less
     {
         unwaiveCourse("MATH 9");
+        var coursesToDisable = ["MATH 14"].concat(preReqsChain("MATH 14"));
+        console.log(coursesToDisable);
+        incrementDisabledGroup(coursesToDisable, "CRE_Score");
+        
     } else if (CRE_Score == 1) {
         waiveCourse("MATH 9");
+        var coursesToEnable = ["MATH 14"].concat(preReqsChain("MATH 14"));
+        console.log(coursesToEnable);
+        decrementDisabledGroup(coursesToEnable, "CRE_Score");
     }
     
     // MATH 11
