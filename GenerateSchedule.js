@@ -238,6 +238,18 @@ function prereqsPresentInQuarter(tempCourse, quarter)
     }
 }
 
+//Function: called on the schedule to check if only 1 C&I course made it in.
+function checkForOneCNI(schedule)
+{
+    var CNI1Found = false;
+    var CNI2Found = false;
+    
+    for (var i = 0; i < schedule.length; i++)
+    {
+        for (var j = 0; j < schedule.length; j++)
+    }
+}
+
 //Function: called on a quarter to get the number of courses
 //          with labs in the quarter.
 // Parameters: a quarter from within the courseSchedule array.
