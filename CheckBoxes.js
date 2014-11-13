@@ -428,9 +428,15 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 // Function: gets the HTML element for the check box corresponding to the checkBox instance.
 // Parameters: a checkBox.
 // Return Value: the HTML element for the given check box. Returns undefined if not such element.
-function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
+function getHTMLChecksBoxElementForCheckBox(tempCheckBox)
 {
     getHTMLElementForCourseID(tempCheckBox.ID);
+}
+
+// Function: Called to update the checkboxes on the web page to check and/or lock them.
+updateCheckBoxDisplay()
+{
+    
 }
 
 /* --- Debugging --- */

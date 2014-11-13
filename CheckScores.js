@@ -182,9 +182,3 @@ function CheckWaived() {
     
     updateCheckBoxDisplay();
 }
-
-// Function: Called to update the checkboxes on the web page to check and/or lock them.
-updateCheckBoxDisplay()
-{
-    
-}
