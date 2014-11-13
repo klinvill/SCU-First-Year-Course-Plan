@@ -243,7 +243,8 @@ function decrementChecks(courseID, sourceName)
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasCheckSource(sourceName))
     {
-        tempCheckBox.numTimesChecked--;
+        if(tempCheckBox.numTimesChecked > 0)
+            tempCheckBox.numTimesChecked--;
         tempCheckBox.removeCheckSource(sourceName);
         return true;
     } else {
@@ -270,7 +271,8 @@ function decrementChecksGroup(courseIDArray, sourceName)
         //Check box has not yet been checked by the given source.
         if (tempCheckBox.hasCheckSource(sourceName))
         {
-            tempCheckBox.numTimesChecked--;
+            if(tempCheckBox.numTimesChecked > 0)
+                tempCheckBox.numTimesChecked--;
             tempCheckBox.removeCheckSource(sourceName);
             return true;
         } else {
@@ -345,7 +347,8 @@ function decrementDisabled(courseID, sourceName)
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasDisabledSource(sourceName))
     {
-        tempCheckBox.numTimesDisabled--;
+        if(tempCheckBox.numTimesChecked > 0)
+            tempCheckBox.numTimesDisabled--;
         tempCheckBox.removeDisabledSource(sourceName);
         return true;
     } else {
@@ -372,7 +375,8 @@ function decrementDisabledGroup(courseIDArray, sourceName)
         //Check box has not yet been checked by the given source.
         if (tempCheckBox.hasDisabledSource(sourceName))
         {
-            tempCheckBox.numTimesDisabled--;
+            if(tempCheckBox.numTimesChecked > 0)
+                tempCheckBox.numTimesDisabled--;
             tempCheckBox.removeDisabledSource(sourceName);
             return true;
         } else {
