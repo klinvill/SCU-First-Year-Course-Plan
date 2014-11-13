@@ -438,6 +438,28 @@ function getHTMLChecksBoxElementForCheckBox(tempCheckBox)
     getHTMLElementForCourseID(tempCheckBox.ID);
 }
 
+// Function: gets the wrapper HTML element for the check box corresponding to the course ID.
+// Parameters: a string for the course ID.
+// Return Value: the HTML element for the wrapper of the given check box. Returns undefined if not such element.
+function getHTMLChecksBoxElementWrapperForCourseID(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "getHTMLCheckBoxElementForCourseID");
+    
+    if (checkBoxForIDExists(courseID))
+        return document.getElementById("Label_" + courseID);
+    else
+        return undefined;
+}
+
+// Function: gets the wrapper HTML element for the check box corresponding to the course ID.
+// Parameters: a checkBox.
+// Return Value: the HTML element for the wrapper of the given check box. Returns undefined if not such element.
+function getHTMLChecksBoxElementWrapperForCheckBox(tempCheckBox)
+{
+    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLChecksBoxElementWrapperForCheckBox");
+    getHTMLElementForCourseID(tempCheckBox.ID);
+}
+
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
 function updateCheckBoxDisplay()
 {
@@ -445,19 +467,26 @@ function updateCheckBoxDisplay()
     {
         var tempCheckBox = checkBoxArray[i];
         var htmlCheckBox = getHTMLChecksBoxElementForCheckBox(tempCheckBox);
+        var htmlCheckBoxWrapper = getHTMLChecksBoxElementWrapperForCheckBox(tempCheckBox);
         
         if (tempCheckBox.numTimesChecked > 0)
         {
             // Check the checkbox.
+            htmlCheckBox.checked = true;
         } else {
             // Uncheck the check box.
+            htmlCheckBox.checked = false;
         }
         
         if (tempCheckBox.numTimesDisabled > 0)
         {
             // Disable and grey out the checkbox.
+            htmlCheckBox.disabled = true;
+            htmlCheckBoxWrapper.className = "Uneditable";
         } else {
             // Un-Disable and un-grey the check box.
+            htmlCheckBox.disabled = false;
+            htmlCheckBoxWrapper.className = "";
         }
     }
 }
