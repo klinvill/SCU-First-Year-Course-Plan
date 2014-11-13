@@ -29,14 +29,18 @@ function CheckWaived() {
     if (CRE_Score == 2) // Score of 15 or less
     {
         unwaiveCourse("MATH 9");
+        // Get list of courses to be disabled as the preReqs to MATH 14.
+        // Then remove Math 9 because it has no check box.
         var coursesToDisable = ["MATH 14"].concat(preReqsChain("MATH 14"));
-        console.log(coursesToDisable);
+        coursesToDisable.splice(coursesToDisable.indexOf("MATH 9"), 1);
         incrementDisabledGroup(coursesToDisable, "CRE_Score");
         
     } else if (CRE_Score == 1) {
         waiveCourse("MATH 9");
+        // Get list of courses to be enabled as the preReqs to MATH 14.
+        // Then remove Math 9 because it has no check box.
         var coursesToEnable = ["MATH 14"].concat(preReqsChain("MATH 14"));
-        console.log(coursesToEnable);
+        coursesToEnable.splice(coursesToEnable.indexOf("MATH 9"), 1);
         decrementDisabledGroup(coursesToEnable, "CRE_Score");
     }
     
@@ -144,9 +148,8 @@ function CheckWaived() {
         decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
     
-    
-    /*
-    $("#OC_Form input").each(function() {
+
+    /*$("#OC_Form input").each(function() {
         if($(this).is(":checked"))
         {
             waiveCourse($(this).val());
@@ -176,6 +179,7 @@ function CheckWaived() {
                 unwaiveCourse($(this).val());
             }
         }
-    });
-    */
+    });*/
+    
+    updateCheckBoxDisplay();
 }
