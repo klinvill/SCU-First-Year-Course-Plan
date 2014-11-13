@@ -37,16 +37,22 @@ function CheckWaived() {
     if (CRE_Score != 2 && (AP_Calc_BC_Score >= 3 || AP_Calc_AB_Score >= 4))
     {
         waiveCourse("MATH 11");
-        incrementChecksAndDisabled("MATH 11", "AP_Score");
+        incrementChecksAndDisabled("MATH 11", "MATH 11 AP_Score");
     } else {
-        decrementChecksAndDisabled("MATH 11", "AP_Score");
+        decrementChecksAndDisabled("MATH 11", "MATH 11 AP_Score");
     }
     
     // MATH 12
     if (CRE_Score != 2 && AP_Calc_BC_Score >= 4)
     {
         waiveCourse("MATH 12");
-        incrementChecks("MATH 12");
+        incrementChecksAndDisabled("MATH 12", "MATH 12 AP_Score");
+        var preReqs = preReqsChain("MATH 12");
+        incrementChecksAndDisabled(preReqs, "MATH 12 AP_Score");
+    } else {
+        decrementChecksAndDisabled("MATH 12", "MATH 12 AP_Score");
+        var preReqs = preReqsChain("MATH 12");
+        decrementChecksAndDisabled(preReqs, "MATH 12 AP_Score");
     }
     
     //Note this logic might not be correct for ELEN's.
@@ -61,7 +67,7 @@ function CheckWaived() {
     if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
     {
         waiveCourse("CHEM 11");
-        incrementChecks("CHEM 11", "AP_Chem_Score");
+        incrementChecksAndDisabled("CHEM 11", "CHEM 11 AP_Score");
     }
     
     // Chem 12
@@ -83,6 +89,9 @@ function CheckWaived() {
     if (AP_Env_Sci_Score >= 4)
     {
         waiveCourse("ENVS 21");
+        incrementChecksAndDisabled("ENVS 21", "ENVS 21 AP_Score");
+    } else {
+        decrementChecksAndDisabled("ENVS 21", "ENVS 21 AP_Score");
     }
     
     // --- Coen Courses ----
@@ -91,13 +100,20 @@ function CheckWaived() {
     if (AP_Comp_Sci_Score >= 3 || Prog_Exp == 1)
     {
         waiveCourse("COEN 10");
+        incrementChecksAndDisabled("COEN 10", "COEN 10 AP_Score");
+    } else {
+        decrementChecksAndDisabled("COEN 10", "COEN 10 AP_Score");
     }
     
-    // COEN 11
+    // COEN 11 && COEN 44
     if (AP_Comp_Sci_Score >= 4)
     {
-        waiveCourse("COEN 11");
         waiveCourse("COEN 44");
+        
+        waiveCourse("COEN 11");
+        incrementChecksAndDisabled("COEN 11", "COEN 11 AP_Score");
+    } else {
+        decrementChecksAndDisabled("COEN 11", "COEN 11 AP_Score");
     }
     
     // --- Physics Courses ----
@@ -106,12 +122,18 @@ function CheckWaived() {
     if (AP_PHYS_Mech_Score > 3)
     {
         waiveCourse("PHYS 31");
+        incrementChecksAndDisabled("PHYS 31", "PHYS 31 AP_Score");
+    } else {
+        decrementChecksAndDisabled("PHYS 31", "PHYS 31 AP_Score");
     }
     
     // PHYS 33
     if (AP_PHYS_EnM_Score > 3)
     {
         waiveCourse("PHYS 33");
+        incrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
+    } else {
+        decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
     
     $("#OC_Form input").each(function() {
