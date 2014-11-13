@@ -42,14 +42,14 @@ function createCheckboxes()
            });
 }
 
-function checkboxChanged(courseID)
+function checkboxClicked(courseID)
 {
     var checkboxElement = getHTMLCheckBoxElementForCourseID(courseID);
     if (checkboxElement != undefined)
     {
         if(checkboxElement).checked
         {
-            // Add logic for if the checkbox is checked
+            waiveCourseAndPreReqs()
         }
         else
         {
@@ -60,7 +60,7 @@ function checkboxChanged(courseID)
     }
     else
     {
-        throw "Error: checkbox element could not be found";
+        throw "Error: checkbox element could not be found in checkboxClicked.";
     }
 }
 
@@ -94,7 +94,7 @@ function majorChanged()
 }
 
 
-// Function to be called whenever something changes on the website.
+// The master function to be called whenever something changes on the website.
 
 function updateSchedule()
 {
