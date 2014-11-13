@@ -33,7 +33,6 @@ function CheckWaived() {
         // Then remove Math 9 because it has no check box.
         var coursesToDisable = ["MATH 14"].concat(preReqsChain("MATH 14"));
         coursesToDisable.splice(coursesToDisable.indexOf("MATH 9"), 1);
-        console.log("CRE Enable: " + coursesToDisable);
         incrementDisabledGroup(coursesToDisable, "CRE_Score");
         
     } else if (CRE_Score == 1) {
@@ -42,7 +41,6 @@ function CheckWaived() {
         // Then remove Math 9 because it has no check box.
         var coursesToEnable = ["MATH 14"].concat(preReqsChain("MATH 14"));
         coursesToEnable.splice(coursesToEnable.indexOf("MATH 9"), 1);
-        console.log(coursesToEnable);
         decrementDisabledGroup(coursesToEnable, "CRE_Score");
     }
     
