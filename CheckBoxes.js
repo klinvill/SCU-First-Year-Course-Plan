@@ -12,39 +12,75 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
     this.ID = ID;
     this.numTimesChecked = numTimesChecked;
     this.numTimesDisabled = numTimesDisabled;
-    this.sources = []; // Array of string of source ID's.
+    this.checkSources = []; // Array of string of check source ID's.
+    this.disabledSources = []; // Array of string of disabled source ID's.
     
     /* -- CheckBox Methods -- */
     
-    // Function: tells whether the object has the given source.
+    // Function: tells whether the object has the given check source.
     // Parameters: string for a source name.
     // Return Value: Boolean.
-    this.hasSource = function (sourceName){
-        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method hasSource");
+    this.hasCheckSource = function (sourceName){
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method hasCheckSource");
         
-        return (this.sources.indexOf(sourceName) > -1);
+        return (this.checkSources.indexOf(sourceName) > -1);
     }
     
-    // Function: adds the given source to the checkBox's sources.
+    // Function: tells whether the object has the given disabled source.
     // Parameters: string for a source name.
-    this.addSouce = function (sourceName, tempCheckBox)
-    {
-        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method addSouceToCheckBox");
+    // Return Value: Boolean.
+    this.hasDisabledSource = function (sourceName){
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method hasDisabledSource");
         
-        this.sources.push(sourceName);
+        return (this.disabledSources.indexOf(sourceName) > -1);
     }
     
-    // Function: removes the given source from the checkBox's list of sources.
+    // Function: adds the given check source to the checkBox's sources.
+    // Parameters: string for a source name.
+    this.addCheckSource = function (sourceName, tempCheckBox)
+    {
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method addCheckSource");
+        
+        this.checkSources.push(sourceName);
+    }
+    
+    // Function: adds the given disabed source to the checkBox's sources.
+    // Parameters: string for a source name.
+    this.addDisabledSource = function (sourceName, tempCheckBox)
+    {
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method addDisabledSource");
+        
+        this.disabledSources.push(sourceName);
+    }
+    
+    // Function: removes the given check source from the checkBox's list of sources.
     // Parameters: string for a source name.
     // Return Value: Boolean for whether the given source was found or not.
-    this.removeSource = function (sourceName, tempCheckBox)
+    this.removeCheckSource = function (sourceName, tempCheckBox)
     {
-        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method removeSource");
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method removeCheckSource");
         
-        var index = this.sources.indexOf(sourceName);
+        var index = this.checkSources.indexOf(sourceName);
         if (index > -1)
         {
-            this.sources.splice(index, 1);
+            this.checkSources.splice(index, 1);
+            return true;
+        }
+        else
+            return false;
+    }
+    
+    // Function: removes the given check source from the checkBox's list of sources.
+    // Parameters: string for a source name.
+    // Return Value: Boolean for whether the given source was found or not.
+    this.removeDisabledSource = function (sourceName, tempCheckBox)
+    {
+        throwIfTypeDoesNotMatch(sourceName, "string", "checkBox method removeDisabledSource");
+        
+        var index = this.disabledSources.indexOf(sourceName);
+        if (index > -1)
+        {
+            this.disabledSources.splice(index, 1);
             return true;
         }
         else
@@ -154,10 +190,10 @@ function incrementChecks(courseID, sourceName)
         throw "No checkBox for ID " + courseID + " in incrementChecks.";
     
     //Check box has not yet been checked by the given source.
-    if (!(tempCheckBox.hasSource(sourceName)))
+    if (!(tempCheckBox.hasCheckSource(sourceName)))
     {
         tempCheckBox.numTimesChecked++;
-        tempCheckBox.addSouce(sourceName);
+        tempCheckBox.addCheckSource(sourceName);
         return true;
     } else {
         return false;
@@ -181,10 +217,10 @@ function incrementChecksGroup(courseIDArray, sourceName)
             throw "No checkBox for ID " + courseID + " in incrementChecksGroup.";
         
         //Check box has not yet been checked by the given source.
-        if (!(tempCheckBox.hasSource(sourceName)))
+        if (!(tempCheckBox.hasCheckSource(sourceName)))
         {
             tempCheckBox.numTimesChecked++;
-            tempCheckBox.addSouce(sourceName);
+            tempCheckBox.addCheckSource(sourceName);
             return true;
         } else {
             return false;
@@ -205,10 +241,10 @@ function decrementChecks(courseID, sourceName)
         throw "No checkBox for ID " + courseID + " in decrementChecks.";
     
     //Check box has not yet been checked by the given source.
-    if (tempCheckBox.hasSource(sourceName))
+    if (tempCheckBox.hasCheckSource(sourceName))
     {
         tempCheckBox.numTimesChecked--;
-        tempCheckBox.removeSource(sourceName);
+        tempCheckBox.removeCheckSource(sourceName);
         return true;
     } else {
         return false;
@@ -232,10 +268,10 @@ function decrementChecksGroup(courseIDArray, sourceName)
             throw "No checkBox for ID " + courseID + " in decrementChecksGroup.";
         
         //Check box has not yet been checked by the given source.
-        if (tempCheckBox.hasSource(sourceName))
+        if (tempCheckBox.hasCheckSource(sourceName))
         {
             tempCheckBox.numTimesChecked--;
-            tempCheckBox.removeSource(sourceName);
+            tempCheckBox.removeCheckSource(sourceName);
             return true;
         } else {
             return false;
@@ -256,10 +292,10 @@ function incrementDisabled(courseID, sourceName)
         throw "No checkBox for ID " + courseID + " in incrementDisabled.";
     
     //Check box has not yet been checked by the given source.
-    if (!(tempCheckBox.hasSource(sourceName)))
+    if (!(tempCheckBox.hasDisabledSource(sourceName)))
     {
         tempCheckBox.numTimesDisabled++;
-        tempCheckBox.addSouce(sourceName);
+        tempCheckBox.addDisabledSource(sourceName);
         return true;
     } else {
         return false;
@@ -283,10 +319,10 @@ function incrementDisabledGroup(courseIDArray, sourceName)
             throw "No checkBox for ID " + courseID + " in incrementDisabledGroup";
         
         //Check box has not yet been checked by the given source.
-        if (!(tempCheckBox.hasSource(sourceName)))
+        if (!(tempCheckBox.hasDisabledSource(sourceName)))
         {
             tempCheckBox.numTimesDisabled++;
-            tempCheckBox.addSouce(sourceName);
+            tempCheckBox.addDisabledSource(sourceName);
             return true;
         } else {
             return false;
@@ -307,10 +343,10 @@ function decrementDisabled(courseID, sourceName)
         throw "No checkBox for ID " + courseID + " in decrementDisabled.";
     
     //Check box has not yet been checked by the given source.
-    if (tempCheckBox.hasSource(sourceName))
+    if (tempCheckBox.hasDisabledSource(sourceName))
     {
         tempCheckBox.numTimesDisabled--;
-        tempCheckBox.removeSource(sourceName);
+        tempCheckBox.removeDisabledSource(sourceName);
         return true;
     } else {
         return false;
@@ -334,10 +370,10 @@ function decrementDisabledGroup(courseIDArray, sourceName)
             throw "No checkBox for ID " + courseID + " in decrementDisabledGroup.";
         
         //Check box has not yet been checked by the given source.
-        if (tempCheckBox.hasSource(sourceName))
+        if (tempCheckBox.hasDisabledSource(sourceName))
         {
             tempCheckBox.numTimesDisabled--;
-            tempCheckBox.removeSource(sourceName);
+            tempCheckBox.removeDisabledSource(sourceName);
             return true;
         } else {
             return false;
@@ -395,4 +431,14 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
 {
     getHTMLElementForCourseID(tempCheckBox.ID);
+}
+
+/* --- Debugging --- */
+function logCheckBoxArray()
+{
+    for (var i = 0; i < checkBoxArray.length; i++)
+    {
+        var tempCheckBox = checkBoxArray[i];
+        console.log(tempCheckBox.ID + "\n"+ JSON.stringify(tempCheckBox) +"\n");
+    }
 }

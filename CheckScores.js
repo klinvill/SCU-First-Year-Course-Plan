@@ -30,7 +30,7 @@ function CheckWaived() {
     {
         unwaiveCourse("MATH 9");
         var coursesToDisable = ["MATH 14"].concat(preReqsChain("MATH 14"));
-        console.log(coursesToDisable);
+        console.log("CRE Enable: " + coursesToDisable);
         incrementDisabledGroup(coursesToDisable, "CRE_Score");
         
     } else if (CRE_Score == 1) {
@@ -173,5 +173,4 @@ function CheckWaived() {
             }
         }
     });
-    
 }
