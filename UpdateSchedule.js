@@ -97,7 +97,6 @@ function updateSchedule()
     // Generating a schedule.
     var major = document.getElementById("Major").value;
     var courseSchedule = generateSchedule(major);
-    console.log(courseSchedule);
     
     // Error checking to make sure proper amount of quarters are present
     if (courseSchedule.length != quarters)
@@ -143,20 +142,25 @@ function updateSchedule()
     // Update the courses waived section into three columns
     $('.waived-courses').empty();
     var coursesWaived = [];
-    for (var i = 0; i < COEN_course_array.length; i++)
+    // If a major is selected, display waived courses
+    if(major != "")
     {
-        //console.log(COEN_course_array[i]);
-        if(COEN_course_array[i].waived && COEN_course_array[i].id != "MATH 9")
+        for (var i = 0; i < courseArrayForMajor(major).length; i++)
         {
-            coursesWaived.push(COEN_course_array[i].id);
+            courseArray = courseArrayForMajor(major);
+            //console.log(COEN_course_array[i]);
+            if(courseArray[i].waived && courseArray[i].id != "MATH 9" && courseArray[i].id != "ENVS 21")
+            {
+                coursesWaived.push(courseArray[i].id);
+            }
         }
-    }
-    for (var i = 0; i < 3; i++)
-    {
-        for (var j = 0; j < Math.ceil(coursesWaived.length / 3); j++)
+        for (var i = 0; i < 3; i++)
         {
-            if(j + i * Math.ceil(coursesWaived.length / 3) < coursesWaived.length)
-                $('#waived-column-'+i).append('<li>'+coursesWaived[j + i * Math.ceil(coursesWaived.length / 3)]+'</li>');
+            for (var j = 0; j < Math.ceil(coursesWaived.length / 3); j++)
+            {
+                if(j + i * Math.ceil(coursesWaived.length / 3) < coursesWaived.length)
+                    $('#waived-column-'+i).append('<li>'+coursesWaived[j + i * Math.ceil(coursesWaived.length / 3)]+'</li>');
+            }
         }
     }
     
@@ -199,10 +203,6 @@ function placeEngr1 (courseSchedule)
         var numLabsFall = numLabsInQuarter(courseSchedule[0]);
         var numLabsWinter = numLabsInQuarter(courseSchedule[1]);
         var numLabsSpring = numLabsInQuarter(courseSchedule[2]);
-        
-        console.log("Fall labs: ", numLabsFall);
-        console.log("Winter labs: ", numLabsWinter);
-        console.log("Spring labs: ", numLabsSpring);
         
         
         if (numLabsSpring < numLabsFall && numLabsSpring < numLabsWinter)

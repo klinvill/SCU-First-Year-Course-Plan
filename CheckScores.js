@@ -74,15 +74,16 @@ function CheckWaived() {
     if (AP_Chem_Score >= 4)
     {
         waiveCourse("CHEM 12");
-        
     }
     
+    /* Currently outside the scope of our system
     // Chem 13
     if (AP_Chem_Score >= 5)
     {
         waiveCourse("CHEM 13");
     }
-    
+    */
+     
     // --- ENVS Course ---
     
     // ENVS 21
@@ -146,7 +147,8 @@ function CheckWaived() {
             if(checked == 1) {
                 while(tempCourse.pre_req != "") {
                     var tempCourse = courseForID(tempCourse.pre_req);
-                    document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
+                    if(document.getElementById("OC_"+tempCourse.id) != null)
+                             document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
                     //document.getElementById("OC_"+tempCourse.id).onclick = "return false";//make it uneditable
                     //document.getElementById("Label_"+tempCourse.id).addClass("Uneditable");//gray it out
                 }

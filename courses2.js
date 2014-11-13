@@ -253,6 +253,17 @@ var allCourses =
  shouldHaveCheckBox: true
  },
  {
+ name:"Chemistry II",
+ id: "CHEM 12",
+ offered: "W",
+ waived: false,
+ pre_req:"CHEM 11",
+ replace_with: finalCourseOption.id,
+ previous: "CHEM 11",
+ hasLab: true,
+ shouldHaveCheckBox: true
+ },
+ {
  name: "Physics I",
  id: "PHYS 31",
  offered: "W",
