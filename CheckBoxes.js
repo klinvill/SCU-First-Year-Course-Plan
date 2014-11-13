@@ -430,13 +430,32 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 // Return Value: the HTML element for the given check box. Returns undefined if not such element.
 function getHTMLChecksBoxElementForCheckBox(tempCheckBox)
 {
+    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLChecksBoxElementForCheckBox");
     getHTMLElementForCourseID(tempCheckBox.ID);
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
-updateCheckBoxDisplay()
+function updateCheckBoxDisplay()
 {
-    
+    for (var i = 0; i < checkBoxArray.length; i++)
+    {
+        var tempCheckBox = checkBoxArray[i];
+        var htmlCheckBox = getHTMLChecksBoxElementForCheckBox(tempCheckBox);
+        
+        if (tempCheckBox.numTimesChecked > 0)
+        {
+            // Check the checkbox.
+        } else {
+            // Uncheck the check box.
+        }
+        
+        if (tempCheckBox.numTimesDisabled > 0)
+        {
+            // Disable and grey out the checkbox.
+        } else {
+            // Un-Disable and un-grey the check box.
+        }
+    }
 }
 
 /* --- Debugging --- */

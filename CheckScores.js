@@ -147,8 +147,6 @@ function CheckWaived() {
         decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
     
-    console.log("I was called.");
-    
     /*$("#OC_Form input").each(function() {
         if($(this).is(":checked"))
         {
