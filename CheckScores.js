@@ -48,11 +48,11 @@ function CheckWaived() {
         waiveCourse("MATH 12");
         incrementChecksAndDisabled("MATH 12", "MATH 12 AP_Score");
         var preReqs = preReqsChain("MATH 12");
-        incrementChecksAndDisabled(preReqs, "MATH 12 AP_Score");
+        incrementChecksAndDisabledGroup(preReqs, "MATH 12 AP_Score");
     } else {
         decrementChecksAndDisabled("MATH 12", "MATH 12 AP_Score");
         var preReqs = preReqsChain("MATH 12");
-        decrementChecksAndDisabled(preReqs, "MATH 12 AP_Score");
+        decrementChecksAndDisabledGroup(preReqs, "MATH 12 AP_Score");
     }
     
     //Note this logic might not be correct for ELEN's.

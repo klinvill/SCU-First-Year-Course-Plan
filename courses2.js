@@ -402,6 +402,90 @@ var allCourses =
  },
 ]
 
+
+
+/* --- Data Retreival Functions --- */
+
+// This function takes a string that represents the ID for a course.
+// It returns the course in the allCourses array with the given ID.
+// If the ID does not match a course in the array the function returns undefined.
+function courseForID(courseID)
+{
+    if (typeof(courseID) != "string")
+    {
+        throw "Invalid parameter type in courseForID.";
+    }
+    
+    // Searching through array of courses.
+    for (var i = 0; i < allCourses.length; i++)
+    {
+        tempCourse = allCourses[i];
+        if (courseID == tempCourse.id)
+        {
+            return tempCourse;
+        }
+    }
+    
+    // Course not found. Returning undefined.
+    return undefined;
+}
+
+// Function: called to see if the prerequisites for a course have been fulfilled.
+// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
+function prereqsFulfilled(courseID)
+{
+    if (typeof(courseID) != "string")
+        throw "Invalid parameter type in courseForID.";
+    
+    var tempCourse = courseForID(courseID);
+    var preReq = courseForID(tempCourse.previous);
+    
+    // Still Using Strings
+    if (typeof(tempCourse.previous) == "string")
+    {
+        // Course has no PreReqs.
+        if (preReq == undefined) return true;
+        // Course has PreReqs.
+        else return (preReq.waived && prereqsFulfilled(preReq));
+    }
+    // Using Arrays
+    {
+        var fulfilled = true;
+        
+        for (var i = 0; i < tempCourse.previous.length; i++)
+        {
+            // Course has no PreReqs.
+            if (preReq == undefined) fulfilled = fulfilled && true;
+            // Course has PreReqs.
+            else fulfilled = fulfilled && (preReq.waived && prereqsFulfilled(preReq));
+        }
+        
+        return fulfilled;
+    }
+}
+
+//Function: returns an array of strings of all preReqs and their preReqs for the course.
+// Paramter: a string for the course ID.
+// Return Value: an array of preReq strings.
+//               If not preReqs, returns empty array.
+function preReqsChain(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "preReqsChain");
+    
+    var tempCourse = courseForID(courseID);
+    if (tempCourse == undefined)
+        throw "No course for given ID in preReqsChain.";
+    
+    if (tempCourse.pre_req == "")
+        return [];
+    else
+    {
+        return [tempCourse.pre_req].concat(preReqsChain(tempCourse.pre_req));
+    }
+}
+
+
+
 /* --- Major Specific Course Arrays --- */
 
 // Array of courses in the COEN major, ordered in terms of priority placement with the highest priority being at the front
@@ -472,87 +556,6 @@ var ELEN_course_array =
  courseForID("ELEN 100"),
  courseForID("ELEN 33")
  ];
-
-/* --- Data Retreival Functions --- */
-
-// This function takes a string that represents the ID for a course.
-// It returns the course in the allCourses array with the given ID.
-// If the ID does not match a course in the array the function returns undefined.
-function courseForID(courseID)
-{
-    if (typeof(courseID) != "string")
-    {
-        console.log(courseID);
-        throw "Invalid parameter type in courseForID.";
-    }
-    
-    // Searching through array of courses.
-    for (var i = 0; i < allCourses.length; i++)
-    {
-        tempCourse = allCourses[i];
-        if (courseID == tempCourse.id)
-        {
-            return tempCourse;
-        }
-    }
-    
-    // Course not found. Returning undefined.
-    return undefined;
-}
-
-// Function: called to see if the prerequisites for a course have been fulfilled.
-// Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
-function prereqsFulfilled(courseID)
-{
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type in courseForID.";
-    
-    var tempCourse = courseForID(courseID);
-    var preReq = courseForID(tempCourse.previous);
-    
-    // Still Using Strings
-    if (typeof(tempCourse.previous) == "string")
-    {
-        // Course has no PreReqs.
-        if (preReq == undefined) return true;
-        // Course has PreReqs.
-        else return (preReq.waived && prereqsFulfilled(preReq));
-    }
-    // Using Arrays
-    {
-        var fulfilled = true;
-        
-        for (var i = 0; i < tempCourse.previous.length; i++)
-        {
-            // Course has no PreReqs.
-            if (preReq == undefined) fulfilled = fulfilled && true;
-            // Course has PreReqs.
-            else fulfilled = fulfilled && (preReq.waived && prereqsFulfilled(preReq));
-        }
-        
-        return fulfilled;
-    }
-}
-
-//Function: returns an array of strings of all preReqs and their preReqs for the course.
-// Paramter: a string for the course ID.
-// Return Value: an array of preReq strings.
-//               If not preReqs, returns empty array.
-function preReqsChain(courseID)
-{
-    throwIfTypeDoesNotMatch(courseID, "string", "preReqsChain");
-    
-    var tempCourse = courseForID(courseForID);
-    if (tempCourse == undefined)
-        throw "No course for given ID in preReqsChain.";
-    
-    if (tempCourse.pre_req == "")
-        return [];
-    else
-    {
-        return [tempCourse.pre_req].concat(preReqsChain(tempCourse.pre_req));
-    }
-}
 
 
 

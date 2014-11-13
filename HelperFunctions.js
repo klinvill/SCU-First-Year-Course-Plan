@@ -25,5 +25,9 @@ function arrayContains(myArray, element)
 function throwIfTypeDoesNotMatch(parameter, typeString, callLocationString)
 {
     if (typeof(parameter) != typeString)
-        throw "Invalid parameter type in" + callLocationString + ".";
+    {
+        console.log("Problem Parameter: " + parameter);
+        debugger;
+        throw "Invalid parameter type in " + callLocationString + ".";
+    }
 }
