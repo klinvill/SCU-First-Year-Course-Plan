@@ -147,7 +147,9 @@ function CheckWaived() {
         decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
     
-    $("#OC_Form input").each(function() {
+    console.log("I was called.");
+    
+    /*$("#OC_Form input").each(function() {
         if($(this).is(":checked"))
         {
             waiveCourse($(this).val());
@@ -176,5 +178,13 @@ function CheckWaived() {
                 unwaiveCourse($(this).val());
             }
         }
-    });
+    });*/
+    
+    updateCheckBoxDisplay();
+}
+
+// Function: Called to update the checkboxes on the web page to check and/or lock them.
+updateCheckBoxDisplay()
+{
+    
 }
