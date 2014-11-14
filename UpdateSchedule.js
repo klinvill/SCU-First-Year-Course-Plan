@@ -44,6 +44,7 @@ function createCheckboxes()
 
 function checkboxClicked(courseID)
 {
+    debugger;
     var checkboxElement = getHTMLCheckBoxElementForCourseID(courseID);
     if (checkboxElement != undefined)
     {
