@@ -1,9 +1,6 @@
 
 // Course Data File
 
-/* --- Warnings for reminding us what we need to do. --- */
-console.warn("Update ENVS 21 with correct information.")
-
 // An object prototype function for courses.
 function course(name, id, offered, waived, pre_req, replace_with, previous, hasLab, shouldHaveCheckBox)
 {
@@ -422,10 +419,7 @@ var allCourses =
 // If the ID does not match a course in the array the function returns undefined.
 function courseForID(courseID)
 {
-    if (typeof(courseID) != "string")
-    {
-        throw "Invalid parameter type in courseForID.";
-    }
+    throwIfTypeDoesNotMatch(courseID, "string", "courseForID");
     
     // Searching through array of courses.
     for (var i = 0; i < allCourses.length; i++)
@@ -445,8 +439,7 @@ function courseForID(courseID)
 // Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
 function prereqsFulfilled(courseID)
 {
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type in courseForID.";
+    throwIfTypeDoesNotMatch(courseID, "string", "prereqsFulfilled");
     
     var tempCourse = courseForID(courseID);
     var preReq = courseForID(tempCourse.previous);
@@ -608,7 +601,7 @@ function waiveCourseAndPreReqs(courseID)
     var tempCourse = courseForID(courseID);
     tempCourse.waived = true;
     if(tempCourse.pre_req)
-        waiveCourseAndPreReqs(course.pre_req);
+        waiveCourseAndPreReqs(tempCourse.pre_req);
 }
 
 function unwaiveCourse(courseID)
@@ -621,7 +614,7 @@ function unwaiveCourseAndPreReqs(courseID)
     var tempCourse = courseForID(courseID);
     tempCourse.waived = false;
     if(tempCourse.pre_req)
-        unwaiveCourseAndPreReqs(course.pre_req);
+        unwaiveCourseAndPreReqs(tempCourse.pre_req);
 }
 
 // Function: called to reset the waived status of all courses to default.

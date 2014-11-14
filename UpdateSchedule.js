@@ -14,8 +14,7 @@ function createCheckboxes()
     $.each(tempCourseArray, function(index, value){
            if (value.shouldHaveCheckBox)
            {
-                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onclick="checkboxChanged("'+value.id+'")" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
-           
+                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onclick="checkboxClicked('+"'"+value.id+"'"+')" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
                 // Add new checkbox object to checkbox javascript array
                 addCheckBox(value.id, 0, 0);
            
@@ -42,26 +41,39 @@ function createCheckboxes()
            });
 }
 
-function checkboxChanged(courseID)
+function checkboxClicked(courseID)
 {
     var checkboxElement = getHTMLCheckBoxElementForCourseID(courseID);
     if (checkboxElement != undefined)
     {
-        if(checkboxElement).checked
+        if(checkboxElement.checked)
         {
-            // Add logic for if the checkbox is checked
+            // Increment number of checks and record user checking.
+            incrementChecks(courseID, courseID+" check_box");
+            setCheckedByUser(courseID);
+            
+            // Also check the predecessors
+            var preReqs = preReqsChain(courseID);
+            incrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
         }
         else
         {
-            // Add logic for if the checkbox is unchecked
+            // Decrement number of checks and record user un-checking.
+            decrementChecks(courseID, courseID+" check_box");
+            setUncheckedByUser(courseID);
+            
+            // Also check the predecessors
+            var preReqs = preReqsChain(courseID);
+            decrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
         }
-        // Update Schedule
-        updateSchedule();
+        
     }
     else
     {
-        throw "Error: checkbox element could not be found";
+        throw "Error: checkbox element could not be found in checkboxClicked.";
     }
+    
+    updateSchedule();
 }
 
 function majorChanged()
@@ -94,7 +106,7 @@ function majorChanged()
 }
 
 
-// Function to be called whenever something changes on the website.
+// The master function to be called whenever something changes on the website.
 
 function updateSchedule()
 {
@@ -115,6 +127,9 @@ function updateSchedule()
     
     // Updated waived status of courses.
     CheckWaived();
+    
+    // Updating the checkbox display.
+    updateCheckBoxDisplay();
     
     // Generating a schedule.
     var major = document.getElementById("Major").value;

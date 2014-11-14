@@ -15,15 +15,17 @@ function generateSchedule(major)
     var courseSchedule = [ [], [], [] ];
     var courseArray;
     
+    var major = $('#Major').val();
+    
     // Seleceting correct course array.
     if (major == "ELEN") {
         courseArray = courseArrayForMajor("ELEN");
     }
-    else if (major == "COEN" || major == "")
+    else if (major == "COEN" || major == "" || major == null)
     {
         courseArray = courseArrayForMajor("COEN");
     }
-    else throw "Improper major selection in generateSchedule function.";
+    else throw ("Improper major selection in generateSchedule function:", major);
     
     for (var i = 0; i < courseArray.length; i++)
     {

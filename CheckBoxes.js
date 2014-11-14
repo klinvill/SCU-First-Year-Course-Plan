@@ -12,6 +12,7 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
     this.ID = ID;
     this.numTimesChecked = numTimesChecked;
     this.numTimesDisabled = numTimesDisabled;
+    this.userChecked = false;
     this.checkSources = []; // Array of string of check source ID's.
     this.disabledSources = []; // Array of string of disabled source ID's.
     
@@ -139,7 +140,37 @@ function shouldBeDisabled(courseID)
     return (getCheckBoxForID(courseID).numTimesDisabled >= 1);
 }
 
+// Function: returns whether the checkBox for a given course ID was
+//           checked manually by the user.
+// Parameters: a string for the course ID.
+// Return value: Boolean.
+function checkBoxCheckedByUser(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "checkBoxCheckedByUser");
+    
+    var tempCheckBox = getCheckBoxForID(courseID);
+    
+    if (getCheckBoxForID == undefined)
+        throw "No checkbox for provided ID in checkBoxCheckedByUser.";
+    else
+        return getCheckBoxForID(courseID).userChecked;
+}
 
+// Function: get all the IDs for courses that have been user waived.
+// Return value: An array of course ID strings.
+function userCheckedCourseIDs()
+{
+    var courseIDs = [];
+    
+    for (var i = 0; i < checkBoxArray.length; i++)
+    {
+        var tempCheckBox = checkBoxArray[i];
+        if (tempCheckBox.userChecked)
+            courseIDs.push(tempCheckBox.ID);
+    }
+    
+    return courseIDs;
+}
 
 /* --- Functions for populating and manipulating the array ---*/
 
@@ -214,16 +245,24 @@ function incrementChecksGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in incrementChecksGroup.";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in incrementChecksGroup.";
+        }
         
         //Check box has not yet been checked by the given source.
         if (!(tempCheckBox.hasCheckSource(sourceName)))
         {
             tempCheckBox.numTimesChecked++;
             tempCheckBox.addCheckSource(sourceName);
+            /* Don't want this to return, otherwise it'll break the loop
             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -266,7 +305,11 @@ function decrementChecksGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in decrementChecksGroup.";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in decrementChecksGroup.";
+        }
         
         //Check box has not yet been checked by the given source.
         if (tempCheckBox.hasCheckSource(sourceName))
@@ -274,9 +317,13 @@ function decrementChecksGroup(courseIDArray, sourceName)
             if(tempCheckBox.numTimesChecked > 0)
                 tempCheckBox.numTimesChecked--;
             tempCheckBox.removeCheckSource(sourceName);
+            /* Don't want this to return, otherwise it'll break the loop
             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -318,16 +365,24 @@ function incrementDisabledGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in incrementDisabledGroup";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in incrementDisabledGroup";
+        }
         
         //Check box has not yet been checked by the given source.
         if (!(tempCheckBox.hasDisabledSource(sourceName)))
         {
             tempCheckBox.numTimesDisabled++;
             tempCheckBox.addDisabledSource(sourceName);
+            /* Don't want this to return, otherwise it'll break the loop
             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -347,7 +402,7 @@ function decrementDisabled(courseID, sourceName)
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasDisabledSource(sourceName))
     {
-        if(tempCheckBox.numTimesChecked > 0)
+        if(tempCheckBox.numTimesDisabled > 0)
             tempCheckBox.numTimesDisabled--;
         tempCheckBox.removeDisabledSource(sourceName);
         return true;
@@ -370,17 +425,25 @@ function decrementDisabledGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in decrementDisabledGroup.";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in decrementDisabledGroup.";
+        }
         
         //Check box has not yet been checked by the given source.
         if (tempCheckBox.hasDisabledSource(sourceName))
         {
-            if(tempCheckBox.numTimesChecked > 0)
+            if(tempCheckBox.numTimesDisabled > 0)
                 tempCheckBox.numTimesDisabled--;
             tempCheckBox.removeDisabledSource(sourceName);
-            return true;
+            /* Don't want this to return, otherwise it'll break the loop
+             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -413,6 +476,24 @@ function decrementChecksAndDisabledGroup(courseIDArray, sourceName)
     decrementDisabledGroup(courseIDArray, sourceName);
 }
 
+/* --- Setters to change whether the checkbox has been checked by the user. --- */
+
+//Function: sets the userChecked field of a checkBox to true.
+function setCheckedByUser(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "setCheckedByUser");
+    
+    getCheckBoxForID(courseID).userChecked = true;
+}
+
+//Function: sets the userChecked field of a checkBox to false.
+function setUncheckedByUser(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "setCheckedByUser");
+    
+    getCheckBoxForID(courseID).userChecked = false;
+    
+}
 
 /* --- Interfacing with the HTML code. --- */
 
@@ -432,10 +513,32 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 // Function: gets the HTML element for the check box corresponding to the checkBox instance.
 // Parameters: a checkBox.
 // Return Value: the HTML element for the given check box. Returns undefined if not such element.
-function getHTMLChecksBoxElementForCheckBox(tempCheckBox)
+function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
 {
-    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLChecksBoxElementForCheckBox");
-    getHTMLElementForCourseID(tempCheckBox.ID);
+    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementForCheckBox");
+    return getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
+}
+
+// Function: gets the wrapper HTML element for the check box corresponding to the course ID.
+// Parameters: a string for the course ID.
+// Return Value: the HTML element for the wrapper of the given check box. Returns undefined if not such element.
+function getHTMLCheckBoxElementWrapperForCourseID(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "getHTMLCheckBoxElementForCourseID");
+    
+    if (checkBoxForIDExists(courseID))
+        return document.getElementById("Label_" + courseID);
+    else
+        return undefined;
+}
+
+// Function: gets the wrapper HTML element for the check box corresponding to the course ID.
+// Parameters: a checkBox.
+// Return Value: the HTML element for the wrapper of the given check box. Returns undefined if not such element.
+function getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox)
+{
+    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementWrapperForCheckBox");
+    return getHTMLCheckBoxElementWrapperForCourseID(tempCheckBox.ID);
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
@@ -444,22 +547,53 @@ function updateCheckBoxDisplay()
     for (var i = 0; i < checkBoxArray.length; i++)
     {
         var tempCheckBox = checkBoxArray[i];
-        var htmlCheckBox = getHTMLChecksBoxElementForCheckBox(tempCheckBox);
+        var htmlCheckBox = getHTMLCheckBoxElementForCheckBox(tempCheckBox);
+        var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox);
         
         if (tempCheckBox.numTimesChecked > 0)
         {
             // Check the checkbox.
+            htmlCheckBox.checked = true;
         } else {
             // Uncheck the check box.
+            htmlCheckBox.checked = false;
         }
         
         if (tempCheckBox.numTimesDisabled > 0)
         {
             // Disable and grey out the checkbox.
+            htmlCheckBox.disabled = true;
+            htmlCheckBoxWrapper.className = "Uneditable";
         } else {
             // Un-Disable and un-grey the check box.
+            htmlCheckBox.disabled = false;
+            htmlCheckBoxWrapper.className = "";
         }
     }
+    
+    //The stupid logic for making CRE score affect these.
+    var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
+    
+    if (CRE_Score == 2)
+    {
+        // Hardcoding is bad, but oh well.
+        var checkBoxesEffectedByCRE = ["MATH 14", "MATH 13", "MATH 12", "MATH 11"];
+        
+        for (var i = 0; i < checkBoxesEffectedByCRE.length; i++)
+        {
+            var courseID = checkBoxesEffectedByCRE[i];
+            var htmlCheckBox = getHTMLCheckBoxElementForCourseID(courseID);
+            var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCourseID(courseID);
+            
+            // Uncheck the check box.
+            htmlCheckBox.checked = false;
+            // Disable and grey out the checkbox.
+            htmlCheckBox.disabled = true;
+            htmlCheckBoxWrapper.className = "Uneditable";
+        }
+    }
+    
+    
 }
 
 /* --- Debugging --- */
