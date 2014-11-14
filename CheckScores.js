@@ -170,7 +170,7 @@ function checkBoxWaiving()
         tempCourseID = coursesWaivedByUser[i];
         if (tempCourseID)
         {
-            if (tempCourseID.substring(0,4) == "PHYS")
+            if (startsWith(tempCourseID, "PHYS"))
                 waiveCourse(tempCourseID);
             else
                 waiveCourseAndPreReqs(tempCourseID);
