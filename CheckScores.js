@@ -11,6 +11,10 @@ function CheckWaived() {
     
     resetWaivedStatuses();
     
+    // Check Box Waiving
+    
+    checkBoxWaiving();
+    
     // Getting Scores
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
     var AP_Calc_BC_Score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
@@ -19,8 +23,8 @@ function CheckWaived() {
     var AP_Env_Sci_Score = document.getElementById("AP_Env_Sci_Score").selectedIndex;
     var AP_PHYS_Mech_Score = document.getElementById("AP_Mech_Score").selectedIndex;
     var AP_PHYS_EnM_Score = document.getElementById("AP_EnM_Score").selectedIndex;
-    var Prog_Exp = document.getElementById("PPE_Value").selectedIndex;
     
+    var Prog_Exp = document.getElementById("PPE_Value").selectedIndex;
     var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
     
     // --- Math Courses ---
@@ -28,20 +32,10 @@ function CheckWaived() {
     // MATH 9
     if (CRE_Score == 2) // Score of 15 or less
     {
-        unwaiveCourse("MATH 9");
-        // Get list of courses to be disabled as the preReqs to MATH 14.
-        // Then remove Math 9 because it has no check box.
-        var coursesToDisable = ["MATH 14"].concat(preReqsChain("MATH 14"));
-        coursesToDisable.splice(coursesToDisable.indexOf("MATH 9"), 1);
-        incrementDisabledGroup(coursesToDisable, "CRE_Score");
+        unwaiveCourseAndPreReqs("MATH 14");
         
     } else if (CRE_Score == 1) {
         waiveCourse("MATH 9");
-        // Get list of courses to be enabled as the preReqs to MATH 14.
-        // Then remove Math 9 because it has no check box.
-        var coursesToEnable = ["MATH 14"].concat(preReqsChain("MATH 14"));
-        coursesToEnable.splice(coursesToEnable.indexOf("MATH 9"), 1);
-        decrementDisabledGroup(coursesToEnable, "CRE_Score");
     }
     
     // MATH 11
@@ -180,6 +174,20 @@ function CheckWaived() {
             }
         }
     });*/
+}
+
+/* --- Helper Functions to CheckScores Schedule --- */
+//Function: Waives courses based on user clicked checkboxes.
+function checkBoxWaiving()
+{
+    var coursesWaivedByUser = userWaivedCourseIDs();
     
-    updateCheckBoxDisplay();
+    for (var i = 0; i < coursesWaivedByUser.length; i++)
+    {
+        tempCourseID = coursesWaivedByUser[i];
+        if (tempCourseID)
+        {
+            waiveCourseAndPreReqs(courseID);
+        }
+    }
 }

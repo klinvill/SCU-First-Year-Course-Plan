@@ -49,19 +49,24 @@ function checkboxClicked(courseID)
     {
         if(checkboxElement).checked
         {
-            waiveCourseAndPreReqs()
+            // Increment number of checks and record user checking.
+            incrementChecks(courseID);
+            setCheckedByUser(courseID);
         }
         else
         {
-            // Add logic for if the checkbox is unchecked
+            // Decrement number of checks and record user un-checking.
+            decrementChecks(courseID);
+            setUncheckedByUser(courseID);
         }
-        // Update Schedule
-        updateSchedule();
+        
     }
     else
     {
         throw "Error: checkbox element could not be found in checkboxClicked.";
     }
+    
+    updateSchedule();
 }
 
 function majorChanged()
@@ -115,6 +120,9 @@ function updateSchedule()
     
     // Updated waived status of courses.
     CheckWaived();
+    
+    // Updating the checkbox display.
+    updateCheckBoxDisplay();
     
     // Generating a schedule.
     var major = document.getElementById("Major").value;
