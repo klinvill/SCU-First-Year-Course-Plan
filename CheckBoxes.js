@@ -502,8 +502,6 @@ function updateCheckBoxDisplay()
         var htmlCheckBox = getHTMLCheckBoxElementForCheckBox(tempCheckBox);
         var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox);
         
-        if (htmlCheckBox == undefined) debugger;
-        
         if (tempCheckBox.numTimesChecked > 0)
         {
             // Check the checkbox.
@@ -526,20 +524,25 @@ function updateCheckBoxDisplay()
     }
     
     //The stupid logic for making CRE score affect these.
-    var checkBoxesEffectedByCRE = ["MATH 14", "MATH 13", "MATH 12", "MATH 11"];
     var CRE_Score = document.getElementById("CRE_Score").selectedIndex;
     
-    for (var i = 0; i < checkBoxesEffectedByCRE.length; i++)
+    if (CRE_Score == 2)
     {
-        var courseID = checkBoxesEffectedByCRE[i];
-        var htmlCheckBox = getHTMLCheckBoxElementForCourseID(courseID);
-        var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCourseID(courseID);
+        // Hardcoding is bad, but oh well.
+        var checkBoxesEffectedByCRE = ["MATH 14", "MATH 13", "MATH 12", "MATH 11"];
         
-        // Uncheck the check box.
-        htmlCheckBox.checked = false;
-        // Disable and grey out the checkbox.
-        htmlCheckBox.disabled = true;
-        htmlCheckBoxWrapper.className = "Uneditable";
+        for (var i = 0; i < checkBoxesEffectedByCRE.length; i++)
+        {
+            var courseID = checkBoxesEffectedByCRE[i];
+            var htmlCheckBox = getHTMLCheckBoxElementForCourseID(courseID);
+            var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCourseID(courseID);
+            
+            // Uncheck the check box.
+            htmlCheckBox.checked = false;
+            // Disable and grey out the checkbox.
+            htmlCheckBox.disabled = true;
+            htmlCheckBoxWrapper.className = "Uneditable";
+        }
     }
     
     
