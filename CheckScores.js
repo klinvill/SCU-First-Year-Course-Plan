@@ -76,10 +76,17 @@ function CheckWaived() {
     // --- Chem Courses ---
     
     // Chem 11
-    if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
+    if (AP_Chem_Score >= 3)
     {
         waiveCourse("CHEM 11");
         incrementChecksAndDisabled("CHEM 11", "CHEM 11 AP_Score");
+    } else {
+        decrementChecksAndDisabled("CHEM 11", "CHEM 11 AP_Score");
+    }
+    
+    if (AP_Env_Sci_Score >= 4)
+    {
+        waiveCourse("CHEM 11");
     }
     
     // Chem 12
@@ -163,7 +170,10 @@ function checkBoxWaiving()
         tempCourseID = coursesWaivedByUser[i];
         if (tempCourseID)
         {
-            waiveCourseAndPreReqs(tempCourseID);
+            if (tempCourseID.substring(0,4) == "PHYS")
+                waiveCourse(tempCourseID);
+            else
+                waiveCourseAndPreReqs(tempCourseID);
         }
     }
     
