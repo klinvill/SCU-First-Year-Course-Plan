@@ -576,7 +576,7 @@ function waiveCourseAndPreReqs(courseID)
     var tempCourse = courseForID(courseID);
     tempCourse.waived = true;
     if(tempCourse.pre_req)
-        waiveCourseAndPreReqs(course.pre_req);
+        waiveCourseAndPreReqs(tempCourse.pre_req);
 }
 
 function unwaiveCourse(courseID)
@@ -589,7 +589,7 @@ function unwaiveCourseAndPreReqs(courseID)
     var tempCourse = courseForID(courseID);
     tempCourse.waived = false;
     if(tempCourse.pre_req)
-        unwaiveCourseAndPreReqs(course.pre_req);
+        unwaiveCourseAndPreReqs(tempCourse.pre_req);
 }
 
 // Function: called to reset the waived status of all courses to default.
