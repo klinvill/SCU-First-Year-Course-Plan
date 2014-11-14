@@ -155,7 +155,7 @@ function CheckWaived() {
 function checkBoxWaiving()
 {
     var coursesWaivedByUser = userCheckedCourseIDs();
-    debugger;
+    
     for (var i = 0; i < coursesWaivedByUser.length; i++)
     {
         debugger;

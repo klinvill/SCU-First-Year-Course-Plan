@@ -491,7 +491,7 @@ function setUncheckedByUser(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "setCheckedByUser");
     
-    getCheckBoxForID(courseID).userChecked = true;
+    getCheckBoxForID(courseID).userChecked = false;
     
 }
 
