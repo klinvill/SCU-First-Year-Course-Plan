@@ -106,6 +106,7 @@ function generateSchedule(major)
         }
     }
     
+    /*
     // Potentially fill in holes with CNI 1 and 2.
     var fallQuarter = courseSchedule[0];
     var winterQuarter = courseSchedule[1];
@@ -130,7 +131,7 @@ function generateSchedule(major)
     {
         fallQuarter.push(CNI1Course);
         springQuarter.push(CNI2Course);
-    }
+    }*/
     
     // Fill in holes with core
     for (var j = 0; j < courseSchedule.length; j++)
@@ -140,6 +141,22 @@ function generateSchedule(major)
         // Check if the quarter already has 4 courses.
         while (quarter.length < classesPerQuarter)
             quarter.push(finalCourseOption);
+    }
+    
+    var CNIError = checkForOneCNI(schedule);
+    // This value will be false if only one of the C&I course
+    // was placed in the schedule.
+    
+    // If there is a C&I Error, rerun the process without C&I.
+    if (CNIError)
+    {
+        waiveCourse("C&I 1");
+        waiveCourse("C&I 2");
+        
+        courseSchedule = generateSchedule(major);
+        
+        unwaiveCourse("C&I 1");
+        unwaiveCourse("C&I 2");
     }
     
     return courseSchedule;
@@ -240,7 +257,10 @@ function prereqsPresentInQuarter(tempCourse, quarter)
     }
 }
 
-//Function: called on the schedule to check if only 1 C&I course made it in.
+// Function: called on the schedule to check if only 1 C&I course made it in.
+// Parameter: a schedule array.
+// Return value: true if only one of the two CNI courses is in the schedule.
+//               false otherwise.
 function checkForOneCNI(schedule)
 {
     var CNI1Found = false;
@@ -248,8 +268,21 @@ function checkForOneCNI(schedule)
     
     for (var i = 0; i < schedule.length; i++)
     {
-        for (var j = 0; j < schedule.length; j++)
+        var quarter = schedule[i];
+        
+        for (var j = 0; j < quarter.length; j++)
+        {
+            var course = quarter[j];
+            
+            if (course.ID == "C&I 1")
+                CNI1Found = true;
+            
+            if (course.ID == "C&I 2")
+                CNI2Found = true;
+        }
     }
+    
+    return !((CNI1Found && CNI2Found) || (!CNI1Found && !CNI2Found));
 }
 
 //Function: called on a quarter to get the number of courses
