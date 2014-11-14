@@ -41,6 +41,9 @@ function CheckWaived() {
     // MATH 11
     if (CRE_Score != 2 && (AP_Calc_BC_Score >= 3 || AP_Calc_AB_Score >= 4))
     {
+        console.log("CRE_Score = " + CRE_Score + ".");
+        console.log("AP_Calc_BC_Score = " + AP_Calc_BC_Score + ".");
+        console.log("AP_Calc_AB_Score = " + AP_Calc_AB_Score + ".");
         waiveCourse("MATH 11");
         incrementChecksAndDisabled("MATH 11", "MATH 11 AP_Score");
     } else {
