@@ -468,7 +468,7 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
 {
     throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementForCheckBox");
-    getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
+    return getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
 }
 
 // Function: gets the wrapper HTML element for the check box corresponding to the course ID.
@@ -489,8 +489,8 @@ function getHTMLCheckBoxElementWrapperForCourseID(courseID)
 // Return Value: the HTML element for the wrapper of the given check box. Returns undefined if not such element.
 function getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox)
 {
-    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLChecksBoxElementWrapperForCheckBox");
-    getHTMLCheckBoxElementWrapperForCourseID(tempCheckBox.ID);
+    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementWrapperForCheckBox");
+    return getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
@@ -501,6 +501,11 @@ function updateCheckBoxDisplay()
         var tempCheckBox = checkBoxArray[i];
         var htmlCheckBox = getHTMLCheckBoxElementForCheckBox(tempCheckBox);
         var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox);
+        
+        if(htmlCheckBox == undefined)
+        {
+            throw ("Checkbox not found for: ", tempCheckBox.ID);
+        }
         
         if (tempCheckBox.numTimesChecked > 0)
         {
