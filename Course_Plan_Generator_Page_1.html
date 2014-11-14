@@ -18,8 +18,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-                            
-        <!-- Custom styles, includes styles for custom header color, courtesy of http://twbscolor.smarchal.com/ -->
+            
+        <!-- Qunit -->
+        <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.15.0.css">
+            
+        <!-- Custom styles -->
         <link rel="stylesheet" href="Styles_for_Course_Plan_Generator.css">
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -368,6 +371,10 @@
         </div>
         
         
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <div class="container">
+            <div class="row" id="qunit"></div>
+        </div>
         
         
         
@@ -378,6 +385,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- Qunit unit testing framework -->
+        <script src="https://code.jquery.com/qunit/qunit-1.15.0.js"></script>
         <script src="HelperFunctions.js"></script>
         <script src="CheckBoxes.js"></script>
         <script src="courses2.js"></script>
@@ -411,6 +420,8 @@
                 $("form").each(function(){this.reset()});
                 updateSchedule();
             }
+        
+            runUnitTests();
         </script>
         
         

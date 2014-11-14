@@ -36,5 +36,5 @@ body {
 
 /* Set schedule to fixed position */
 #schedule{
-    position: fixed;
+    /*position: fixed;*/
 }
