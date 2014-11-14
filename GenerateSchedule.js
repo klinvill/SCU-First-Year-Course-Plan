@@ -106,33 +106,6 @@ function generateSchedule(major)
         }
     }
     
-    /*
-    // Potentially fill in holes with CNI 1 and 2.
-    var fallQuarter = courseSchedule[0];
-    var winterQuarter = courseSchedule[1];
-    var springQuarter = courseSchedule[2];
-        //Check Fall and Winter
-    if (fallQuarter.length < classesPerQuarter &&
-        winterQuarter.length < classesPerQuarter)
-    {
-        fallQuarter.push(CNI1Course);
-        winterQuarter.push(CNI2Course);
-    }
-        //Check Winter and Spring
-    else if (winterQuarter.length < classesPerQuarter &&
-        springQuarter.length < classesPerQuarter)
-    {
-        winterQuarter.push(CNI1Course);
-        springQuarter.push(CNI2Course);
-    }
-    //Check Winter and Spring
-    else if (fallQuarter.length < classesPerQuarter &&
-             springQuarter.length < classesPerQuarter)
-    {
-        fallQuarter.push(CNI1Course);
-        springQuarter.push(CNI2Course);
-    }*/
-    
     // Fill in holes with core
     for (var j = 0; j < courseSchedule.length; j++)
     {
@@ -143,7 +116,7 @@ function generateSchedule(major)
             quarter.push(finalCourseOption);
     }
     
-    var CNIError = checkForOneCNI(schedule);
+    var CNIError = checkForOneCNI(courseSchedule);
     // This value will be false if only one of the C&I course
     // was placed in the schedule.
     
@@ -171,12 +144,8 @@ function generateSchedule(major)
 // Return valude: Boolean.
 function coursePresentInQuarter(courseID, quarter)
 {
-    // Parameter security.
-    if (typeof(quarter) != "object")
-        throw "Invalid parameter type for quarter in coursePresentInQuarter.";
-    
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type for courseID in coursePresentInQuarter.";
+    throwIfTypeDoesNotMatch(courseID, "string", "coursePresentInQuarter");
+    throwIfTypeDoesNotMatch(quarter, "object", "coursePresentInQuarter");
     
     // Functionality
     
@@ -197,17 +166,13 @@ function coursePresentInQuarter(courseID, quarter)
 // Return valude: Boolean.
 function coursePresentInSchedule(courseID, schedule)
 {
-    // Parameter security.
-    if (typeof(schedule) != "object")
-        throw "Invalid parameter type for schedule in coursePresentInSchedule.";
-    
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type for courseID in coursePresentInSchedule.";
+    throwIfTypeDoesNotMatch(courseID, "string", "coursePresentInSchedule");
+    throwIfTypeDoesNotMatch(schedule, "object", "coursePresentInSchedule");
     
     // True if the course is in any of the quarters.
-    return (coursePresentInQuarter(schedule[0], courseID) ||
-            coursePresentInQuarter(schedule[1], courseID) ||
-            coursePresentInQuarter(schedule[2], courseID));
+    return (coursePresentInQuarter(courseID, schedule[0]) ||
+            coursePresentInQuarter(courseID, schedule[1]) ||
+            coursePresentInQuarter(courseID, schedule[2]));
 }
 
 // Function: returns boolean if any of a course's prerequisites are in the quarter.
@@ -263,24 +228,10 @@ function prereqsPresentInQuarter(tempCourse, quarter)
 //               false otherwise.
 function checkForOneCNI(schedule)
 {
-    var CNI1Found = false;
-    var CNI2Found = false;
+    throwIfTypeDoesNotMatch(schedule, "object", "checkForOneCNI");
     
-    for (var i = 0; i < schedule.length; i++)
-    {
-        var quarter = schedule[i];
-        
-        for (var j = 0; j < quarter.length; j++)
-        {
-            var course = quarter[j];
-            
-            if (course.ID == "C&I 1")
-                CNI1Found = true;
-            
-            if (course.ID == "C&I 2")
-                CNI2Found = true;
-        }
-    }
+    var CNI1Found = coursePresentInSchedule("C&I 1", schedule);
+    var CNI2Found = coursePresentInSchedule("C&I 2", schedule);
     
     return !((CNI1Found && CNI2Found) || (!CNI1Found && !CNI2Found));
 }
