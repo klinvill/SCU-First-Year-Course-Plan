@@ -1,4 +1,33 @@
-/* --- Helper Functions To Be used Elsewhere --- */
+/* ----- Helper Functions To Be used Elsewhere ----- */
+
+/* --- Security Functions --- */
+
+// Function: checks that the parameter has the desired type and throws an exception if it doesn't.
+function throwIfTypeDoesNotMatch(parameter, typeString, callLocationString)
+{
+    if (typeof(parameter) != typeString)
+    {
+        console.log("Problem Parameter: " + parameter);
+        debugger;
+        throw "Invalid parameter type in " + callLocationString + ".";
+    }
+}
+
+/* --- String Processing Functions --- */
+
+// Function: checks if one string stars with another.
+// Parameters: full string and string to check start of first string for.
+// Return value: Boolean.
+function startsWith(fullString, startString)
+{
+    throwIfTypeDoesNotMatch(fullString, "string", "startsWith");
+    throwIfTypeDoesNotMatch(startString, "string", "startsWith");
+    
+    if (startString.length > fullString.length)
+        return false;
+    
+    return (fullString.substring(0, startString.length) == startString);
+}
 
 /* --- Array Processing Functions --- */
 
@@ -15,19 +44,4 @@ function arrayContains(myArray, element)
     }
     
     return false;
-}
-
-
-
-/* --- Security Functions --- */
-
-// Function: checks that the parameter has the desired type and throws an exception if it doesn't.
-function throwIfTypeDoesNotMatch(parameter, typeString, callLocationString)
-{
-    if (typeof(parameter) != typeString)
-    {
-        console.log("Problem Parameter: " + parameter);
-        debugger;
-        throw "Invalid parameter type in " + callLocationString + ".";
-    }
 }
