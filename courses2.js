@@ -419,10 +419,7 @@ var allCourses =
 // If the ID does not match a course in the array the function returns undefined.
 function courseForID(courseID)
 {
-    if (typeof(courseID) != "string")
-    {
-        throw "Invalid parameter type in courseForID.";
-    }
+    throwIfTypeDoesNotMatch(courseID, "string", "courseForID");
     
     // Searching through array of courses.
     for (var i = 0; i < allCourses.length; i++)
@@ -442,8 +439,7 @@ function courseForID(courseID)
 // Return value: a boolean value. True if the prerequisites have been fulfilled. False otherwise.
 function prereqsFulfilled(courseID)
 {
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type in courseForID.";
+    throwIfTypeDoesNotMatch(courseID, "string", "prereqsFulfilled");
     
     var tempCourse = courseForID(courseID);
     var preReq = courseForID(tempCourse.previous);

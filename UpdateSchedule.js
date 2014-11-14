@@ -49,13 +49,13 @@ function checkboxClicked(courseID)
         if(checkboxElement.checked)
         {
             // Increment number of checks and record user checking.
-            incrementChecks(courseID);
+            incrementChecks(courseID, courseID+" check_box");
             setCheckedByUser(courseID);
         }
         else
         {
             // Decrement number of checks and record user un-checking.
-            decrementChecks(courseID);
+            decrementChecks(courseID, courseID+" check_box");
             setUncheckedByUser(courseID);
         }
         

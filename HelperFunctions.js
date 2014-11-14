@@ -27,6 +27,7 @@ function throwIfTypeDoesNotMatch(parameter, typeString, callLocationString)
     if (typeof(parameter) != typeString)
     {
         console.log("Problem Parameter: " + parameter);
+        debugger;
         throw "Invalid parameter type in " + callLocationString + ".";
     }
 }

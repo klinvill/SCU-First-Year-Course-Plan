@@ -183,6 +183,7 @@ function CheckWaived() {
 //Function: Waives courses based on user clicked checkboxes.
 function checkBoxWaiving()
 {
+    debugger;
     var coursesWaivedByUser = userWaivedCourseIDs();
     
     for (var i = 0; i < coursesWaivedByUser.length; i++)
@@ -190,7 +191,7 @@ function checkBoxWaiving()
         tempCourseID = coursesWaivedByUser[i];
         if (tempCourseID)
         {
-            waiveCourseAndPreReqs(courseID);
+            waiveCourseAndPreReqs(tempCourseID);
         }
     }
 }
