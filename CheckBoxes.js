@@ -502,6 +502,8 @@ function updateCheckBoxDisplay()
         var htmlCheckBox = getHTMLCheckBoxElementForCheckBox(tempCheckBox);
         var htmlCheckBoxWrapper = getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox);
         
+        if (htmlCheckBox == undefined) debugger;
+        
         if (tempCheckBox.numTimesChecked > 0)
         {
             // Check the checkbox.
