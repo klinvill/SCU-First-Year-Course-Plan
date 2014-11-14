@@ -488,6 +488,19 @@ function preReqsChain(courseID)
     }
 }
 
+// Funcion: checks if course is of a certain type.
+// Parameter: a course and the four letter code in the ID of a course.
+// Boolean: true if course ID contains code provided, false otherwise.
+function courseIsType(tempCourse, type)
+{
+    throwIfTypeDoesNotMatch(tempCourse, "object", "courseIsType");
+    throwIfTypeDoesNotMatch(type, "string", "courseIsType");
+    
+    if (type.length != 4)
+        throw "Type is not 4 characters in courseIsType.";
+    
+    return startsWith(tempCourse.ID, type);
+}
 
 
 /* --- Major Specific Course Arrays --- */
