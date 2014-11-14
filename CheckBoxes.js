@@ -362,7 +362,7 @@ function decrementDisabled(courseID, sourceName)
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasDisabledSource(sourceName))
     {
-        if(tempCheckBox.numTimesChecked > 0)
+        if(tempCheckBox.numTimesDisabled > 0)
             tempCheckBox.numTimesDisabled--;
         tempCheckBox.removeDisabledSource(sourceName);
         return true;
@@ -490,7 +490,7 @@ function getHTMLCheckBoxElementWrapperForCourseID(courseID)
 function getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox)
 {
     throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementWrapperForCheckBox");
-    return getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
+    return getHTMLCheckBoxElementWrapperForCourseID(tempCheckBox.ID);
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
