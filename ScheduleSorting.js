@@ -4,15 +4,20 @@ var rowBasedSchedule;
 
 // Function: initializes the row based schedule based on global variabls.
 
-(function initRowBasedSchedule()
+function initRowBasedSchedule()
 {
     rowBasedSchedule = [];
     
-    for (var i = 0; i < numQuarters; i++)
+    for (var i = 0; i < coursesPerQuarter; i++)
     {
         rowBasedSchedule.push([]);
+        
+        for (var j = 0; j < numQuarters; j++)
+        {
+            rowBasedSchedule[i].push(undefined);
+        }
     }
-})()
+}
 
 
 // Function: called on a course schedule to improve the look of the schedule.
@@ -22,29 +27,52 @@ function organizeSchedule(schedule)
 {
     throwIfTypeDoesNotMatch(schedule, "object", "organizeSchedule");
     
-    var subjectsToCheck = ["MATH", "COEN", "CTW", "C&I", "PHYS"]
+    var subjectsToCheck = ["MATH", "COEN", "CTW", "PHYS", "C&I"];
     
-    // MATH
-    var mathCoursesByQuarter = [];
-    
-    for (var i = 0; i < schedule.length; i++)
+    for (var i = 0; i < subjectsToCheck.length; i++)
     {
-        mathCoursesByQuarter.push(mathClassFromQuarter(schedule[i]));
+        var subject = subjectsToCheck[i]
+        var coursesOfSubjectByQuarter = [];
+        
+        // Getting the courses for the subject.
+        for (var j = 0; j < schedule.length; j++)
+        {
+            var tempCourse;
+            
+            if (subject == "MATH")
+            {
+                tempCourse = mathClassFromQuarter(schedule[j]);
+            } else {
+                tempCourse = courseOfTypeFromQuarter(subject, schedule[i]));
+            }
+            
+            //
+            coursesOfSubjectByQuarter.push(tempCourse);
+            //Remove course from old schedule.
+            removeCourseFromSchedule(tempCourse, schedule);
+        }
+        
+        //Checking each row for room to place courses.
+        for (var j = 0; j < rowBasedSchedule.length; j++)
+        {
+            var row = rowBasedSchedule[j];
+            
+            if (rowHasRoom(row, coursesOfSubjectByQuarter))
+            {
+                placeCoursesInRow(coursesOfSubjectByQuarter, row);
+                break;
+            }
+        }
     }
     
-    for (var i = 0; i < rowBasedSchedule.length; i++)
-    {
-        var row = rowBasedSchedule[i];
-        if (rowHasRoom(row, )
-    }
+    var newSchedule;
     
-    // COEN
-    var COENCoursesByQuarter = [];
+    // Initialize newSchedule based on rowBasedSchedule.
     
-    for (var i = 0; i < schedule.length; i++)
-    {
-        COENCoursesByQuarter.push(courseOfTypeFromQuarter("COEN", schedule[i]));
-    }
+    // Remove undefined values from newSchedule.
+    
+    // Place remaining courses into newSchedule.
+    
 }
 
 /* --- Schedule Information Getters and Setters --- */
@@ -54,6 +82,8 @@ function organizeSchedule(schedule)
 // Return Value: Boolean for whether course was found in schedule.
 function removeCourseFromSchedule(tempCourse, schedule)
 {
+    if (tempCourse == undefined) return false;
+    
     throwIfTypeDoesNotMatch(tempCourse, "object", "removeCourseFromSchedule");
     throwIfTypeDoesNotMatch(schedule, "object", "removeCourseFromSchedule");
     
