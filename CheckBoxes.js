@@ -229,16 +229,24 @@ function incrementChecksGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in incrementChecksGroup.";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in incrementChecksGroup.";
+        }
         
         //Check box has not yet been checked by the given source.
         if (!(tempCheckBox.hasCheckSource(sourceName)))
         {
             tempCheckBox.numTimesChecked++;
             tempCheckBox.addCheckSource(sourceName);
+            /* Don't want this to return, otherwise it'll break the loop
             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -281,7 +289,11 @@ function decrementChecksGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in decrementChecksGroup.";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in decrementChecksGroup.";
+        }
         
         //Check box has not yet been checked by the given source.
         if (tempCheckBox.hasCheckSource(sourceName))
@@ -289,9 +301,13 @@ function decrementChecksGroup(courseIDArray, sourceName)
             if(tempCheckBox.numTimesChecked > 0)
                 tempCheckBox.numTimesChecked--;
             tempCheckBox.removeCheckSource(sourceName);
+            /* Don't want this to return, otherwise it'll break the loop
             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -333,16 +349,24 @@ function incrementDisabledGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in incrementDisabledGroup";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in incrementDisabledGroup";
+        }
         
         //Check box has not yet been checked by the given source.
         if (!(tempCheckBox.hasDisabledSource(sourceName)))
         {
             tempCheckBox.numTimesDisabled++;
             tempCheckBox.addDisabledSource(sourceName);
+            /* Don't want this to return, otherwise it'll break the loop
             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -362,7 +386,7 @@ function decrementDisabled(courseID, sourceName)
     //Check box has not yet been checked by the given source.
     if (tempCheckBox.hasDisabledSource(sourceName))
     {
-        if(tempCheckBox.numTimesChecked > 0)
+        if(tempCheckBox.numTimesDisabled > 0)
             tempCheckBox.numTimesDisabled--;
         tempCheckBox.removeDisabledSource(sourceName);
         return true;
@@ -385,17 +409,25 @@ function decrementDisabledGroup(courseIDArray, sourceName)
         
         var tempCheckBox = getCheckBoxForID(courseID);
         if (tempCheckBox == undefined)
-            throw "No checkBox for ID " + courseID + " in decrementDisabledGroup.";
+        {
+            // It shouldn't matter if part of the courseIDArray doesn't have checkboxes
+            continue;
+            //throw "No checkBox for ID " + courseID + " in decrementDisabledGroup.";
+        }
         
         //Check box has not yet been checked by the given source.
         if (tempCheckBox.hasDisabledSource(sourceName))
         {
-            if(tempCheckBox.numTimesChecked > 0)
+            if(tempCheckBox.numTimesDisabled > 0)
                 tempCheckBox.numTimesDisabled--;
             tempCheckBox.removeDisabledSource(sourceName);
-            return true;
+            /* Don't want this to return, otherwise it'll break the loop
+             return true;
+             */
         } else {
+            /* Don't want this to return, otherwise it'll break the loop
             return false;
+             */
         }
     }
 }
@@ -490,7 +522,7 @@ function getHTMLCheckBoxElementWrapperForCourseID(courseID)
 function getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox)
 {
     throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementWrapperForCheckBox");
-    return getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
+    return getHTMLCheckBoxElementWrapperForCourseID(tempCheckBox.ID);
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
