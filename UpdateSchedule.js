@@ -14,8 +14,7 @@ function createCheckboxes()
     $.each(tempCourseArray, function(index, value){
            if (value.shouldHaveCheckBox)
            {
-                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onclick="checkboxClicked("'+value.id+'")" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
-           
+                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onclick="checkboxClicked('+"'"+value.id+"'"+')" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
                 // Add new checkbox object to checkbox javascript array
                 addCheckBox(value.id, 0, 0);
            
@@ -44,6 +43,7 @@ function createCheckboxes()
 
 function checkboxClicked(courseID)
 {
+    console.log("Called.");
     debugger;
     var checkboxElement = getHTMLCheckBoxElementForCourseID(courseID);
     if (checkboxElement != undefined)
