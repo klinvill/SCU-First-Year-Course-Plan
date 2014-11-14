@@ -148,6 +148,7 @@ function CheckWaived() {
     } else {
         decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
+    
 }
 
 /* --- Helper Functions to CheckScores Schedule --- */
