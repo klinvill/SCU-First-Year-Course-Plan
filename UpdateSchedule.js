@@ -51,12 +51,15 @@ function checkboxClicked(courseID)
             // Increment number of checks and record user checking.
             incrementChecks(courseID, courseID+" check_box");
             setCheckedByUser(courseID);
+            // Increment checks and disabled for preReqs.
+            
         }
         else
         {
             // Decrement number of checks and record user un-checking.
             decrementChecks(courseID, courseID+" check_box");
             setUncheckedByUser(courseID);
+            // Increment checks and disabled for preReqs.
         }
         
     }

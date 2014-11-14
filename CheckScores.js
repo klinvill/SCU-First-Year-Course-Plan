@@ -187,6 +187,7 @@ function checkBoxWaiving()
     
     for (var i = 0; i < coursesWaivedByUser.length; i++)
     {
+        debugger;
         tempCourseID = coursesWaivedByUser[i];
         console.log(tempCourseID);
         if (tempCourseID)
