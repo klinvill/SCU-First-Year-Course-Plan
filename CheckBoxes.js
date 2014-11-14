@@ -468,7 +468,7 @@ function getHTMLCheckBoxElementForCourseID(courseID)
 function getHTMLCheckBoxElementForCheckBox(tempCheckBox)
 {
     throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementForCheckBox");
-    getHTMLElementForCourseID(tempCheckBox.ID);
+    getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
 }
 
 // Function: gets the wrapper HTML element for the check box corresponding to the course ID.
@@ -490,7 +490,7 @@ function getHTMLCheckBoxElementWrapperForCourseID(courseID)
 function getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox)
 {
     throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLChecksBoxElementWrapperForCheckBox");
-    getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
+    getHTMLCheckBoxElementWrapperForCourseID(tempCheckBox.ID);
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
