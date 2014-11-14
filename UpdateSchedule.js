@@ -52,9 +52,12 @@ function checkboxClicked(courseID)
             incrementChecks(courseID, courseID+" check_box");
             setCheckedByUser(courseID);
             
-            // Also check the predecessors
-            var preReqs = preReqsChain(courseID);
-            incrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            // Also check the predecessors, except for physics classes.
+            if (courseID.substring(0, 4) != "PHYS")
+            {
+                var preReqs = preReqsChain(courseID);
+                incrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            }
         }
         else
         {
@@ -62,9 +65,12 @@ function checkboxClicked(courseID)
             decrementChecks(courseID, courseID+" check_box");
             setUncheckedByUser(courseID);
             
-            // Also check the predecessors
-            var preReqs = preReqsChain(courseID);
-            decrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            // Also uncheck the predecessors, except for physics classes.
+            if (courseID.substring(0, 4) != "PHYS")
+            {
+                var preReqs = preReqsChain(courseID);
+                decrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            }
         }
         
     }
