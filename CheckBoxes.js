@@ -140,9 +140,25 @@ function shouldBeDisabled(courseID)
     return (getCheckBoxForID(courseID).numTimesDisabled >= 1);
 }
 
+// Function: returns whether the checkBox for a given course ID was
+//           checked manually by the user.
+// Parameters: a string for the course ID.
+// Return value: Boolean.
+function checkBoxCheckedByUser(courseID)
+{
+    throwIfTypeDoesNotMatch(courseID, "string", "checkBoxCheckedByUser");
+    
+    var tempCheckBox = getCheckBoxForID(courseID);
+    
+    if (getCheckBoxForID == undefined)
+        throw "No checkbox for provided ID in checkBoxCheckedByUser.";
+    else
+        return getCheckBoxForID(courseID).userChecked;
+}
+
 // Function: get all the IDs for courses that have been user waived.
 // Return value: An array of course ID strings.
-function userWaivedCourseIDs()
+function userCheckedCourseIDs()
 {
     var courseIDs = [];
     
@@ -475,7 +491,7 @@ function setUncheckedByUser(courseID)
 {
     throwIfTypeDoesNotMatch(courseID, "string", "setCheckedByUser");
     
-    getCheckBoxForID(courseID).userChecked = true;
+    getCheckBoxForID(courseID).userChecked = false;
     
 }
 

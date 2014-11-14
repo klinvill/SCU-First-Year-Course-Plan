@@ -52,9 +52,12 @@ function checkboxClicked(courseID)
             incrementChecks(courseID, courseID+" check_box");
             setCheckedByUser(courseID);
             
-            // Also check the predecessors
-            var preReqs = preReqsChain(courseID);
-            incrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            // Also check the predecessors, except for physics classes.
+            if (courseID.substring(0, 4) != "PHYS")
+            {
+                var preReqs = preReqsChain(courseID);
+                incrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            }
         }
         else
         {
@@ -62,9 +65,12 @@ function checkboxClicked(courseID)
             decrementChecks(courseID, courseID+" check_box");
             setUncheckedByUser(courseID);
             
-            // Also check the predecessors
-            var preReqs = preReqsChain(courseID);
-            decrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            // Also uncheck the predecessors, except for physics classes.
+            if (courseID.substring(0, 4) != "PHYS")
+            {
+                var preReqs = preReqsChain(courseID);
+                decrementChecksAndDisabledGroup(preReqs, courseID+" check_box");
+            }
         }
         
     }
@@ -110,9 +116,6 @@ function majorChanged()
 
 function updateSchedule()
 {
-    var quarters = 3
-    var classesPerQuarter = 4;
-    
     // Make the schedule visible
     if($('#Major').val() != null)
     {
@@ -136,7 +139,7 @@ function updateSchedule()
     var courseSchedule = generateSchedule(major);
     
     // Error checking to make sure proper amount of quarters are present
-    if (courseSchedule.length != quarters)
+    if (courseSchedule.length != numQuarters)
         throw "Error while rendering schedule, invalid number of quarters. Thrown from UpdateSchedule.js";
     
     var quarterClass;
@@ -145,7 +148,7 @@ function updateSchedule()
     // The outer loop iterates through the array of quarters
     for (var i = 0; i < courseSchedule.length; i++)
     {
-        if (courseSchedule[i].length != classesPerQuarter)
+        if (courseSchedule[i].length != coursesPerQuarter)
         {
             console.log("Number of classes is: " + courseSchedule[i].length);
             throw "Error while rendering schedule, invalid number of courses. Thrown from UpdateSchedule.js";

@@ -488,6 +488,19 @@ function preReqsChain(courseID)
     }
 }
 
+// Funcion: checks if course is of a certain type.
+// Parameter: a course and the four letter code in the ID of a course.
+// Boolean: true if course ID contains code provided, false otherwise.
+function courseIsType(tempCourse, type)
+{
+    throwIfTypeDoesNotMatch(tempCourse, "object", "courseIsType");
+    throwIfTypeDoesNotMatch(type, "string", "courseIsType");
+    
+    if (type.length != 4)
+        throw "Type is not 4 characters in courseIsType.";
+    
+    return startsWith(tempCourse.ID, type);
+}
 
 
 /* --- Major Specific Course Arrays --- */
@@ -496,6 +509,8 @@ function preReqsChain(courseID)
 // Each course is structured as: course = {name:”Calculus 3”, id:”MATH 13”, offered:[”F”, “W”, “S”], waived:false, pre_req:”MATH 12”, replace_with: "MATH 14"}
 var COEN_course_array =
 [
+ /* -- Pre-C&I -- */
+ 
  /* Math Series */
  courseForID("MATH 9"),
  courseForID("MATH 11"),
@@ -510,11 +525,8 @@ var COEN_course_array =
  courseForID("COEN 10"),
  courseForID("COEN 11"),
  courseForID("COEN 12"),
- courseForID("COEN 21"),
- courseForID("COEN 20"),
  
  /* CTW Series */
- // Note: CTW id's might be worng.
  courseForID("CTW 1"),
  courseForID("CTW 2"),
  
@@ -522,6 +534,19 @@ var COEN_course_array =
  courseForID("CHEM 11"),
  courseForID("PHYS 31"),
  courseForID("PHYS 32"),
+ 
+ /* -- C&I Courses -- */
+ 
+ courseForID("C&I 1"),
+ courseForID("C&I 2"),
+ 
+ /* -- Post-C&I -- */
+ 
+ /* COEN Series */
+ courseForID("COEN 21"),
+ courseForID("COEN 20"),
+ 
+ /* Others */
  courseForID("PHYS 33"),
  courseForID("COEN 19"),
  /* ENVS 21 is only here for the checkbox */
@@ -530,6 +555,8 @@ var COEN_course_array =
 
 var ELEN_course_array =
 [
+ /* -- Pre-C&I -- */
+ 
  /* Math Series */
  courseForID("MATH 9"),
  courseForID("MATH 11"),
@@ -537,7 +564,6 @@ var ELEN_course_array =
  courseForID("MATH 13"),
  courseForID("MATH 14"),
  courseForID("AMTH 106"),
- courseForID("COEN 44"),
  
  /* CTW Series */
  // Note: CTW id's might be worng.
@@ -546,10 +572,22 @@ var ELEN_course_array =
  
  /* Others */
  courseForID("CHEM 11"),
- courseForID("ELEN 21"),
- courseForID("ELEN 20"),
  courseForID("PHYS 31"),
  courseForID("PHYS 32"),
+ 
+ /* -- C&I Courses -- */
+ 
+ courseForID("C&I 1"),
+ courseForID("C&I 2"),
+ 
+ /* -- Post-C&I -- */
+ 
+ /* COEN Course */
+ courseForID("COEN 44"),
+ 
+ /* Others */
+ courseForID("ELEN 21"),
+ courseForID("ELEN 20"),
  courseForID("PHYS 33"),
  courseForID("PHYS 34"),
  /* ENVS 21 is only here for the checkbox */

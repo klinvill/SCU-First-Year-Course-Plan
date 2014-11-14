@@ -65,17 +65,28 @@ function CheckWaived() {
     
     //Note this logic might not be correct for ELEN's.
     // AMTH 106
-    if ((AP_Chem_Score == 3 && AP_Env_Sci_Score >=4) || AP_Chem_Score >= 4)
+    if ((AP_Chem_Score == 3 && AP_Env_Sci_Score >=4) ||
+        (AP_Chem_Score == 3 && checkBoxCheckedByUser("ENVS 21")) ||
+        (checkBoxCheckedByUser("CHEM 11") && AP_Env_Sci_Score >= 4) ||
+        AP_Chem_Score >= 4)
+        
     {
         waiveCourse("AMTH 106");
     }
     // --- Chem Courses ---
     
     // Chem 11
-    if (AP_Chem_Score >= 3 || AP_Env_Sci_Score >= 4)
+    if (AP_Chem_Score >= 3)
     {
         waiveCourse("CHEM 11");
         incrementChecksAndDisabled("CHEM 11", "CHEM 11 AP_Score");
+    } else {
+        decrementChecksAndDisabled("CHEM 11", "CHEM 11 AP_Score");
+    }
+    
+    if (AP_Env_Sci_Score >= 4)
+    {
+        waiveCourse("CHEM 11");
     }
     
     // Chem 12
@@ -145,53 +156,31 @@ function CheckWaived() {
         decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
     
-
-    /*$("#OC_Form input").each(function() {
-        if($(this).is(":checked"))
-        {
-            waiveCourse($(this).val());
-            var tempCourse = courseForID($(this).val());
-            
-            //check every prereq's checkbox only if a checkbox was checked
-            if(checked == 1) {
-                while(tempCourse.pre_req != "") {
-                    var tempCourse = courseForID(tempCourse.pre_req);
-                    if(document.getElementById("OC_"+tempCourse.id) != null)
-                             document.getElementById("OC_"+tempCourse.id).checked = true;//check previous
-                    //document.getElementById("OC_"+tempCourse.id).onclick = "return false";//make it uneditable
-                    //document.getElementById("Label_"+tempCourse.id).addClass("Uneditable");//gray it out
-                }
-            }
-        }
-    });
-
-    //uncheck every checkbox whose prereq is not satisfied
-    $("#OC_Form input").each(function() {
-        var tempCourse = courseForID($(this).val());
-        if(tempCourse.pre_req != "") 
-        {
-            var checkCourse = courseForID(tempCourse.pre_req);
-            if(document.getElementById("OC_"+checkCourse.id) != null && document.getElementById("OC_"+checkCourse.id).checked == false) {
-                $(this).attr('checked', false);
-                unwaiveCourse($(this).val());
-            }
-        }
-    });*/
 }
 
 /* --- Helper Functions to CheckScores Schedule --- */
 //Function: Waives courses based on user clicked checkboxes.
 function checkBoxWaiving()
 {
-    var coursesWaivedByUser = userWaivedCourseIDs();
+    var coursesWaivedByUser = userCheckedCourseIDs();
     
     for (var i = 0; i < coursesWaivedByUser.length; i++)
     {
+        debugger;
         tempCourseID = coursesWaivedByUser[i];
-        console.log(tempCourseID);
         if (tempCourseID)
         {
-            waiveCourseAndPreReqs(tempCourseID);
+            if (startsWith(tempCourseID, "PHYS"))
+                waiveCourse(tempCourseID);
+            else
+                waiveCourseAndPreReqs(tempCourseID);
         }
+    }
+    
+    // Waiving AMTH 106.
+    if (coursesWaivedByUser.indexOf("CHEM 11") > -1 &&
+        coursesWaivedByUser.indexOf("ENVS 21") > -1)
+    {
+        waiveCourse("AMTH 106");
     }
 }

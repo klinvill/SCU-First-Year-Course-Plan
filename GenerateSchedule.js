@@ -5,9 +5,6 @@
 //First array [1] corresponds to Winter.
 //First array [2] corresponds to Spring.
 
-
-var classesPerQuarter = 4;
-
 // Function called to fill the courseSchedule with courses.
 
 function generateSchedule(major)
@@ -39,7 +36,7 @@ function generateSchedule(major)
             var quarter = courseSchedule[j]; // Array of courses for quarter.
             
             // Check if the quarter already has 4 courses.
-            if (quarter.length >= classesPerQuarter) continue;
+            if (quarter.length >= coursesPerQuarter) continue;
             
             // Check if course is available in the quarter.
             var quarterID; //String F, W, or S to identify quarter.
@@ -106,40 +103,30 @@ function generateSchedule(major)
         }
     }
     
-    // Potentially fill in holes with CNI 1 and 2.
-    var fallQuarter = courseSchedule[0];
-    var winterQuarter = courseSchedule[1];
-    var springQuarter = courseSchedule[2];
-        //Check Fall and Winter
-    if (fallQuarter.length < classesPerQuarter &&
-        winterQuarter.length < classesPerQuarter)
-    {
-        fallQuarter.push(CNI1Course);
-        winterQuarter.push(CNI2Course);
-    }
-        //Check Winter and Spring
-    else if (winterQuarter.length < classesPerQuarter &&
-        springQuarter.length < classesPerQuarter)
-    {
-        winterQuarter.push(CNI1Course);
-        springQuarter.push(CNI2Course);
-    }
-    //Check Winter and Spring
-    else if (fallQuarter.length < classesPerQuarter &&
-             springQuarter.length < classesPerQuarter)
-    {
-        fallQuarter.push(CNI1Course);
-        springQuarter.push(CNI2Course);
-    }
-    
     // Fill in holes with core
     for (var j = 0; j < courseSchedule.length; j++)
     {
         var quarter = courseSchedule[j]; // Array of courses for quarter.
         
         // Check if the quarter already has 4 courses.
-        while (quarter.length < classesPerQuarter)
+        while (quarter.length < coursesPerQuarter)
             quarter.push(finalCourseOption);
+    }
+    
+    var CNIError = checkForOneCNI(courseSchedule);
+    // This value will be false if only one of the C&I course
+    // was placed in the schedule.
+    
+    // If there is a C&I Error, rerun the process without C&I.
+    if (CNIError)
+    {
+        waiveCourse("C&I 1");
+        waiveCourse("C&I 2");
+        
+        courseSchedule = generateSchedule(major);
+        
+        unwaiveCourse("C&I 1");
+        unwaiveCourse("C&I 2");
     }
     
     return courseSchedule;
@@ -154,12 +141,8 @@ function generateSchedule(major)
 // Return valude: Boolean.
 function coursePresentInQuarter(courseID, quarter)
 {
-    // Parameter security.
-    if (typeof(quarter) != "object")
-        throw "Invalid parameter type for quarter in coursePresentInQuarter.";
-    
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type for courseID in coursePresentInQuarter.";
+    throwIfTypeDoesNotMatch(courseID, "string", "coursePresentInQuarter");
+    throwIfTypeDoesNotMatch(quarter, "object", "coursePresentInQuarter");
     
     // Functionality
     
@@ -180,17 +163,13 @@ function coursePresentInQuarter(courseID, quarter)
 // Return valude: Boolean.
 function coursePresentInSchedule(courseID, schedule)
 {
-    // Parameter security.
-    if (typeof(schedule) != "object")
-        throw "Invalid parameter type for schedule in coursePresentInSchedule.";
-    
-    if (typeof(courseID) != "string")
-        throw "Invalid parameter type for courseID in coursePresentInSchedule.";
+    throwIfTypeDoesNotMatch(courseID, "string", "coursePresentInSchedule");
+    throwIfTypeDoesNotMatch(schedule, "object", "coursePresentInSchedule");
     
     // True if the course is in any of the quarters.
-    return (coursePresentInQuarter(schedule[0], courseID) ||
-            coursePresentInQuarter(schedule[1], courseID) ||
-            coursePresentInQuarter(schedule[2], courseID));
+    return (coursePresentInQuarter(courseID, schedule[0]) ||
+            coursePresentInQuarter(courseID, schedule[1]) ||
+            coursePresentInQuarter(courseID, schedule[2]));
 }
 
 // Function: returns boolean if any of a course's prerequisites are in the quarter.
@@ -238,6 +217,20 @@ function prereqsPresentInQuarter(tempCourse, quarter)
         
         return allPresent;
     }
+}
+
+// Function: called on the schedule to check if only 1 C&I course made it in.
+// Parameter: a schedule array.
+// Return value: true if only one of the two CNI courses is in the schedule.
+//               false otherwise.
+function checkForOneCNI(schedule)
+{
+    throwIfTypeDoesNotMatch(schedule, "object", "checkForOneCNI");
+    
+    var CNI1Found = coursePresentInSchedule("C&I 1", schedule);
+    var CNI2Found = coursePresentInSchedule("C&I 2", schedule);
+    
+    return !((CNI1Found && CNI2Found) || (!CNI1Found && !CNI2Found));
 }
 
 //Function: called on a quarter to get the number of courses
