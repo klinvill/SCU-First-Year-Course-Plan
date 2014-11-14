@@ -489,13 +489,8 @@ function getHTMLCheckBoxElementWrapperForCourseID(courseID)
 // Return Value: the HTML element for the wrapper of the given check box. Returns undefined if not such element.
 function getHTMLCheckBoxElementWrapperForCheckBox(tempCheckBox)
 {
-<<<<<<< HEAD
-    throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLCheckBoxElementWrapperForCheckBox");
-    getHTMLElementForCourseID(tempCheckBox.ID);
-=======
     throwIfTypeDoesNotMatch(tempCheckBox, "object", "getHTMLChecksBoxElementWrapperForCheckBox");
     getHTMLCheckBoxElementForCourseID(tempCheckBox.ID);
->>>>>>> 35602f994c32708487254b2d9b348fb426cf7124
 }
 
 // Function: Called to update the checkboxes on the web page to check and/or lock them.
