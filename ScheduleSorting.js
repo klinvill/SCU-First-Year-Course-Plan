@@ -24,7 +24,7 @@ function organizeSchedule(schedule)
             {
                 tempCourse = mathClassFromQuarter(schedule[j]);
             } else {
-                tempCourse = courseOfTypeFromQuarter(subject, schedule[i]));
+                tempCourse = courseOfTypeFromQuarter(subject, schedule[j]);
             }
             
             //
@@ -48,12 +48,17 @@ function organizeSchedule(schedule)
         }
     }
     
+    logRowBasedSchedule(rowBasedSchedule);
+    console.log(" ");
+    logQuarterBasedSchedule(schedule);
+    debugger;
+    
     //Place remaining courses into row based schedule.
     for (var i = 0; i < rowBasedSchedule.length; i++)
     {
         var row = rowBasedSchedule[i];
         
-        for (var j = 0; i < row.length; j++)
+        for (var j = 0; j < row.length; j++)
         {
             if (row[j] == undefined)
                 row[j] = popFront(schedule[j]);
@@ -66,6 +71,7 @@ function organizeSchedule(schedule)
     // Transfer rowBasedSchedule into newSchedule.
     rowBasedToQuarterBased(rowBasedSchedule, newSchedule);
     
+    schedule = newSchedule;
 }
 
 /* --- Schedule Initialization --- */
@@ -97,7 +103,13 @@ function newUndefinedSchedule()
     for (var i = 0; i < numQuarters; i++)
     {
         newSchedule.push([]);
+        for (var j = 0; j < coursesPerQuarter; j++)
+        {
+            newSchedule[i].push(undefined);
+        }
     }
+    
+    return newSchedule;
 }
 
 /* --- Schedule Information Getters and Setters --- */
@@ -268,7 +280,7 @@ function courseOfTypeFromQuarter(type, quarter)
     for (var i = 0; i < quarter.length; i++)
     {
         var tempCourse = quarter[i];
-        if (courseIsType(type))
+        if (courseIsType(tempCourse, type))
             return tempCourse;
     }
     
@@ -285,10 +297,90 @@ function mathClassFromQuarter(quarter)
     for (var i = 0; i < quarter.length; i++)
     {
         var tempCourse = quarter[i];
-        if (courseIsType("MATH") || courseIsType("AMTH"))
+        if (courseIsType(tempCourse, "MATH") || courseIsType(tempCourse, "AMTH"))
             return tempCourse;
     }
     
     return undefined;
 }
 
+/* --- Schedule Logging --- */
+
+// Function: Logs a course row in an easy to read format.
+// Parameter: a row of courses.
+function rowString(row)
+{
+    throwIfTypeDoesNotMatch(row, "object", "logRow");
+    
+    var rowString = "";
+    
+    for (var i = 0; i < row.length; i++)
+    {
+        var tempElement = row[i];
+        
+        if (tempElement == undefined)
+            rowString = rowString + "UNDF";
+        else
+            rowString = rowString + tempElement.id;
+        
+        rowString += " ";
+    }
+    
+    return rowString;
+}
+
+// Function: Logs a row-based schedule in an easy to read format.
+// Parameter: a row-based schedule of courses.
+function logRowBasedSchedule(schedule)
+{
+    throwIfTypeDoesNotMatch(schedule, "object", "logRowBasedSchedule");
+    
+    var fullString = "";
+    
+    for (var i = 0; i < schedule.length; i++)
+    {
+        var row = schedule[i];
+        fullString += (rowString(row) + "\n");
+    }
+    
+    console.log(fullString);
+}
+
+// Function: Logs a quarter-based schedule in an easy to read format.
+// Parameter: a row-based schedule of courses.
+function logQuarterBasedSchedule(schedule)
+{
+    throwIfTypeDoesNotMatch(schedule, "object", "logQuarterBasedSchedule");
+    
+    var maxQuarterLength = 0;
+    
+    // figure out longest schedule length.
+    for (var i = 0; i < schedule.length; i++)
+    {
+        var quarterLength = schedule[i].length;
+        if (quarterLength > maxQuarterLength)
+            maxQuarterLength = quarterLength;
+    }
+    
+    //Log schedule
+    for (var i = 0; i < maxQuarterLength; i++)
+    {
+        var logString = "";
+        
+        for (var j = 0; j < schedule.length; j++)
+        {
+            var quarter = schedule[j];
+            
+            if (i >= quarter.length)
+                logString += "EMTY";
+            else if (quarter[i] == undefined)
+                logString += "UNDF";
+            else
+                logString += quarter[i].id;
+            
+            logString += " ";
+        }
+        
+        console.log(logString);
+    }
+}

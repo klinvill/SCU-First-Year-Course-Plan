@@ -129,6 +129,9 @@ function generateSchedule(major)
         unwaiveCourse("C&I 2");
     }
     
+    // Reorganizing the schedule for aesthetic purposes.
+    organizeSchedule(courseSchedule);
+    
     return courseSchedule;
 }
 
