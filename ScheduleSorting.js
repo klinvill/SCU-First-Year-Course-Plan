@@ -1,32 +1,13 @@
 /* ----- File containing the logic for making the schedule look nice. ----- */
 
-var rowBasedSchedule;
-
-// Function: initializes the row based schedule based on global variabls.
-
-function initRowBasedSchedule()
-{
-    rowBasedSchedule = [];
-    
-    for (var i = 0; i < coursesPerQuarter; i++)
-    {
-        rowBasedSchedule.push([]);
-        
-        for (var j = 0; j < numQuarters; j++)
-        {
-            rowBasedSchedule[i].push(undefined);
-        }
-    }
-}
-
-
 // Function: called on a course schedule to improve the look of the schedule.
 // Parameter: a quarter based schedule array.
-// Return Value: a quarter based schedule that has been organized.
+// Postcondition: schedule is reorganized.
 function organizeSchedule(schedule)
 {
     throwIfTypeDoesNotMatch(schedule, "object", "organizeSchedule");
     
+    var rowBasedSchedule = newRowBasedSchedule();
     var subjectsToCheck = ["MATH", "COEN", "CTW", "PHYS", "C&I"];
     
     for (var i = 0; i < subjectsToCheck.length; i++)
@@ -48,8 +29,6 @@ function organizeSchedule(schedule)
             
             //
             coursesOfSubjectByQuarter.push(tempCourse);
-            //Remove course from old schedule.
-            removeCourseFromSchedule(tempCourse, schedule);
         }
         
         //Checking each row for room to place courses.
@@ -59,20 +38,66 @@ function organizeSchedule(schedule)
             
             if (rowHasRoom(row, coursesOfSubjectByQuarter))
             {
-                placeCoursesInRow(coursesOfSubjectByQuarter, row);
+                if (placeCoursesInRow(coursesOfSubjectByQuarter, row))
+                {
+                    //If successfully placed, remove from schedule.
+                    removeCoursesFromSchedule(coursesOfSubjectByQuarter, schedule);
+                }
                 break;
             }
         }
     }
     
-    var newSchedule;
+    //Place remaining courses into row based schedule.
+    for (var i = 0; i < rowBasedSchedule.length; i++)
+    {
+        var row = rowBasedSchedule[i];
+        
+        for (var j = 0; i < row.length; j++)
+        {
+            if (row[j] == undefined)
+                row[j] = popFront(schedule[j]);
+        }
+    }
     
     // Initialize newSchedule based on rowBasedSchedule.
+    var newSchedule = newUndefinedSchedule();
     
-    // Remove undefined values from newSchedule.
+    // Transfer rowBasedSchedule into newSchedule.
+    rowBasedToQuarterBased(rowBasedSchedule, newSchedule);
     
-    // Place remaining courses into newSchedule.
+}
+
+/* --- Schedule Initialization --- */
+
+// Function: initializes the row based schedule based on global variabls.
+function newRowBasedSchedule()
+{
+    var rowBasedSchedule = [];
     
+    for (var i = 0; i < coursesPerQuarter; i++)
+    {
+        rowBasedSchedule.push([]);
+        
+        for (var j = 0; j < numQuarters; j++)
+        {
+            rowBasedSchedule[i].push(undefined);
+        }
+    }
+    
+    return rowBasedSchedule;
+}
+
+// Function: Used to initialize a new schedule of quarters filled with undefined.
+// Return Value: a quarter schedule filled qith undefined for courses.
+function newUndefinedSchedule()
+{
+    newSchedule = [];
+    
+    for (var i = 0; i < numQuarters; i++)
+    {
+        newSchedule.push([]);
+    }
 }
 
 /* --- Schedule Information Getters and Setters --- */
@@ -104,6 +129,43 @@ function removeCourseFromSchedule(tempCourse, schedule)
     return false;
 }
 
+// Function: removes courses in a list from the schedule.
+// Parameters: a course array and the schedule.
+function removeCoursesFromSchedule(courseList, schedule)
+{
+    throwIfTypeDoesNotMatch(courseList, "object", "removeCoursesFromSchedule");
+    throwIfTypeDoesNotMatch(schedule, "object", "removeCoursesFromSchedule");
+    
+    for (var i = 0; i < courseList.length; i++)
+    {
+        var tempCourse = courseList[i];
+        
+        if (tempCourse != undefined)
+        {
+            removeCourseFromSchedule(tempCourse, schedule);
+        }
+    }
+}
+
+// Function: pops the front element off of the array.
+// Parameter: an array.
+// Return value: the first element of the given array.
+
+function popFront(myArray)
+{
+    throwIfTypeDoesNotMatch(myArray, "object", "popFront");
+    
+    if (myArray.length == 0)
+    {
+        throw "Array provided to popFront is empty.";
+    }
+    
+    var firstElement = myArray[0];
+    myArray.splice(0,1);
+    
+    return firstElement;
+}
+
 // Function: counts the number of non-undefined values in the array.
 // Parameter: a row of courses.
 // Return Value: number of courses in the row array.
@@ -124,10 +186,72 @@ function numCoursesInRow(row)
 // Function: called to check if a given row has room for all the courses in a list.
 // Parameters: a row array and a list of courses array.
 // Return value: Boolean.
-
-function rowHasRoom(row, courses)
+function rowHasRoom(row, courseList)
 {
+    throwIfTypeDoesNotMatch(row, "object", "rowHasRoom");
+    throwIfTypeDoesNotMatch(courseList, "object", "rowHasRoom");
     
+    for (var i = 0; i < row.length; i++)
+    {
+        if (courseList[i] != undefined && row[i] != undefined)
+            return false;
+    }
+    
+    return true;
+}
+
+// Function: called to attempt to place the courses
+//           in the course list into a given row.
+// Parameters: a course array and and a row.
+// Return value: Boolean corresponding to whether courses were successsfully placed.
+function placeCoursesInRow(courseList, row)
+{
+    throwIfTypeDoesNotMatch(courseList, "object", "rowHasRoom");
+    throwIfTypeDoesNotMatch(row, "object", "rowHasRoom");
+    
+    if (rowHasRoom(row, courseList))
+    {
+        for (var i = 0; i < row.length; i++)
+        {
+            var tempCourse = courseList[i];
+            if (tempCourse != undefined)
+            {
+                row[i] = tempCourse;
+            }
+        }
+        
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/* --- Schedule Transfer ---*/
+
+// Function: transfers contents of a rowBasedSchedule into a quarter based schedule.
+function rowBasedToQuarterBased(rowBasedSchedule, quarterBasedSchedule)
+{
+    throwIfTypeDoesNotMatch(rowBasedSchedule, "object", "rowBasedToQuarterBased");
+    throwIfTypeDoesNotMatch(quarterBasedSchedule, "object", "rowBasedToQuarterBased");
+    
+    if (rowBasedSchedule.length == 0 || quarterBasedSchedule.length == 0)
+        throw "Schedules are empty in rowBasedToQuarterBased.";
+    
+    if (rowBasedSchedule.length != quarterBasedSchedule[0].length ||
+        quarterBasedSchedule.length != rowBasedSchedule[0].length)
+        throw "Schedule dimensions do not match in rowBasedToQuarterBased.";
+    
+    // Main Functionality
+    
+    for (var i = 0; i < rowBasedSchedule.length; i++)
+    {
+        var row = rowBasedSchedule[i];
+        
+        for (var j = 0; j < row.length; j++)
+        {
+            quarterBasedSchedule[j][i] = row[j];
+        }
+    }
 }
 
 /* --- Extracting Data from Schedule or Quarter --- */
