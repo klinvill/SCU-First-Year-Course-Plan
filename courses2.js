@@ -393,7 +393,7 @@ var allCourses =
  waived: false,
  pre_req: "",
  replace_with: "COEN 20",
- previous: "COEN 12",
+ previous: "",
  hasLab: true,
  shouldHaveCheckBox: false
  },
