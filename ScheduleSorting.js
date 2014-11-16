@@ -7,6 +7,9 @@ function organizeSchedule(schedule)
 {
     throwIfTypeDoesNotMatch(schedule, "object", "organizeSchedule");
     
+    logQuarterBasedSchedule(schedule);
+    debugger;
+    
     var rowBasedSchedule = newRowBasedSchedule();
     var subjectsToCheck = ["MATH", "COEN", "CTW", "PHYS", "C&I"];
     
@@ -27,7 +30,6 @@ function organizeSchedule(schedule)
                 tempCourse = courseOfTypeFromQuarter(subject, schedule[j]);
             }
             
-            //
             coursesOfSubjectByQuarter.push(tempCourse);
         }
         
@@ -48,11 +50,6 @@ function organizeSchedule(schedule)
         }
     }
     
-    logRowBasedSchedule(rowBasedSchedule);
-    console.log(" ");
-    logQuarterBasedSchedule(schedule);
-    debugger;
-    
     //Place remaining courses into row based schedule.
     for (var i = 0; i < rowBasedSchedule.length; i++)
     {
@@ -61,7 +58,10 @@ function organizeSchedule(schedule)
         for (var j = 0; j < row.length; j++)
         {
             if (row[j] == undefined)
+            {
+                var quarter = schedule[j];
                 row[j] = popFront(schedule[j]);
+            }
         }
     }
     
@@ -130,7 +130,7 @@ function removeCourseFromSchedule(tempCourse, schedule)
         
         for (var j = 0; j < quarter.length; j++)
         {
-            if (quarter[i] == tempCourse)
+            if (quarter[j] == tempCourse)
             {
                 quarter.splice(j,1);
                 return true;
@@ -170,6 +170,7 @@ function popFront(myArray)
     if (myArray.length == 0)
     {
         throw "Array provided to popFront is empty.";
+        debugger;
     }
     
     var firstElement = myArray[0];
@@ -327,6 +328,29 @@ function rowString(row)
     }
     
     return rowString;
+}
+
+// Function: Logs a quarter in an easy to read format.
+// Parameter: a row of courses.
+function quarterString(quarter)
+{
+    throwIfTypeDoesNotMatch(quarter, "object", "logRow");
+    
+    var quarterString = "";
+    
+    for (var i = 0; i < quarter.length; i++)
+    {
+        var tempElement = quarter[i];
+        
+        if (tempElement == undefined)
+            quarterString = quarterString + "UNDF";
+        else
+            quarterString = quarterString + tempElement.id;
+        
+        quarterString += "\n";
+    }
+    
+    return quarterString;
 }
 
 // Function: Logs a row-based schedule in an easy to read format.
