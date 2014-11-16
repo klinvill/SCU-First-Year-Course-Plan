@@ -578,6 +578,7 @@ var ELEN_course_array =
  /* -- C&I Courses -- */
  
  courseForID("C&I 1"),
+ courseForID("ELEN 21"),
  courseForID("C&I 2"),
  
  /* -- Post-C&I -- */
@@ -586,7 +587,6 @@ var ELEN_course_array =
  courseForID("COEN 44"),
  
  /* Others */
- courseForID("ELEN 21"),
  courseForID("ELEN 20"),
  courseForID("PHYS 33"),
  courseForID("PHYS 34"),
