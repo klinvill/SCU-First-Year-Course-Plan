@@ -562,11 +562,6 @@ var ELEN_course_array =
  courseForID("MATH 14"),
  courseForID("AMTH 106"),
  
- /* CTW Series */
- // Note: CTW id's might be worng.
- courseForID("CTW 1"),
- courseForID("CTW 2"),
- 
  /* Others */
  courseForID("CHEM 11"),
  courseForID("PHYS 31"),
@@ -579,11 +574,16 @@ var ELEN_course_array =
  
  /* -- Post-C&I -- */
  
+ /* CTW Series */
+ // Note: CTW id's might be worng.
+ courseForID("CTW 1"),
+ courseForID("ELEN 21"),
+ courseForID("CTW 2"),
+ 
  /* COEN Course */
  courseForID("COEN 44"),
  
  /* Others */
- courseForID("ELEN 21"),
  courseForID("ELEN 20"),
  courseForID("PHYS 33"),
  courseForID("PHYS 34"),
