@@ -89,6 +89,23 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
     }
 }
 
+/* --- Function for Reseting The Check Boxes to Default States --- */
+
+// Function: used to reset all checkBoxes to default values.
+function resetCheckBoxes()
+{
+    for (var i = 0; i < checkBoxArray.length; i++)
+    {
+        var tempCheckBox = checkBoxArray[i];
+        
+        tempCheckBox.numTimesChecked = 0;
+        tempCheckBox.numTimesDisabled = 0;
+        tempCheckBox.userChecked = false;
+        tempCheckBox.checkSources = [];
+        tempCheckBox.disabledSources = [];
+    }
+}
+
 
 /* --- Functions for analyzing checkBoxes array. --- */
 
