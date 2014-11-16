@@ -37,8 +37,10 @@
             <h1> Javascript is currently disabled. Enable it to use this website. </h1>
         </noscript>
         <div id="page-wrapper" style="display:none">
-            <div class="page-header">
-                <h3 class="text-center">Santa Clara First Year Course Plan Generator</h3>
+            <div class="header-wrapper">
+                <div class="page-header">
+                    <h3 class="text-center">Santa Clara First Year Course Plan Generator</h3>
+                </div>
             </div>
             
             
@@ -46,7 +48,7 @@
             <!--------------------- SECTION TO ENTER INFORMATION TO WAIVE CLASSES --------------------->
             <div class="col-md-4">
                 <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
                             <h4 class="panel-title">
                                 <a>Step 1: Select Major</a>
@@ -65,7 +67,7 @@
                     
                     
                     <!-- AP Section -->
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo">
                             <h4 class="panel-title">
                                 <a>Step 2: Enter AP Test Scores</a>
@@ -190,7 +192,7 @@
                             
                             
                     <!-- Previous Programming Experience (PPE) Section -->
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree">
                             <h4 class="panel-title">
                                 <a>Step 3: Enter Previous Programming Experience</a>
@@ -217,7 +219,7 @@
                     
                             
                     <!-- Calculus Readiness Exam Section -->
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFour">
                             <h4 class="panel-title">
                                 <a>Step 4: Enter Calculus Readiness Exam Score</a>
@@ -243,7 +245,7 @@
                     
                             
                     <!-- Other Coursework Section -->
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseFive">
                             <h4 class="panel-title">
                                 <a>Step 5: Enter Other Coursework</a>
@@ -276,7 +278,7 @@
                     </div>
                     
                     
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix">
                             <h4 class="panel-title">
                                 <a>Step 6: Select Quarter to Take ENGR 1</a>
@@ -302,7 +304,7 @@
             
             <!--------------------- SECTION TO DISPLAY SUGGESTED COURSE SCHEDULE --------------------->
             <div class="col-md-8 pull-right">
-                <div class="panel panel-default" id="schedule-default">
+                <div class="panel panel-primary" id="schedule-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Schedule</h3>
                     </div>
@@ -310,7 +312,7 @@
                         <p class="basic-text">Select a major to view a schedule</p>
                     </div>
                 </div>
-                <div class="panel panel-default" id="schedule" style="display:none">
+                <div class="panel panel-primary" id="schedule" style="display:none">
                     <div class="panel-heading">
                         <h3 class="panel-title">Schedule</h3>
                     </div>
@@ -351,12 +353,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-danger" onclick="resetPage()">Reset Schedule</button>
+                        <button type="button" class="btn btn-danger pull-right" onclick="resetPage()">Reset Schedule</button>
+                        <br/><br/>
                         
                         <!-- Section to display classes waived and optionally un-select these classes -->
                         <div>
                             <p class="basic-text">
-                            Based on the information you have entered so far you have waived the following classes:
+                            Based on the information you have entered so far, you have waived the following classes:
                             </p>
                             <ul class="basic-text waived-courses col-md-3" id="waived-column-0">
                             </ul>
