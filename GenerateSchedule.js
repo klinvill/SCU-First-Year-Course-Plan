@@ -71,9 +71,6 @@ function generateSchedule(major)
                         }
                     }
                 }
-                
-                
-                
             }
             
             // If any of the pre-reqs are in the same quarter, move to the next quarter
@@ -130,7 +127,8 @@ function generateSchedule(major)
     }
     
     // Reorganizing the schedule for aesthetic purposes.
-    organizeSchedule(courseSchedule);
+    if (!CNIError)
+        schedule = organizeSchedule(courseSchedule);
     
     return courseSchedule;
 }

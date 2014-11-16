@@ -3,12 +3,13 @@
 // Function: called on a course schedule to improve the look of the schedule.
 // Parameter: a quarter based schedule array.
 // Postcondition: schedule is reorganized.
+// Return value: the organized schedule.
 function organizeSchedule(schedule)
 {
     throwIfTypeDoesNotMatch(schedule, "object", "organizeSchedule");
     
+    console.log("---Beginning---");
     logQuarterBasedSchedule(schedule);
-    debugger;
     
     var rowBasedSchedule = newRowBasedSchedule();
     var subjectsToCheck = ["MATH", "COEN", "CTW", "PHYS", "C&I"];
@@ -72,6 +73,13 @@ function organizeSchedule(schedule)
     rowBasedToQuarterBased(rowBasedSchedule, newSchedule);
     
     schedule = newSchedule;
+    
+    console.log("---Ending---");
+    logQuarterBasedSchedule(schedule);
+    
+    debugger;
+    
+    return newSchedule;
 }
 
 /* --- Schedule Initialization --- */
@@ -263,6 +271,24 @@ function rowBasedToQuarterBased(rowBasedSchedule, quarterBasedSchedule)
         for (var j = 0; j < row.length; j++)
         {
             quarterBasedSchedule[j][i] = row[j];
+        }
+    }
+}
+
+// Function: transfers contents of a quarter based schedule into another quarter based schedule.
+function quarterBasedToQuarterBased(source, destination)
+{
+    throwIfTypeDoesNotMatch(source, "object", "quarterBasedToQuarterBased");
+    throwIfTypeDoesNotMatch(destination, "object", "quarterBasedToQuarterBased");
+    
+    for (var i = 0; i < source.length; i++)
+    {
+        var quarter = source[i];
+        
+        for (var j = 0; j < quarter.length; j++)
+        {
+            destination[i][j] = quarter[j];
+            //destination[i].push(quarter[i]);
         }
     }
 }
