@@ -148,7 +148,7 @@ function updateSchedule()
     // The outer loop iterates through the array of quarters
     for (var i = 0; i < courseSchedule.length; i++)
     {
-        logQuarterBasedSchedule(courseSchedule);
+        //logQuarterBasedSchedule(courseSchedule);
         
         if (courseSchedule[i].length != coursesPerQuarter)
         {

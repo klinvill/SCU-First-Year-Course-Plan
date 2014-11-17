@@ -129,7 +129,7 @@ function generateSchedule(major)
     // Reorganizing the schedule for aesthetic purposes.
     if (!CNIError)
     {
-        debugger;
+        //debugger;
         courseSchedule = organizeSchedule(courseSchedule);
     }
     

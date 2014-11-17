@@ -8,8 +8,8 @@ function organizeSchedule(schedule)
 {
     throwIfTypeDoesNotMatch(schedule, "object", "organizeSchedule");
     
-    console.log("---Beginning---");
-    logQuarterBasedSchedule(schedule);
+    /*console.log("---Beginning---");
+    logQuarterBasedSchedule(schedule);*/
     
     var rowBasedSchedule = newRowBasedSchedule();
     var subjectsToCheck = ["MATH", "COEN", "CTW", "PHYS", "C&I"];
@@ -74,10 +74,10 @@ function organizeSchedule(schedule)
     
     schedule = newSchedule;
     
-    console.log("---Ending---");
-    logQuarterBasedSchedule(schedule);
+    /*console.log("---Ending---");
+    logQuarterBasedSchedule(schedule);*/
     
-    debugger;
+    //debugger;
     
     return schedule;
 }
