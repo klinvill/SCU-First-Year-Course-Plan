@@ -20,7 +20,7 @@ body {
 
 /* Used to define what the print view looks like */
 @media print {
-    #accordion, #welcome-summary {
+    #accordion, #welcome-summary, .btn {
         display: none;
     }
 }
