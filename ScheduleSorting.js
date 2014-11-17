@@ -79,7 +79,7 @@ function organizeSchedule(schedule)
     
     debugger;
     
-    return newSchedule;
+    return schedule;
 }
 
 /* --- Schedule Initialization --- */

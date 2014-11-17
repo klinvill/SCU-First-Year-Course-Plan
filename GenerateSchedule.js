@@ -128,7 +128,7 @@ function generateSchedule(major)
     
     // Reorganizing the schedule for aesthetic purposes.
     if (!CNIError)
-        schedule = organizeSchedule(courseSchedule);
+        courseSchedule = organizeSchedule(courseSchedule);
     
     return courseSchedule;
 }
