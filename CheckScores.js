@@ -177,9 +177,15 @@ function checkBoxWaiving()
     }
     
     // Waiving AMTH 106.
-    if (coursesWaivedByUser.indexOf("CHEM 11") > -1 &&
-        coursesWaivedByUser.indexOf("ENVS 21") > -1)
+    if (coursesWaivedByUser.indexOf("ENVS 21") > -1)
     {
-        waiveCourse("AMTH 106");
+        // Because ENVS can waive CHEM 11.
+        waiveCourse("CHEM 11");
+        
+        // If CHEM 11 also checked, waive AMTH 106.
+        if (coursesWaivedByUser.indexOf("CHEM 11") > -1)
+        {
+            waiveCourse("AMTH 106");
+        }
     }
 }
