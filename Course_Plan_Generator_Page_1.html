@@ -56,11 +56,13 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <select class="form-control" id="Major" onchange="majorChanged()">
-                                    <option value="" selected disabled>Major</option>
-                                    <option value="COEN"> Computer Engineering </option>
-                                    <option value="ELEN"> Electrical Engineering </option>
-                                </select>
+                                <form id="Major_Form">
+                                    <select class="form-control" id="Major" onchange="majorChanged()">
+                                        <option value="" selected disabled>Major</option>
+                                        <option value="COEN"> Computer Engineering </option>
+                                        <option value="ELEN"> Electrical Engineering </option>
+                                    </select>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -413,8 +415,8 @@
             // Create checkboxes on page
             createCheckboxes();
             
-            // Fixes a bug where the onchange event for the major couldnt be detected upon a "half" refresh
-            updateSchedule();
+            // Fixes a bug where the onchange event for the major couldnt be detected upon a "half" refresh (in firefox) by causing a full refresh
+            resetPage();
             
             function updateMajor() {
                 $('#schedule .panel-heading .panel-title').text($('#Major').val() + " Schedule");
@@ -425,8 +427,10 @@
             function resetPage()
             {
                 $("form").each(function(){this.reset()});
-                resetCheckBoxes()
+                resetCheckBoxes();
                 updateSchedule();
+                $("#schedule-default").show();
+                $("#schedule").hide();
             }
         
             //runUnitTests();
