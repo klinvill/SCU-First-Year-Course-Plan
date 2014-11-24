@@ -15,6 +15,9 @@ function CheckWaived() {
     
     checkBoxWaiving();
     
+    // Get major
+    var major = document.getElementById("Major").value;
+    
     // Getting Scores
     var AP_Calc_AB_Score = document.getElementById("AP_Calc_AB_Score").selectedIndex;
     var AP_Calc_BC_Score = document.getElementById("AP_Calc_BC_Score").selectedIndex;
@@ -63,12 +66,13 @@ function CheckWaived() {
         decrementChecksAndDisabledGroup(preReqs, "MATH 12 AP_Score");
     }
     
-    //Note this logic might not be correct for ELEN's.
+    //Note this logic is only correct for COEN's.
     // AMTH 106
-    if ((AP_Chem_Score == 3 && AP_Env_Sci_Score >=4) ||
+    if (major == "COEN" && (
+        (AP_Chem_Score == 3 && AP_Env_Sci_Score >=4) ||
         (AP_Chem_Score == 3 && checkBoxCheckedByUser("ENVS 21")) ||
         (checkBoxCheckedByUser("CHEM 11") && AP_Env_Sci_Score >= 4) ||
-        AP_Chem_Score >= 4)
+        AP_Chem_Score >= 4))
         
     {
         waiveCourse("AMTH 106");
