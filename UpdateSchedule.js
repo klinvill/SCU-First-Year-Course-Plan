@@ -108,6 +108,9 @@ function majorChanged()
     }
     else throw "Unsupported Major";
     
+    // Add the name of the major to the schedule title
+    $('#schedule .panel-heading .panel-title').text($('#Major option:selected').text() + " Schedule");
+    
     updateSchedule();
 }
 

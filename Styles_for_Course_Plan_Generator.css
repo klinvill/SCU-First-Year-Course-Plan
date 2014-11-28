@@ -20,8 +20,11 @@ body {
 
 /* Used to define what the print view looks like */
 @media print {
-    #accordion, #welcome-summary, .btn {
+    #accordion-wrapper, .btn {
         display: none;
+    }
+    #schedule-wrapper {
+        width: 100%;
     }
 }
 
