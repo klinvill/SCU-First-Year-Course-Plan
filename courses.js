@@ -497,9 +497,9 @@ function courseIsType(tempCourse, type)
     throwIfTypeDoesNotMatch(type, "string", "courseIsType");
     
     if (type.length != 4)
-        throw "Type is not 4 characters in courseIsType.";
+        throw ("Type " + type + " is not 4 characters in courseIsType.");
     
-    return startsWith(tempCourse.ID, type);
+    return startsWith(tempCourse.id, type);
 }
 
 
