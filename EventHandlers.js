@@ -1,56 +1,4 @@
 /*
- * Description: createCheckboxes() generates all the html checkboxes (for each course that has the shouldHaveCheckBox property set) as either a math, science, coen, or elen checkbox
- * Called by: index page load
- * Arguments: none
- * Returns: none
- * Exceptions: Uncategorized checkbox
- */
-function createCheckboxes()
-{
-    var tempCourseArray = jQuery.extend(true, [], allCourses);
-    tempCourseArray.sort(function(course1, course2){
-                         if (course1.id < course2.id)
-                            return -1;
-                         else if (course1.id > course2.id)
-                            return 1;
-                         else
-                            return 0;
-                         });
-    
-    $.each(tempCourseArray, function(index, value){
-           if (value.shouldHaveCheckBox)
-           {
-                var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onclick="checkboxClicked('+"'"+value.id+"'"+')" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
-                // Add new checkbox object to checkbox javascript array
-                addCheckBox(value.id, 0, 0);
-           
-                if (value.id.substring(0, 4) == "MATH" || value.id.substring(0, 4) == "AMTH")
-                {
-                    $("[id = 'Math Checkboxes']").append(htmlString);
-                }
-               else if (value.id.substring(0, 4) == "PHYS" || value.id.substring(0, 4) == "CHEM" || value.id.substring(0, 4) == "ENVS")
-               {
-                    $("[id = 'Science Checkboxes']").append(htmlString);
-               }
-               else if (value.id.substring(0, 4) == "COEN")
-               {
-                    $("[id = 'Coen Checkboxes']").append(htmlString);
-               }
-               else if (value.id.substring(0, 4) == "ELEN")
-               {
-                    $("[id = 'Elen Checkboxes']").append(htmlString);
-               }
-               else throw ("Uncategorized Checkbox: ", value.id.substring(0, 4));
-           
-                $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
-           }
-           });
-}
-
-
-
-
-/*
  * Description: checkboxClicked handles a user checking or unchecking a checkbox. Used to distinguish between an onclick driven or function driven checking of a checkbox in order to appropriately track when a checkbox should be unclickable.
  * Called by: onclick event in one of the checkboxes
  * Arguments: courseID
@@ -306,4 +254,21 @@ function placeEngr1 (courseSchedule)
         console.log($('#ENGR1_Qtr').val());
         throw "Invalid value for ENGR1_Qtr";
     }
+}
+
+
+/*
+ * Description: resetPage resets all the forms on the page, shows the default "select a major" message, and hides the schedule
+ * Called by: index page load, reset button onclick event
+ * Arguments: none
+ * Returns: none
+ * Exceptions: none
+ */
+function resetPage()
+{
+    $("form").each(function(){this.reset()});
+    resetCheckBoxes();
+    updateSchedule();
+    $("#schedule-default").show();
+    $("#schedule").hide();
 }

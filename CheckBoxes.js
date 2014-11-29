@@ -89,6 +89,61 @@ function checkBox(ID, numTimesChecked, numTimesDisabled)
     }
 }
 
+
+
+/* --- Function for Creating The HTML Check Boxes --- */
+
+/*
+ * Description: createCheckboxes() generates all the html checkboxes (for each course that has the shouldHaveCheckBox property set) as either a math, science, coen, or elen checkbox
+ * Called by: index page load
+ * Arguments: none
+ * Returns: none
+ * Exceptions: Uncategorized checkbox
+ */
+function createCheckboxes()
+{
+    var tempCourseArray = jQuery.extend(true, [], allCourses);
+    tempCourseArray.sort(function(course1, course2){
+                         if (course1.id < course2.id)
+                         return -1;
+                         else if (course1.id > course2.id)
+                         return 1;
+                         else
+                         return 0;
+                         });
+    
+    $.each(tempCourseArray, function(index, value){
+           if (value.shouldHaveCheckBox)
+           {
+           var htmlString ='<label id="Label_'+value.id+'" style="display:none"><input type="checkbox" onclick="checkboxClicked('+"'"+value.id+"'"+')" name="Other_Waived" id="OC_'+value.id+'" value="'+value.id+'">'+value.id+'</label><br style="display:none"/>';
+           // Add new checkbox object to checkbox javascript array
+           addCheckBox(value.id, 0, 0);
+           
+           if (value.id.substring(0, 4) == "MATH" || value.id.substring(0, 4) == "AMTH")
+           {
+           $("[id = 'Math Checkboxes']").append(htmlString);
+           }
+           else if (value.id.substring(0, 4) == "PHYS" || value.id.substring(0, 4) == "CHEM" || value.id.substring(0, 4) == "ENVS")
+           {
+           $("[id = 'Science Checkboxes']").append(htmlString);
+           }
+           else if (value.id.substring(0, 4) == "COEN")
+           {
+           $("[id = 'Coen Checkboxes']").append(htmlString);
+           }
+           else if (value.id.substring(0, 4) == "ELEN")
+           {
+           $("[id = 'Elen Checkboxes']").append(htmlString);
+           }
+           else throw ("Uncategorized Checkbox: ", value.id.substring(0, 4));
+           
+           $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
+           }
+           });
+}
+
+
+
 /* --- Function for Reseting The Check Boxes to Default States --- */
 
 // Function: used to reset all checkBoxes to default values.

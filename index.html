@@ -422,21 +422,7 @@
             
             // Fixes a bug where the onchange event for the major couldnt be detected upon a "half" refresh (in firefox) by causing a full refresh
             resetPage();
-            
-            function updateMajor() {
-                $('#schedule .panel-heading .panel-title').text($('#Major').val() + " Schedule");
-                //Updating the schedule after changing the major.
-                updateSchedule();
-            }
         
-            function resetPage()
-            {
-                $("form").each(function(){this.reset()});
-                resetCheckBoxes();
-                updateSchedule();
-                $("#schedule-default").show();
-                $("#schedule").hide();
-            }
         
             /* Function that runs all the unit tests and displays the results in the Unit Testing section above */
             //runUnitTests();
