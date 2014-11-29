@@ -163,6 +163,9 @@ function CheckWaived() {
 //Function: Waives courses based on user clicked checkboxes.
 function checkBoxWaiving()
 {
+    // Get major
+    var major = document.getElementById("Major").value;
+    
     var coursesWaivedByUser = userCheckedCourseIDs();
     
     for (var i = 0; i < coursesWaivedByUser.length; i++)
@@ -184,7 +187,7 @@ function checkBoxWaiving()
         waiveCourse("CHEM 11");
         
         // If CHEM 11 also checked, waive AMTH 106.
-        if (coursesWaivedByUser.indexOf("CHEM 11") > -1)
+        if (major == "COEN" && coursesWaivedByUser.indexOf("CHEM 11") > -1)
         {
             waiveCourse("AMTH 106");
         }
