@@ -1,4 +1,10 @@
-
+/*
+ * Description: createCheckboxes() generates all the html checkboxes (for each course that has the shouldHaveCheckBox property set) as either a math, science, coen, or elen checkbox
+ * Called by: index page load
+ * Arguments: none
+ * Returns: none
+ * Exceptions: Uncategorized checkbox
+ */
 function createCheckboxes()
 {
     var tempCourseArray = jQuery.extend(true, [], allCourses);
@@ -34,13 +40,23 @@ function createCheckboxes()
                {
                     $("[id = 'Elen Checkboxes']").append(htmlString);
                }
-           else throw ("Uncategorized Checkbox: ", value.id.substring(0, 4));
+               else throw ("Uncategorized Checkbox: ", value.id.substring(0, 4));
            
                 $("[id = 'OC_"+value.id+"']").bind("click", updateSchedule); //allow jQuery binding
            }
            });
 }
 
+
+
+
+/*
+ * Description: checkboxClicked handles a user checking or unchecking a checkbox. Used to distinguish between an onclick driven or function driven checking of a checkbox in order to appropriately track when a checkbox should be unclickable.
+ * Called by: onclick event in one of the checkboxes
+ * Arguments: courseID
+ * Returns: none
+ * Exceptions: checkbox not found
+ */
 function checkboxClicked(courseID)
 {
     var checkboxElement = getHTMLCheckBoxElementForCourseID(courseID);
@@ -82,6 +98,15 @@ function checkboxClicked(courseID)
     updateSchedule();
 }
 
+
+
+/*
+ * Description: majorChanged handles the event where the selected major is changed. It hides unnecessary checkboxes and includes the name of the major in the schedule title.
+ * Called by: onchange event in #Major dropdown
+ * Arguments: none
+ * Returns: none
+ * Exceptions: unsupported major
+ */
 function majorChanged()
 {
     // Change checkboxes shown on page
@@ -116,7 +141,13 @@ function majorChanged()
 
 
 // The master function to be called whenever something changes on the website.
-
+/*
+ * Description: updateSchedule is the master function that is called everytime something changes on the website. This function calls the functions to figure out which courses should be waived and the functions that accordingly update the displayed schedule and checkboxes.
+ * Called by: onchange event every dropdown except #Major, majorChanged, checkboxClicked, and resetPage
+ * Arguments: none
+ * Returns: none
+ * Exceptions: invalid number of quarters, invalid number of courses in a quarter, invalid quarter value,
+ */
 function updateSchedule()
 {
     // Make the schedule visible
@@ -215,7 +246,7 @@ function updateSchedule()
 }
 
 /*
- * Description: placeEngr1 takes the value of the ENGR1_Qtr select box and uses it to show the engr1 course in the selected quarter while hiding the engr1 course in the other quarter.
+ * Description: placeEngr1 takes the value of the ENGR1_Qtr select box and uses it to show the engr1 course in the selected quarter while hiding the engr1 course in the other quarter. If Auto is selected, engr1 will be placed in the course with the fewest number of labs. In the event of a tie, the earlier quarter is chosen.
  * Called by: onchange event in the #ENGR1_Qtr select box
  * Arguments: courseSchedule
  * Returns: none

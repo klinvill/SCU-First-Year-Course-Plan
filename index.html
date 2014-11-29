@@ -36,6 +36,8 @@
         <noscript>
             <h1> Javascript is currently disabled. Enable it to use this website. </h1>
         </noscript>
+        
+        
         <div id="page-wrapper" style="display:none">
             <div class="header-wrapper">
                 <div class="page-header">
@@ -280,6 +282,7 @@
                     </div>
                     
                     
+                    <!-- ENGR 1 Placement Section -->
                     <div class="panel panel-primary">
                         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapseSix">
                             <h4 class="panel-title">
@@ -288,7 +291,7 @@
                         </div>
                         <div id="collapseSix" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <p>Select a quarter to take ENGR 1. If you select Auto, ENGR 1 will be placed in the quarter with the least number of labs (or the earlier quarter if multiple quarters tie for the number of labs).</p>
+                                <p>Select a quarter to take ENGR 1. If you select Auto, ENGR 1 will be placed in the quarter with the least number of labs. If two or more quarters tie for the least number of labs, ENGR 1 will be placed in the earliest of these quarters.</p>
                                 <select class="form-control" id="ENGR1_Qtr" onchange="updateSchedule()">
                                     <option value="Auto" selected>Auto</option>
                                     <option value="Fall"> Fall </option>
@@ -327,6 +330,7 @@
                                     <th>Spring</th>
                                 </tr>
                             </thead>
+                            <!-- Schedule Placeholders -->
                             <tbody>
                                 <tr>
                                     <td class="fall-quarter">MATH 11 - Calculus 1</td>
@@ -358,7 +362,7 @@
                         <button type="button" class="btn btn-danger pull-right" onclick="resetPage()">Reset Schedule</button>
                         <br/><br/>
                         
-                        <!-- Section to display classes waived and optionally un-select these classes -->
+                        <!-- Section to display classes waived-->
                         <div>
                             <p class="basic-text">
                             Based on the information you have entered so far, you have waived the following classes:
@@ -390,7 +394,7 @@
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
+        <!-- Latest compiled and minified Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <!-- Qunit unit testing framework -->
         <script src="https://code.jquery.com/qunit/qunit-1.15.0.js"></script>
@@ -400,7 +404,7 @@
         <script src="courses.js"></script>
         <script src="CheckScores.js"></script>
         <script src="GenerateSchedule.js"></script>
-        <script src="UpdateSchedule.js"></script>
+        <script src="EventHandlers.js"></script>
         <script src="ScheduleSorting.js"></script>
         <script src="Qtesting.js"></script>
         
@@ -410,10 +414,10 @@
             //global variable to determine whether a checkbox was checked or unchecked
             var checked = 0;
             
-            // If javascript is enabled, this will display the page
+            // If javascript is enabled, this will display the page. Otherwise only the noscript element will be visible
             $('#page-wrapper').show();
             
-            // Create checkboxes on page
+            // Create checkboxes on page. They are hidden if not needed rather than being removed to maintain the state.
             createCheckboxes();
             
             // Fixes a bug where the onchange event for the major couldnt be detected upon a "half" refresh (in firefox) by causing a full refresh
@@ -434,6 +438,7 @@
                 $("#schedule").hide();
             }
         
+            /* Function that runs all the unit tests and displays the results in the Unit Testing section above */
             //runUnitTests();
         </script>
         
