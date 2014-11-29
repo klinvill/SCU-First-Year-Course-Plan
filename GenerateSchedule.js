@@ -129,7 +129,6 @@ function generateSchedule(major)
     // Reorganizing the schedule for aesthetic purposes.
     if (!CNIError)
     {
-        //debugger;
         courseSchedule = organizeSchedule(courseSchedule);
     }
     
@@ -194,7 +193,6 @@ function prereqsPresentInQuarter(tempCourse, quarter)
         if (tempCourse.previous === "") return false;
         else {
             var prev = courseForID(tempCourse.previous);
-            if (prev == undefined)  debugger;
             // Checking all courses in quarter.
             for (var i = 0; i < quarter.length; i++)
             {

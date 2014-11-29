@@ -77,7 +77,6 @@ function organizeSchedule(schedule)
     /*console.log("---Ending---");
     logQuarterBasedSchedule(schedule);*/
     
-    //debugger;
     
     return schedule;
 }
@@ -178,7 +177,6 @@ function popFront(myArray)
     if (myArray.length == 0)
     {
         throw "Array provided to popFront is empty.";
-        debugger;
     }
     
     var firstElement = myArray[0];
