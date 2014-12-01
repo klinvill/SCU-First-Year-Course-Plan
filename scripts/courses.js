@@ -292,7 +292,7 @@ var allCourses =
  replace_with: finalCourseOption.id,
  previous: ["PHYS 32", "MATH 11", "MATH 12"],
  hasLab: true,
- shouldHaveCheckBox: true
+ shouldHaveCheckBox: false
  },
  {
  name: "Physics IV",

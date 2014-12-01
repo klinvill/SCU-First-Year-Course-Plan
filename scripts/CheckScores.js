@@ -153,9 +153,9 @@ function CheckWaived() {
     if (AP_PHYS_EnM_Score > 3)
     {
         waiveCourse("PHYS 33");
-        incrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
+        //incrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     } else {
-        decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
+        //decrementChecksAndDisabled("PHYS 33", "PHYS 33 AP_Score");
     }
     
 }
