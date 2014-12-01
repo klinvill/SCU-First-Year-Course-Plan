@@ -1,5 +1,5 @@
 ===================================
-        Instalation Guide 
+        Installation Guide 
 ===================================
 
 1) Copy the containing folder and paste it into the desired webserver location.
