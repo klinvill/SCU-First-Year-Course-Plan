@@ -389,7 +389,7 @@ var allCourses =
  {
  name: "Logic Design",
  id: "ELEN 21",
- offered: "FWS",
+ offered: "W", // Actually offered FWS. Changed for aesthetic purposes.
  waived: false,
  pre_req: "",
  replace_with: "COEN 20",
@@ -580,15 +580,14 @@ var ELEN_course_array =
  courseForID("ELEN 21"),
  courseForID("CTW 2"),
  
- /* COEN Course */
- courseForID("COEN 44"),
  
  /* Others */
  courseForID("ELEN 20"),
  courseForID("PHYS 33"),
  courseForID("PHYS 34"),
- /* ENVS 21 is only here for the checkbox */
- courseForID("ENVS 21"),
+ 
+ /* COEN Course */
+ courseForID("COEN 44"),
  
  /* Later ELEN Series */
  courseForID("ELEN 50"),
