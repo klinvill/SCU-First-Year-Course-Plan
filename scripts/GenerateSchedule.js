@@ -64,11 +64,30 @@ function generateSchedule(major)
                     for (var l = 0; l < courseSchedule[k].length; l++)
                     {
                         var courseInSchedule = courseSchedule[k][l];
-                        if (courseInSchedule.id === tempCourse.previous)
+                        // Previous is string.
+                        if (typeof(tempCourse.previous) == "string")
                         {
-                            preReqPresent = true;
-                            break;
+                            if (courseInSchedule.id === tempCourse.previous)
+                            {
+                                preReqPresent = true;
+                                break;
+                            }
                         }
+                        // Previous is an array.
+                        else if (typeof(tempCourse.previous) == "object")
+                        {
+                            for (var index = 0; index < tempCourse.previous.length; index++)
+                            {
+                                var prev = tempCourse.previous[index];
+                                if (courseInSchedule.id === prev)
+                                {
+                                    preReqPresent = true;
+                                    break;
+                                }
+                            }
+                            if (preReqPresent) break;
+                        }
+                        
                     }
                 }
             }
@@ -204,9 +223,9 @@ function prereqsPresentInQuarter(tempCourse, quarter)
     // For courses with and array of previous course strings.
     else if (typeof(tempCourse.previous) == "object")
     {
-        var allPresent = true;
+        var anyPresent = false;
         
-        for (var i = 0; i < tempCourse.previous; i++)
+        for (var i = 0; i < tempCourse.previous.length; i++)
         {
             var prev = courseForID(tempCourse.previous[i]);
             // Checking all courses in quarter.
@@ -214,10 +233,10 @@ function prereqsPresentInQuarter(tempCourse, quarter)
             {
                 if (prev.id == quarter[i].id) return true;
             }
-            allPresent = allPresent && prereqsPresentInQuarter(prev, quarter);
+            anyPresent = anyPresent || prereqsPresentInQuarter(prev, quarter);
         }
         
-        return allPresent;
+        return anyPresent;
     }
 }
 
