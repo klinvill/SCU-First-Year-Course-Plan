@@ -531,6 +531,7 @@ var COEN_course_array =
  courseForID("CHEM 11"),
  courseForID("PHYS 31"),
  courseForID("PHYS 32"),
+ courseForID("COEN 19"),
  
  /* -- C&I Courses -- */
  
@@ -545,7 +546,6 @@ var COEN_course_array =
  
  /* Others */
  courseForID("PHYS 33"),
- courseForID("COEN 19"),
  /* ENVS 21 is only here for the checkbox */
  courseForID("ENVS 21")
 ];
