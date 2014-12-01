@@ -453,6 +453,7 @@ function prereqsFulfilled(courseID)
         else return (preReq.waived && prereqsFulfilled(preReq));
     }
     // Using Arrays
+    else if (typeof(tempCourse.previous) == "string")
     {
         var fulfilled = true;
         
