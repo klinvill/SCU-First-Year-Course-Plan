@@ -85,7 +85,8 @@ function CheckWaived() {
         decrementChecksAndDisabled("CHEM 11", "CHEM 11 AP_Score");
     }
     
-    if (AP_Env_Sci_Score >= 4)
+    // ENVS 21 only waives CHEM 11 for COENs
+    if (major == "COEN" && AP_Env_Sci_Score >= 4)
     {
         waiveCourse("CHEM 11");
     }
@@ -180,14 +181,14 @@ function checkBoxWaiving()
         }
     }
     
-    // Waiving AMTH 106.
-    if (coursesWaivedByUser.indexOf("ENVS 21") > -1)
+    // Waiving AMTH 106 and CHEM 11 for COENs.
+    if (major == "COEN" && coursesWaivedByUser.indexOf("ENVS 21") > -1)
     {
         // Because ENVS can waive CHEM 11.
         waiveCourse("CHEM 11");
         
         // If CHEM 11 also checked, waive AMTH 106.
-        if (major == "COEN" && coursesWaivedByUser.indexOf("CHEM 11") > -1)
+        if (coursesWaivedByUser.indexOf("CHEM 11") > -1)
         {
             waiveCourse("AMTH 106");
         }
