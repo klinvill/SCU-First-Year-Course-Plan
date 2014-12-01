@@ -95,6 +95,11 @@ function generateSchedule(major)
             // If any of the pre-reqs are in the same quarter, move to the next quarter
             if (prereqsPresentInQuarter(tempCourse, quarter))
             {
+                if (tempCourse.id == "PHYS 33")
+                {
+                    console.log("Got here.");
+                    debugger;
+                }
                 continue;
             }
             
